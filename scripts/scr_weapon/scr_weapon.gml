@@ -1501,6 +1501,8 @@ global.gear = {
         "master_crafted": 5,
         "artifact": 10
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "A suit of Adeptus Astartes power armour. The Mark can no longer be determined- it appears to be a combination of several types.",
       "tags":["power_armour"],
     },
@@ -1521,6 +1523,8 @@ global.gear = {
         "master_crafted": 15,
         "artifact": 20
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "A custom suit of power armored created by master artificiers and decorated without compare, this ancient Power Armour is beyond priceless. This suit's history is ancient and its users many.",
       "tags":["power_armour"],
     },
@@ -1541,8 +1545,8 @@ global.gear = {
         "master_crafted": 25,
         "artifact": 30
       },
-      "melee_hands":2,
-      "ranged_hands":2,
+      "melee_hands":0.2,
+      "ranged_hands":0.2,
       "description": "Terminator Armour is the strongest and most powerful armour designed by humanity, available only to the veterans of the Adeptus Astartes. The Indomitus Pattern is the most widespread and versatile pattern as of M41.",
       "tags":["terminator"],
       "req_exp":90,
@@ -1585,8 +1589,8 @@ global.gear = {
         "master_crafted": 25,
         "artifact": 30
       },
-      "melee_hands":2,
-      "ranged_hands":2,      
+      "melee_hands":0.2,
+      "ranged_hands":0.2,      
       "description": "This pattern is possibly considered the most advanced form of Terminator Armour, providing greater mobility for the wearer compared to the Indomitus with no loss in durability. In the M41 considered to be incredibly rare with wars being fought to secure more suits.",
       "tags":["terminator"],
       "req_exp":90,
@@ -1608,8 +1612,8 @@ global.gear = {
         "master_crafted": 25,
         "artifact": 30,
     },
-      "melee_hands":2,
-      "ranged_hands":2,      
+      "melee_hands":0.2,
+      "ranged_hands":0.2,      
       "description": "Among the first issued to the Space Marine Legions. Having additional plating and shield generators installed within the shoulder pads resulted in severe straining of the suit's exoskeleton and reduced the wearer's maneuverability, leading to its decline among some legions.",
       "tags":["terminator"],
       "req_exp":90,
@@ -1669,6 +1673,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "An ancient set of Power Armor dating back to the early Great Crusade. The Mark III has heavier armor plating but is far heavier then its contemporaries.",
        "tags":["power_armour"],
     },
@@ -1689,6 +1695,8 @@ global.gear = {
         "master_crafted": 10, // Augmented
         "artifact": 15 // Augmented
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "Power Armor dating back to the end of the Great Crusade. It is considered the pinnacle of Power Armor by some Astartes. However, the components are no longer reproducible, the knowledge having been lost to time.",
       "tags":["power_armour"],
     },
@@ -1709,6 +1717,8 @@ global.gear = {
         "master_crafted": 0,
         "artifact": 0
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "A hastily assembled Power Armor that first started appearing during the Horus Heresy to act as a stopgap while new suits were produced and sent to loyalist legions. It excels in close combat but it has limited sensors for ranged combat.",
       "tags":["power_armour"],
     },
@@ -1729,6 +1739,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "A suit dating back to the Horus Heresy, first tested by the Raven Guard. It contains boosted olfactory and auditory sensors that increase the ranged accuracy of the wearer. This however makes it more fragile to an extent.",
       "tags":["power_armour"],
     },
@@ -1749,6 +1761,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "The most common power armour of the Adeptus Astartes and the only power armour still widely manufactured by the Imperium.",
       "tags":["power_armour"],
     },
@@ -1769,6 +1783,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
     "description": "The newest and most advanced of the standard mark power armours as such production has not yet reached maximum capacity creating a supply shortage while chapters rush to get access to them.",
     "tags":["power_armour"],
     },
@@ -1789,6 +1805,8 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
+      "melee_hands":0.1,
+      "ranged_hands":0.1,
       "description": "The MKX Tacticus is the most advanced pattern of power armour available to the Adeptus Astartes, featuring advanced armor composites and systems. It was developed by Belisarius Cawl during the development of the Primaris Astartes program.",
       "tags":["power_armour"],
     }, 
