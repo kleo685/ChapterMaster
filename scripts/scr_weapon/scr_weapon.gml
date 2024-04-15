@@ -177,8 +177,7 @@ global.weapons={
             "artifact": 70
         },
         "description": "A standard Chainsword. It is popular among Assault Marines due to their raw power while maintaining speed.",
-        "melee_hands": 1,
-        "ranged_hands": 0,
+        "weight": 1,
         "ammo": 0,
         "range": 1,
         "spli": 4,
@@ -641,8 +640,7 @@ global.weapons={
             "artifact": 60
         },
         "description": "A standard Bolter, a two-handed firearm that launches rocket propelled projectiles that detonate after penetrating the target. It is a versatile and iconic weapon of Adeptus Astartes, their resounding detonations carry the Emperor's Wrath.",
-        "melee_hands": 1,
-        "ranged_hands": 2,
+        "weight": 2,
         "ammo": 16,
         "range": 12,
         "spli": 3,
@@ -1501,8 +1499,7 @@ global.gear = {
         "master_crafted": 5,
         "artifact": 10
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "weight":0.3,
       "description": "A suit of Adeptus Astartes power armour. The Mark can no longer be determined- it appears to be a combination of several types.",
       "tags":["power_armour"],
     },
@@ -1545,8 +1542,7 @@ global.gear = {
         "master_crafted": 25,
         "artifact": 30
       },
-      "melee_hands":0.6,
-      "ranged_hands":0.6,
+      "weight":1,
       "description": "Terminator Armour is the strongest and most powerful armour designed by humanity, available only to the veterans of the Adeptus Astartes. The Indomitus Pattern is the most widespread and versatile pattern as of M41.",
       "tags":["terminator"],
       "req_exp":90,
@@ -2009,8 +2005,8 @@ global.gear = {
 
 function equipment_struct(item_data, core_type,quality="none") constructor{ 
     //This could be done with 2d arrays [[],[]]
-    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","melee_hands","ranged_hands","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp"];
-    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0];
+    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","weight","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp"];
+    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0];
     type = core_type;
     for (var i=0;i<array_length(names);i++){
         if (struct_exists(item_data,names[i])){
@@ -2054,10 +2050,10 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
         }
         switch (item_type) {
             default:
-                stat_order = ["description", "special_description", "quality", "armour_value", "damage_resistance_mod", "hp_mod", "ranged_mod", "melee_mod", "attack", "spli", "range", "ammo", "melee_hands", "ranged_hands", "special_properties", "req_exp", "tags"];
+                stat_order = ["description", "special_description", "quality", "armour_value", "damage_resistance_mod", "hp_mod", "ranged_mod", "melee_mod", "attack", "spli", "range", "ammo", "weight", "special_properties", "req_exp", "tags"];
                 break;
             case "weapon":
-                stat_order = ["description", "special_description", "quality", "attack", "spli", "range", "ammo", "ranged_mod", "melee_mod", "armour_value", "hp_mod", "damage_resistance_mod", "melee_hands", "ranged_hands", "special_properties", "req_exp", "tags"];
+                stat_order = ["description", "special_description", "quality", "attack", "spli", "range", "ammo", "ranged_mod", "melee_mod", "armour_value", "hp_mod", "damage_resistance_mod", "weight", "special_properties", "req_exp", "tags"];
                 break;
             }
 			
@@ -2080,18 +2076,18 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
                             item_desc_tooltip += $"Armour: {armour_value}#"
                         }
                         else{
-                            item_desc_tooltip += $"Armour: {format_number_with_sign(armour_value)}#"
+                            item_desc_tooltip += $"Armour: {string_sign(armour_value)}#"
                         }
                     }
                     break;
                 case "hp_mod":
                     if (hp_mod!=0){
-                        item_desc_tooltip += $"Health Mod: {format_number_with_sign(hp_mod)}%#"
+                        item_desc_tooltip += $"Health Mod: {string_sign(hp_mod)}%#"
                     }
                     break;
                 case "damage_resistance_mod":
                     if (damage_resistance_mod!=0){
-                        item_desc_tooltip += $"Damage Res: {format_number_with_sign(damage_resistance_mod)}%#"
+                        item_desc_tooltip += $"Damage Res: {string_sign(damage_resistance_mod)}%#"
                     }
                     break;
                 case "attack":
@@ -2106,12 +2102,12 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
                     break;
                 case "ranged_mod":
                     if (ranged_mod!=0){
-                        item_desc_tooltip += $"Ranged Mod: {format_number_with_sign(ranged_mod)}%#"
+                        item_desc_tooltip += $"Ranged Mod: {string_sign(ranged_mod)}%#"
                     }
                     break;
                 case "melee_mod":
                     if (melee_mod!=0){
-                        item_desc_tooltip += $"Melee Mod: {format_number_with_sign(melee_mod)}%#"
+                        item_desc_tooltip += $"Melee Mod: {string_sign(melee_mod)}%#"
                     }
                     break;
                 case "ammo":
@@ -2124,23 +2120,13 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
                         item_desc_tooltip += $"Range: {range}#"
                     }
                     break;
-                case "melee_hands":
-                    if (melee_hands != 0) {
+                case "weight":
+                    if (weight != 0) {
                         if item_type = "weapon"{
-                            item_desc_tooltip += $"Melee Burden: {melee_hands}#"
+                            item_desc_tooltip += $"Weight: {weight}#"
                         }
                         else{
-                            item_desc_tooltip += $"Melee Burden Cap: {format_number_with_sign(melee_hands)}#"
-                        }
-                    }
-                    break;
-                case "ranged_hands":
-                    if (ranged_hands != 0) {
-                        if item_type = "weapon"{
-                            item_desc_tooltip += $"Ranged Burden: {ranged_hands}#"
-                        }
-                        else{
-                            item_desc_tooltip += $"Ranged Burden Cap: {format_number_with_sign(ranged_hands)}#"
+                            item_desc_tooltip += $"Max Weight: {string_sign(weight)}#"
                         }
                     }
                     break;
@@ -2366,7 +2352,7 @@ function quality_color(_item_quality){
     }
 }
 
-function format_number_with_sign(number){
+function string_sign(number){
     return number > 0 ? "+" + string(number) : string(number);
 }
 
