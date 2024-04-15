@@ -65,8 +65,7 @@ global.weapons={
         "master_crafted": 10,
         "artifact": 12
     } ,
-    "melee_hands": 0.9,
-    "ranged_hands":1,
+    "weight":10,
     "tags":["shield"],
     "hp_mod":{
       "standard": 30,
@@ -146,8 +145,7 @@ global.weapons={
             "artifact": 35
         },
         "description": "More of a sword than a knife, this tough and thick blade becomes a deadly weapon in the hand of an Astartes.",
-        "melee_hands": 0,
-        "ranged_hands": 0,
+        "weight":2,
         "ammo": 0,
         "range": 1,
         "spli": 1,
@@ -416,8 +414,7 @@ global.weapons={
             "artifact": 1
         },
         "description": "A large, ceramite clad gauntlet surrounded by an power energy field. Though cumbersome to use, it dishes out tremendous damage to enemies, leaving very little behind.",
-        "melee_hands": 1.1,
-        "ranged_hands": 1,
+        "weight":25,
         "ammo": 0,
         "range": 1,
         "spli": 2,
@@ -474,8 +471,7 @@ global.weapons={
             "artifact": 1.3
         },
         "description": "A Thunder hamer is a weapon with a long pole and a double headed hammer on the top. This weapon unleashes a massive, devastating disruption field on impact. Only experienced Astartes can use Thunder Hammers, typically Terminators.",
-        "melee_hands": 2.25,
-        "ranged_hands": 2,
+        "weight":18,
         "ammo": 0,
         "range": 1,
         "spli": 10,
@@ -576,9 +572,8 @@ global.weapons={
             "artifact": 40
         },
         "description": "A smaller, more compact version of the venerable Boltgun. This model is produced in the standard Godwyn pattern.",
-        "melee_hands": 0,
-        "ranged_hands": 1,
-        "ammo": 18,
+        "weight": 6,
+        "ammo": 8,
         "range": 3.1,
         "spli": 1,
         "arp": 0,
@@ -730,8 +725,7 @@ global.weapons={
             "artifact": 300
         },
         "description": "A loud weapon that roars with fury, this gun vaporizes flesh and armor alike. Due to heat dissipation, it has only a short range.",
-        "melee_hands": 1,
-        "ranged_hands": 2,
+        "weight":14,
         "ammo": 4,
         "range": 2.1,
         "spli": 1,
@@ -793,8 +787,7 @@ global.weapons={
             "artifact": 300
         },
         "description": "A two-handed weapon that launches blobs of plasma at the target. They are considered both sacred and dangerous, overheating through rapid firing of the weapon. Overheating can result in detonation of the weapon, killing the wielder.",
-        "melee_hands": 0,
-        "ranged_hands": 2,
+        "weight":27,
         "ammo": 16,
         "range": 12,
         "spli": 3,
@@ -1284,8 +1277,7 @@ global.weapons={
             "artifact": 96
         },
         "description": "Compact and double-barreled, this bolt weapon is inaccurate but grants an enormous amount of firepower. Its psychological effect on the enemy should not be understated.",
-        "melee_hands": 1.1,
-        "ranged_hands": 1.1,
+        "weight":26,
         "ammo": 10,
         "range": 10,
         "spli": 6,
@@ -1305,8 +1297,7 @@ global.weapons={
             "artifact": 0
         },
         "description": "Blackened at the tip, this weapon unleashes a torrent of burning promethium - all the better to cleanse sin and impurity with.",
-        "melee_hands": 1,
-        "ranged_hands": 1,
+        "weight":15,
         "ammo": 4,
         "range": 2.1,
         "spli": 3,
@@ -1336,9 +1327,8 @@ global.weapons={
             "master_crafted": 130,
             "artifact": 160
         },
-        "description": "A standard Bolter with an underbarrel flamer for expanded tactical utility.",
-        "melee_hands": 1,
-        "ranged_hands": 1.5,
+        "description": "A standard Bolter with an underbarrel flamer for expanded tactical utility..",
+        "weight":25,
         "ammo": 15,
         "range": 10,
         "spli": 3,
@@ -1493,7 +1483,7 @@ global.gear = {
         "master_crafted": 5,
         "artifact": 10
       },
-      "weight":0.3,
+      "max_weight":20,
       "description": "A suit of Adeptus Astartes power armour. The Mark can no longer be determined- it appears to be a combination of several types.",
       "tags":["power_armour"],
     },
@@ -1514,8 +1504,7 @@ global.gear = {
         "master_crafted": 15,
         "artifact": 20
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
       "description": "A custom suit of power armored created by master artificiers and decorated without compare, this ancient Power Armour is beyond priceless. This suit's history is ancient and its users many.",
       "tags":["power_armour"],
     },
@@ -1536,7 +1525,7 @@ global.gear = {
         "master_crafted": 25,
         "artifact": 30
       },
-      "weight":20,
+      "max_weight":30,
       "description": "Terminator Armour is the strongest and most powerful armour designed by humanity, available only to the veterans of the Adeptus Astartes. The Indomitus Pattern is the most widespread and versatile pattern as of M41.",
       "tags":["terminator"],
       "req_exp":90,
@@ -1663,8 +1652,7 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
       "description": "An ancient set of Power Armor dating back to the early Great Crusade. The Mark III has heavier armor plating but is far heavier then its contemporaries.",
        "tags":["power_armour"],
     },
@@ -1685,8 +1673,7 @@ global.gear = {
         "master_crafted": 10, // Augmented
         "artifact": 15 // Augmented
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
       "description": "Power Armor dating back to the end of the Great Crusade. It is considered the pinnacle of Power Armor by some Astartes. However, the components are no longer reproducible, the knowledge having been lost to time.",
       "tags":["power_armour"],
     },
@@ -1707,8 +1694,7 @@ global.gear = {
         "master_crafted": 0,
         "artifact": 0
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
       "description": "A hastily assembled Power Armor that first started appearing during the Horus Heresy to act as a stopgap while new suits were produced and sent to loyalist legions. It excels in close combat but it has limited sensors for ranged combat.",
       "tags":["power_armour"],
     },
@@ -1729,8 +1715,7 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
       "description": "A suit dating back to the Horus Heresy, first tested by the Raven Guard. It contains boosted olfactory and auditory sensors that increase the ranged accuracy of the wearer. This however makes it more fragile to an extent.",
       "tags":["power_armour"],
     },
@@ -1751,8 +1736,7 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
       "description": "The most common power armour of the Adeptus Astartes and the only power armour still widely manufactured by the Imperium.",
       "tags":["power_armour"],
     },
@@ -1773,8 +1757,7 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
     "description": "The newest and most advanced of the standard mark power armours as such production has not yet reached maximum capacity creating a supply shortage while chapters rush to get access to them.",
     "tags":["power_armour"],
     },
@@ -1795,8 +1778,7 @@ global.gear = {
         "master_crafted": 5, // Augmented
         "artifact": 10 // Augmented
       },
-      "melee_hands":0.3,
-      "ranged_hands":0.3,
+      "max_weight":20,
       "description": "The MKX Tacticus is the most advanced pattern of power armour available to the Adeptus Astartes, featuring advanced armor composites and systems. It was developed by Belisarius Cawl during the development of the Primaris Astartes program.",
       "tags":["power_armour"],
     }, 
@@ -1981,6 +1963,7 @@ global.gear = {
         "artifact": 10
       },
       "tags":["jump"],
+      "weight": 50,
     },
     "Heavy Weapons Pack": {
     "abbreviation": "HvyWpPck",
@@ -1990,8 +1973,7 @@ global.gear = {
         "master_crafted": 10,
         "artifact": 15
       },
-    "melee_hands": -1,
-    "ranged_hands": 1,      
+      "weight": 40,   
     }
     // Add more mobility items as needed...
   }
@@ -1999,8 +1981,8 @@ global.gear = {
 
 function equipment_struct(item_data, core_type,quality="none") constructor{ 
     //This could be done with 2d arrays [[],[]]
-    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","weight","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp"];
-    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0];
+    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","weight","max_weight","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp"];
+    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0];
     type = core_type;
     for (var i=0;i<array_length(names);i++){
         if (struct_exists(item_data,names[i])){
@@ -2044,10 +2026,10 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
         }
         switch (item_type) {
             default:
-                stat_order = ["description", "special_description", "quality", "armour_value", "damage_resistance_mod", "hp_mod", "ranged_mod", "melee_mod", "attack", "spli", "range", "ammo", "weight", "special_properties", "req_exp", "tags"];
+                stat_order = ["description", "special_description", "quality", "armour_value", "damage_resistance_mod", "hp_mod", "ranged_mod", "melee_mod", "attack", "spli", "range", "ammo", "weight","max_weight", "special_properties", "req_exp", "tags"];
                 break;
             case "weapon":
-                stat_order = ["description", "special_description", "quality", "attack", "spli", "range", "ammo", "ranged_mod", "melee_mod", "armour_value", "hp_mod", "damage_resistance_mod", "weight", "special_properties", "req_exp", "tags"];
+                stat_order = ["description", "special_description", "quality", "attack", "spli", "range", "ammo", "ranged_mod", "melee_mod", "armour_value", "hp_mod", "damage_resistance_mod", "weight","max_weight", "special_properties", "req_exp", "tags"];
                 break;
             }
 			
@@ -2116,12 +2098,12 @@ function equipment_struct(item_data, core_type,quality="none") constructor{
                     break;
                 case "weight":
                     if (weight != 0) {
-                        if item_type = "weapon"{
-                            item_desc_tooltip += $"Weight: {weight}#"
-                        }
-                        else{
-                            item_desc_tooltip += $"Max Weight: {string_sign(weight)}#"
-                        }
+                        item_desc_tooltip += $"Weight: {weight}#"
+                    }
+                    break;
+                case "max_weight":
+                    if (max_weight != 0) {
+                        item_desc_tooltip += $"Max Weight: {string_sign(max_weight)}#"
                     }
                     break;
                 case "special_properties":
