@@ -255,7 +255,7 @@ if (defeat=0) and (npowers=true){
 	
     if (enemy!=2){
         if (attacker=0) then new_power=en_power-1;
-        if ((attacker=1) or (dropping=1)) then new_power=en_power-2;
+        if ((attacker=1) or (dropping=1)) then new_power=en_power-3;
 
         new_power=max(new_power,0);
 		
@@ -330,25 +330,27 @@ if (defeat=0) and (npowers=true){
     if (enemy=13){battle_object.p_necrons[battle_id]=new_power;}
 
     if (enemy!=2) and (string_count("cs_meeting_battle",battle_special)=0){
-        part10+=" Forces on "+string(battle_loc);
+        part10+=" presence on "+string(battle_loc);
         if (battle_id=1) then part10+=" I";
         if (battle_id=2) then part10+=" II";
         if (battle_id=3) then part10+=" III";
         if (battle_id=4) then part10+=" IV";
         if (battle_id=5) then part10+=" V";
-        part10+=" have decreased to "+string(new_power)+" ("+string(en_power)+"-"+string(en_power-new_power)+")";
+        part10+=$" has been reduced to {string(new_power)}.";
+        part10+=$" Original presence: {string(en_power)}.";
+        part10+=$" Damage inflicted: {string(en_power-new_power)}.";
         newline=part10;scr_newtext();
 
         if (new_power<=0) and (en_power>0) then battle_object.p_raided[battle_id]=1;
     }
     if (enemy=2){
-        part10+=" Imperial Guard Forces on "+string(battle_loc);
+        part10+=" Imperial Guard presence on "+string(battle_loc);
         if (battle_id=1) then part10+=" I";
         if (battle_id=2) then part10+=" II";
         if (battle_id=3) then part10+=" III";
         if (battle_id=4) then part10+=" IV";
         if (battle_id=5) then part10+=" V";
-        part10+=" have decreased to "+string(battle_object.p_guardsmen[battle_id])+" ("+string(en_power)+"-"+string(threat)+")";
+        part10+=" has been reduced to "+string(battle_object.p_guardsmen[battle_id])+" ("+string(en_power)+"-"+string(threat)+")";
         newline=part10;scr_newtext();
     }
 
