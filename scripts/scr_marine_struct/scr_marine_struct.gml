@@ -1661,15 +1661,15 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 			var weight_current = 0;
 			var weight_text = "";
 
-			if is_struct(_wep1) || is_struct(_wep2){
+			if instance_exists(_wep1) || instance_exists(_wep2){
 				weight_text += $"      =Current="
-				if is_struct(_wep1){
+				if instance_exists(_wep1){
 					if _wep1.weight != 0{
 						weight_current += _wep1.weight;
 						weight_text += $"#{_wep1.name}: {_wep1.weight}";
 					}
 				}
-				if is_struct(_wep2){
+				if instance_exists(_wep2){
 					if _wep2.weight != 0{
 						weight_current += _wep2.weight;
 						weight_text += $"#{_wep2.name}: {_wep2.weight}";
