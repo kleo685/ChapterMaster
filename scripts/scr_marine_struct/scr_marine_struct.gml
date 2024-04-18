@@ -1655,73 +1655,75 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 		};
 
 		static calc_weight_limit = function(){
-			var _wep1 = get_weapon_one_data();
-			var _wep2 = get_weapon_two_data();
+			var weight_carrying = 0;
 			var weight_limit = 0;
-			var weight_current = 0;
-			var weight_text = "";
+			var weight_tip = "";
+			var stats_bonus = 0;
+			var gear_bonus = 0;
+			var carrying_tip = $"Carrying:#";
+			var stats_tip = $" -Stats-#";
+			var gear_tip = $" -Gear-#";
 
-			if instance_exists(_wep1) || instance_exists(_wep2){
-				weight_text += $"      =Current="
-				if instance_exists(_wep1){
-					if _wep1.weight != 0{
-						weight_current += _wep1.weight;
-						weight_text += $"#{_wep1.name}: {_wep1.weight}";
-					}
-				}
-				if instance_exists(_wep2){
-					if _wep2.weight != 0{
-						weight_current += _wep2.weight;
-						weight_text += $"#{_wep2.name}: {_wep2.weight}";
-					}
-				}
+			var _wep_one_weight = get_weapon_one_data("weight");
+			var _wep_two_weight = get_weapon_two_data("weight");
+			if (weapon_one() != "" || weapon_one() != ""){
+				weight_carrying += _wep_one_weight;
+				carrying_tip += $"{weapon_one()}: {_wep_one_weight}#";
+				weight_carrying += _wep_two_weight;
+				carrying_tip += $"{weapon_two()}: {_wep_two_weight}#";
 			}
 			var armour_weight = get_armour_data("weight");
-			if armour_weight != 0{
-				weight_current += armour_carry;
-				weight_text += $"#{armour()}: {string_sign(armour_weight)}#";
+			if (armour() != ""){
+				weight_carrying += armour_weight;
+				carrying_tip += $"{armour()}: {string_sign(armour_weight)}#";
 			}
 			var gear_weight = get_gear_data("weight");
-			if armour_weight != 0{
-				weight_current += gear_weight;
-				weight_text += $"#{gear()}: {string_sign(gear_weight)}#";
+			if (gear() != ""){
+				weight_carrying += gear_weight;
+				carrying_tip += $"{gear()}: {string_sign(gear_weight)}#";
 			}
 			var mobility_weight = get_mobility_data("weight");
-			if mobility_weight != 0{
-				weight_current += mobility_weight;
-				weight_text += $"#{mobility_item()}: {string_sign(mobility_weight)}#";
+			if (mobility_item() != ""){
+				weight_carrying += mobility_weight;
+				carrying_tip += $"{mobility_item()}: {string_sign(mobility_weight)}#";
 			}
 
-			weight_text += $"#"
-			weight_text += $"      =Maximum=#"
 			if (strength != 0) {
 				var str_bonus = strength * 2;
-				weight_limit += str_bonus;
-				weight_text += "Strength: +" + string_format(str_bonus, 0, 2) + "#";
+				stats_bonus += str_bonus;
+				stats_tip += "Strength: +" + string_format(str_bonus, 0, 2) + "#";
 			}
 			if (constitution != 0) {
 				var con_bonus = constitution * 0.5;
-				weight_limit += con_bonus;
-				weight_text += "Constitution: +" + string_format(con_bonus, 0, 2) + "#";
+				stats_bonus += con_bonus;
+				stats_tip += "Constitution: +" + string_format(con_bonus, 0, 2) + "#";
 			}		
 
-			weight_text += $"      -Gear-#"
 			var armour_carry = get_armour_data("max_weight");
 			if (armour_carry != 0) {
-				weight_limit += armour_carry;
-				weight_text += $"{armour()}: {string_sign(armour_carry)}#";
+				gear_bonus += armour_carry;
+				gear_tip += $"{armour()}: {string_sign(armour_carry)}#";
 			}
 			var gear_carry = get_gear_data("max_weight");
 			if (gear_carry != 0) {
-				weight_limit += gear_carry;
-				weight_text += $"{gear()}: {string_sign(gear_carry)}#";
+				gear_bonus += gear_carry;
+				gear_tip += $"{gear()}: {string_sign(gear_carry)}#";
 			}
 			var mobility_carry = get_mobility_data("max_weight");
 			if (mobility_carry != 0) {
-				weight_limit += mobility_carry;
-				weight_text += $"{mobility_item()}: {string_sign(mobility_carry)}#";
-			}							
-			return [weight_current, weight_limit, weight_text];
+				gear_bonus += mobility_carry;
+				gear_tip += $"{mobility_item()}: {string_sign(mobility_carry)}#";
+			}
+
+			if (weight_carrying != 0){
+				weight_tip += carrying_tip;
+			}
+			weight_limit = stats_bonus + gear_bonus;
+			if (weight_limit != 0){
+				weight_tip += "Maximum:#" + stats_tip + gear_tip;
+			}
+
+			return [weight_carrying, weight_limit, weight_tip];
 		}
 
 		static ranged_attack = function(weapon_slot=0){
