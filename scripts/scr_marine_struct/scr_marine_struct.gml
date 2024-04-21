@@ -548,7 +548,7 @@ global.base_stats = { //tempory stats subject to change by anyone that wishes to
 			weapon_skill : 25,
 			ballistic_skill : 20,			
 			skills: {},	
-			start_gear:{"armour":"Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
+			start_gear:{"armour":"Power Armour", "wep1":"Light Bolter", "wep2":"Combat Knife"},
 			base_group : "human",
 	},
 	"sister_hospitaler":{
@@ -566,7 +566,7 @@ global.base_stats = { //tempory stats subject to change by anyone that wishes to
 			weapon_skill : 25,
 			ballistic_skill : 20,
 			skills: {},	
-			start_gear:{"armour":"Power Armour", "wep1":"Power Sword", "wep2":"Storm Shield"},
+			start_gear:{"armour":"Power Armour", "wep1":"Light Bolter", "wep2":"Combat Knife"},
 			base_group : "human",
 	},
 	"ork_sniper":{

@@ -324,12 +324,11 @@ repeat(20){j+=1;
     
     
     if (dudes[j]="Battle Sister"){
-        if (dudes_num[j]<=4) then scr_en_weapon("Bolter",true,dudes_num[j],dudes[j],j);
+        if (dudes_num[j]<=4) then scr_en_weapon("Light Bolter",true,dudes_num[j],dudes[j],j);
         if (dudes_num[j]>=5){var nem;nem=round(dudes_num[j]/4);
             scr_en_weapon("Flamer",true,nem,dudes[j],j);
-            scr_en_weapon("Bolter",true,dudes_num[j]-nem,dudes[j],j);
+            scr_en_weapon("Light Bolter",true,dudes_num[j]-nem,dudes[j],j);
         }
-        scr_en_weapon("Sarissa",true,dudes_num[j],dudes[j],j);
         dudes_ac[j]=20;dudes_hp[j]=40;men+=dudes_num[j];dudes_dr[j]=0.8;
     }
     if (dudes[j]="Seraphim"){
