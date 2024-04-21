@@ -170,6 +170,7 @@ function scr_en_weapon(name, is_man, man_number, man_type, group) {
 	    if (argument0="Heavy Flamer"){atta=250;arp=0;rang=2.1;amm=6;spli=3;}
 	    if (argument0="Combi-Flamer"){atta=160;arp=0;rang=2.1;amm=1;spli=3;}
 	    if (argument0="Bolter"){atta=45;arp=0;rang=12;amm=15;if (obj_ncombat.enemy=5) then atta=35;}// Bursts
+		if (argument0="Light Bolter"){atta=45;arp=0;rang=10;amm=15;if (obj_ncombat.enemy=5) then atta=35;}// Bursts
 	    if (argument0="Power Fist"){atta=425;arp=1;rang=1;}
 	    if (argument0="Possessed Claws"){atta=250;arp=1;rang=1;spli=3;}
 	    if (argument0="Missile Launcher"){atta=200;arp=1;rang=20;amm=4;spli=3;}

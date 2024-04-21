@@ -642,6 +642,23 @@ global.weapons={
         "arp": 0,
         "tags":["bolt"]
     },
+    "Light Bolter": {
+        "abbreviation": "LBltr",             
+        "attack": {
+            "standard": 45,
+            "master_crafted": 50,
+            "artifact": 55
+        },
+        "description": "A 2-handed firearm that launches bolts of explosive material. This pattern is adapted for use by non-augmented humans, such as Adepta Sororitas forces. Includes a built-in bayonet.",
+        "melee_hands": 0.5,
+        "ranged_hands": 1,
+        "ammo": 16,
+        "range": 10,
+        "spli": 1,
+        "arp": 0,
+        "tags":["bolt"],
+        "second_profiles": ["Sarissa"],
+    },
     "Heavy Flamer": {
         "abbreviation": "HvyFlmr",              
         "attack": {

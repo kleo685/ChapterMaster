@@ -68,16 +68,16 @@ function scr_add_man(man_role, target_company, choice_armour, choice_weapons, ch
 				unit = new TTRPG_stats("inquisition", target_company, good, "inquisition_crusader");				
 				break;
 	        case "Sister of Battle":
-	            obj_ini.wep1[target_company][good]="Bolter";
-	            obj_ini.wep2[target_company][good]="Sarissa";
+	            obj_ini.wep1[target_company][good]="Light Bolter";
+	            obj_ini.wep2[target_company][good]="";
 	            obj_ini.armour[target_company][good]="Power Armour";
 	            obj_ini.experience[target_company][good]=60;
 	            obj_ini.race[target_company][good]=5;
 				unit = new TTRPG_stats("adeptus_sororitas", target_company, good, "sister_of_battle");
 				break;
 	        case "Sister Hospitaler":
-	            obj_ini.wep1[target_company][good]="Bolter";
-	            obj_ini.wep2[target_company][good]="Sarissa";
+	            obj_ini.wep1[target_company][good]="Light Bolter";
+	            obj_ini.wep2[target_company][good]="";
 	            obj_ini.armour[target_company][good]="Power Armour";
 	            obj_ini.experience[target_company][good]=100;
 	            obj_ini.gear[target_company][good]="Sororitas Medkit";
