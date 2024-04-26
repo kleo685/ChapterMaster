@@ -1661,66 +1661,66 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 			var stats_bonus = 0;
 			var gear_bonus = 0;
 			var carrying_tip = $"Carrying:#";
-			var stats_tip = $" -Stats-#";
-			var gear_tip = $" -Gear-#";
+			var stats_tip = $"";
+			var gear_tip = $"";
 
 			var _wep_one_weight = get_weapon_one_data("weight");
-			var _wep_two_weight = get_weapon_two_data("weight");
-			if (weapon_one() != "" || weapon_one() != ""){
+			if (_wep_one_weight != 0){
 				weight_carrying += _wep_one_weight;
-				carrying_tip += $"{weapon_one()}: {_wep_one_weight}#";
+				carrying_tip += $"-{weapon_one()}: {_wep_one_weight}#";
+			}
+			var _wep_two_weight = get_weapon_two_data("weight");
+			if (_wep_two_weight != 0){
 				weight_carrying += _wep_two_weight;
-				carrying_tip += $"{weapon_two()}: {_wep_two_weight}#";
+				carrying_tip += $"-{weapon_two()}: {_wep_two_weight}#";
 			}
 			var armour_weight = get_armour_data("weight");
-			if (armour() != ""){
+			if (armour_weight != 0){
 				weight_carrying += armour_weight;
-				carrying_tip += $"{armour()}: {string_sign(armour_weight)}#";
+				carrying_tip += $"-{armour()}: {string_sign(armour_weight)}#";
 			}
 			var gear_weight = get_gear_data("weight");
-			if (gear() != ""){
+			if (gear_weight != 0){
 				weight_carrying += gear_weight;
-				carrying_tip += $"{gear()}: {string_sign(gear_weight)}#";
+				carrying_tip += $"-{gear()}: {string_sign(gear_weight)}#";
 			}
 			var mobility_weight = get_mobility_data("weight");
-			if (mobility_item() != ""){
+			if (mobility_weight != 0){
 				weight_carrying += mobility_weight;
-				carrying_tip += $"{mobility_item()}: {string_sign(mobility_weight)}#";
+				carrying_tip += $"-{mobility_item()}: {string_sign(mobility_weight)}#";
 			}
 
 			if (strength != 0) {
 				var str_bonus = strength * 2;
 				stats_bonus += str_bonus;
-				stats_tip += "Strength: +" + string_format(str_bonus, 0, 2) + "#";
+				stats_tip += "-Strength: +" + string_format(str_bonus, 0, 2) + "#";
 			}
 			if (constitution != 0) {
 				var con_bonus = constitution * 0.5;
 				stats_bonus += con_bonus;
-				stats_tip += "Constitution: +" + string_format(con_bonus, 0, 2) + "#";
+				stats_tip += "-Constitution: +" + string_format(con_bonus, 0, 2) + "#";
 			}		
 
 			var armour_carry = get_armour_data("max_weight");
 			if (armour_carry != 0) {
 				gear_bonus += armour_carry;
-				gear_tip += $"{armour()}: {string_sign(armour_carry)}#";
+				gear_tip += $"-{armour()}: {string_sign(armour_carry)}#";
 			}
 			var gear_carry = get_gear_data("max_weight");
 			if (gear_carry != 0) {
 				gear_bonus += gear_carry;
-				gear_tip += $"{gear()}: {string_sign(gear_carry)}#";
+				gear_tip += $"-{gear()}: {string_sign(gear_carry)}#";
 			}
 			var mobility_carry = get_mobility_data("max_weight");
 			if (mobility_carry != 0) {
 				gear_bonus += mobility_carry;
-				gear_tip += $"{mobility_item()}: {string_sign(mobility_carry)}#";
+				gear_tip += $"-{mobility_item()}: {string_sign(mobility_carry)}#";
 			}
 
-			if (weight_carrying != 0){
-				weight_tip += carrying_tip;
-			}
+			weight_tip += carrying_tip;
 			weight_limit = stats_bonus + gear_bonus;
 			if (weight_limit != 0){
-				weight_tip += "Maximum:#" + stats_tip + gear_tip;
+				weight_tip += "Capacity:#" + stats_tip + gear_tip;
 			}
 
 			return [weight_carrying, weight_limit, weight_tip];
@@ -1770,7 +1770,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 				}
 			}	
 
-			// Check if there are multiple weapons
+			// If there are multiple weapons
 			if (weapon_slot==0){
 				// Handle second profile weapons
 				if (_wep1.range<=1.1 && _wep2.range<=1.1){
@@ -1792,14 +1792,14 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 						ranged_damage_data = [final_range_attack,explanation_string,carry_data,primary_weapon, secondary_weapon];
 					}
 					return ranged_damage_data;
-				// Select primary and secondary weapons
+				// Pick the ranged weapon
 				} else {
 					if (_wep1.range<=1.1){
 						primary_weapon=_wep2;
 					} else if (_wep2.range<=1.1){
 						primary_weapon=_wep1;
+					// If both weapons are ranged pick best
 					} else {
-						//if both weapons are ranged pick best
 						if (_wep1.attack>_wep2.attack){
 							primary_weapon=_wep1;
 							secondary_weapon=_wep2;
@@ -1809,6 +1809,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine") constructor{
 						}
 					}
 				}
+			// If there is only one weapon
 			} else {
 				if (weapon_slot==1){
 					primary_weapon=_wep1;
