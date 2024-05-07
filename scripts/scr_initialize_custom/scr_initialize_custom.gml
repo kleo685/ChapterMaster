@@ -935,7 +935,7 @@ function scr_initialize_custom() {
 		gear[i, 14] = "Rosarius";
 		mobi[i, 14] = "";
 		role[i, 15] = "Apothecary";
-		wep1[i, 15] = "Power Sword";
+		wep1[i, 15] = "Chainsword";
 		wep2[i, 15] = "Bolt Pistol";
 		armour[i, 15] = "Power Armour";
 		gear[i, 15] = "Narthecium";
@@ -1006,7 +1006,7 @@ function scr_initialize_custom() {
 		heavy_weapons: [["Heavy Bolter", 4], ["Missile Launcher", 3], ["Multi-Melta", 2], ["Lascannon", 1]],
 		special_weapons: [["Flamer", 3], ["Meltagun", 2], ["Plasma Gun", 1]],
 		melee_weapons: [["Chainsword", 5], ["Power Sword", 4], ["Lightning Claw", 3], ["Power Fist", 2], ["Thunder Hammer", 1]],
-		ranged_weapons: [["Bolter", 4], ["Storm Bolter", 3], ["Combiflamer", 2], ["Plasma Pistol", 1]],
+		ranged_weapons: [["Bolter", 10], ["Storm Bolter", 3], ["Combiflamer", 2], ["Plasma Pistol", 1]],
 	}
 
 	var armour_weighted_lists = {
@@ -1080,13 +1080,6 @@ function scr_initialize_custom() {
 			[roles.champion, {
 				"max": 1,
 				"min": 1,
-				"loadout": {
-					"required": {
-						"wep1": ["Power Sword", 1],
-						"wep2": ["Bolt Pistol", 1],
-						"gear": ["Combat Shield", 1]
-					},
-				}
 			}],
 			[roles.apothecary, {
 				"max": 1,
@@ -1393,7 +1386,9 @@ function scr_initialize_custom() {
 								weapon_lists.special_weapons, 1
 							],
 							[
-								weapon_lists.heavy_weapons, 1
+								weapon_lists.heavy_weapons, 1, {
+									"mobi":"Heavy Weapons Pack",
+								}
 							]
 						],
 					}
@@ -2035,7 +2030,7 @@ function scr_initialize_custom() {
 	role[company, 3] = "Master of Sanctity";
 	wep1[company, 3] = wep1[101, 14];
 	name[company, 3] = obj_creation.hchaplain;
-	wep2[company, 3] = wep2[101, 14];
+	wep2[company, 3] = "Plasma Pistol";
 	armour[company, 3] = "Artificer Armour";
 	gear[company, 3] = gear[101, 14];
 	chaos[company, 3] = -100;
@@ -2054,7 +2049,7 @@ function scr_initialize_custom() {
 	role[company, 4] = "Master of the Apothecarion";
 	wep1[company, 4] = wep1[101, 15];
 	name[company, 4] = obj_creation.hapothecary;
-	wep2[company, 4] = wep2[100, 15];
+	wep2[company, 4] = "Plasma Pistol";
 	armour[company, 4] = "Artificer Armour";
 	gear[company, 4] = gear[101, 15];
 	chaos[company, 4] = 0;
@@ -2069,7 +2064,7 @@ function scr_initialize_custom() {
 	role[company, 5] = string("Chief {0}", role[100, 17]);
 	wep1[company, 5] = wep1[101, 17];
 	name[company, 5] = obj_creation.clibrarian;
-	wep2[company, 5] = wep2[101, 17];
+	wep2[company, 5] = "Plasma Pistol";
 	armour[company, 5] = "Artificer Armour";
 	gear[company, 5] = gear[101, 17];
 	chaos[company, 5] = 0;
@@ -2283,15 +2278,15 @@ function scr_initialize_custom() {
 		race[company][k] = 1;
 		loc[company][k] = home_name;
 		role[company][k] = roles.apothecary;
-		wep1[company][k] = wep1[101, 15];
 		name[company][k] = global.name_generator.generate_space_marine_name();
-		wep2[company][k] = wep2[101, 15];
-		armour[company][k] = armour[101, 15];
-		gear[company][k] = gear[101, 15];
 		experience[company][k] = 100;
 		spawn_unit = TTRPG[company][k];
 		spawn_unit.spawn_old_guard();
 		spawn_unit.spawn_exp();
+		wep1[company][k] = "Chainsword";
+		wep2[company][k] = wep2[101, 15];
+		gear[company][k] = gear[101, 15];
+		armour[company][k] = armour[101, 15];
 	}
 
 	// Chaplains in Reclusium
@@ -2305,7 +2300,7 @@ function scr_initialize_custom() {
 		role[company][k] = roles.chaplain;
 		name[company][k] = global.name_generator.generate_space_marine_name();
 		wep1[company][k] = wep1[101, 14];
-		wep2[company][k] = choose_weighted([["Bolt Pistol", 4], ["Bolter", 4], ["Combiflamer", 1], ["Plasma Pistol", 1]]);
+		wep2[company][k] = choose_weighted(weapon_weighted_lists.ranged_weapons);
 		gear[company][k] = gear[101, 14];
 		experience[company][k] = 100;
 		spawn_unit = TTRPG[company][k];
@@ -2393,7 +2388,7 @@ function scr_initialize_custom() {
 		role[company][k] = roles.captain;
 		wep1[company][k] = "Relic Blade";
 		name[company][k] = global.name_generator.generate_space_marine_name();
-		wep2[company][k] = choose("Storm Shield", "Plasma Pistol");
+		wep2[company][k] = choose("Storm Shield", "Storm Bolter");
 
 		gear[company][k] = gear[101, 5];
 		spawn_unit = TTRPG[company][k]
@@ -2415,12 +2410,12 @@ function scr_initialize_custom() {
 			race[company][k] = 1;
 			loc[company][k] = home_name;
 			role[company][k] = roles.chaplain;
-			wep1[company][k] = wep1[101, 14];
 			name[company][k] = global.name_generator.generate_space_marine_name();
-			wep2[company][k] = wep2[101, 14];
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.spawn_old_guard();
 			spawn_unit.spawn_exp();
+			wep1[company][k] = wep1[101, 14];
+			wep2[company][k] = "Storm Bolter";
 			armour[company][k] = "Terminator Armour";
 			gear[company][k] = gear[101, 14]
 			if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
@@ -2435,15 +2430,14 @@ function scr_initialize_custom() {
 		TTRPG[company][k] = new TTRPG_stats("chapter", company, k);
 		loc[company][k] = home_name;
 		role[company][k] = roles.apothecary;
-		wep1[company][k] = wep1[101, 15];
 		name[company][k] = global.name_generator.generate_space_marine_name();
-		wep2[company][k] = wep2[101, 15];
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.spawn_old_guard();
 		spawn_unit.spawn_exp();
+		wep1[company][k] = wep1[101, 15];
+		wep2[company][k] = "Storm Bolter";
 		armour[company][k] = "Terminator Armour";
 		gear[company][k] = gear[101, 15];
-
 		if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
 		if (terminator <= 0) then armour[company][k] = "MK6 Corvus";
 		if (mobi[101, 15] != "") then mobi[company][k] = mobi[101, 15];
@@ -2497,11 +2491,11 @@ function scr_initialize_custom() {
 		loc[company][k] = home_name;
 		role[company][k] = roles.ancient;
 		name[company][k] = global.name_generator.generate_space_marine_name();
-		wep1[company][k] = "Company Standard";
-		wep2[company][k] = "Storm Bolter";
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.spawn_old_guard();
 		spawn_unit.spawn_exp();
+		wep1[company][k] = "Company Standard";
+		wep2[company][k] = "Storm Bolter";
 		armour[company][k] = "Terminator Armour";
 		if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
 
@@ -2511,14 +2505,14 @@ function scr_initialize_custom() {
 		race[company][k] = 1;
 		loc[company][k] = home_name;
 		role[company][k] = roles.champion;
-		wep1[company][k] = wep1[100, 7];
 		name[company][k] = global.name_generator.generate_space_marine_name();
-		wep2[company][k] = wep2[100, 7];
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.spawn_old_guard();
 		spawn_unit.spawn_exp();
+		wep1[company][k] = "Thunder Hammer";
+		wep2[company][k] = "Storm Bolter";
+		gear[company][k] = "Combat Shield";
 		armour[company][k] = "Terminator Armour";
-
 		if (string_count("Crafter", strin) > 0) then armour[company][k] = "Tartaros";
 		if (terminator <= 0) then armour[company][k] = "MK6 Corvus";
 		if (armour[company][k] = "Terminator") or(armour[company][k] = "Tartaros") then man_size += 1;
@@ -2551,12 +2545,14 @@ function scr_initialize_custom() {
 		race[company][k] = 1;
 		loc[company][k] = home_name;
 		role[company][k] = roles.veteran;
-		wep1[company][k] = wep1[101, 3];
 		name[company][k] = global.name_generator.generate_space_marine_name();
-		mobi[company][k] = mobi[101, 3];
 		spawn_unit = TTRPG[company][k]
 		spawn_unit.spawn_old_guard();
 		spawn_unit.spawn_exp();
+		wep1[company][k] = wep1[101, 3];
+		wep2[company][k] = wep2[101, 3];
+		gear[company][k] = gear[101, 3];
+		mobi[company][k] = mobi[101, 3];
 		armour[company][k] = choose_weighted(armour_weighted_lists.quality_armour);
 		if (global.chapter_name == "Dark Angels" && company == 1){
 			wep1[company][k] = wep1[101, 4];
@@ -2863,9 +2859,7 @@ function scr_initialize_custom() {
 			race[company][k] = 1;
 			loc[company][k] = home_name;
 			role[company][k] = roles.captain;
-			wep1[company][k] = wep1[101, 5];
 			name[company][k] = global.name_generator.generate_space_marine_name();
-
 			if (company == 4) {
 				if (lord_admiral_name != "") {
 					name[company][k] = lord_admiral_name;
@@ -2879,18 +2873,15 @@ function scr_initialize_custom() {
 					recruiter_name = name[company][k];
 				}
 			}
-
-			wep2[company][k] = wep2[101, 5];
 			spawn_unit = TTRPG[company][k];
 			// used to randomly make a marine an old guard of their company, giving a bit more xp (TODO) and fancier armor they've hanged onto all these years	
 			spawn_unit.spawn_exp();
 			spawn_unit.spawn_old_guard();
-
-
+			wep1[company][k] = wep1[101, 5];
+			wep2[company][k] = wep2[101, 5];
 			if (company = 8) and(obj_creation.equal_specialists = 0) then mobi[company][k] = "Jump Pack";
 			if (mobi[101, 5] != "") then mobi[company][k] = mobi[101, 5];
 			gear[company][k] = gear[101, 5];
-
 			if (global.chapter_name = "Iron Hands") then armour[company][k] = "Terminator Armour";
 
 			if (global.chapter_name != "Space Wolves") and(global.chapter_name != "Iron Hands") {
@@ -2920,12 +2911,12 @@ function scr_initialize_custom() {
 			loc[company][k] = home_name;
 			TTRPG[company][k] = new TTRPG_stats("chapter", company, k);
 			role[company][k] = roles.apothecary;
-			wep1[company][k] = wep1[101, 15];
 			name[company][k] = global.name_generator.generate_space_marine_name();
-			wep2[company][k] = wep2[101, 15];
 			spawn_unit = TTRPG[company][k]
 			spawn_unit.spawn_exp();
 			spawn_unit.spawn_old_guard();
+			wep1[company][k] = "Chainsword";
+			wep2[company][k] = wep2[101, 15];
 			gear[company][k] = gear[101, 15];
 
 			if (company = 8) and(obj_creation.equal_specialists = 0) then mobi[company][k] = "Jump Pack";
@@ -2975,11 +2966,10 @@ function scr_initialize_custom() {
 			loc[company][k] = home_name;
 			TTRPG[company][k] = new TTRPG_stats("chapter", company, k);
 			role[company][k] = roles.ancient;
-			wep1[company][k] = "Power Sword";
+			wep1[company][k] = "Bold Pistol";
 			name[company][k] = global.name_generator.generate_space_marine_name();
 			wep2[company][k] = "Company Standard";
 			armour[company][k] = "MK5 Heresy";
-
 			if (company = 8) and(obj_creation.equal_specialists = 0) then mobi[company][k] = "Jump Pack";
 			spawn_unit = TTRPG[company][k];
 			spawn_unit.spawn_exp();
@@ -2993,8 +2983,9 @@ function scr_initialize_custom() {
 			role[company][k] = roles.champion;
 			wep1[company][k] = wep1[100, 7];
 			name[company][k] = global.name_generator.generate_space_marine_name();
-			wep2[company][k] = wep2[100, 7];
+			wep2[company][k] = "Bolt Pistol";
 			armour[company][k] = "MK4 Maximus";
+			gear[company][k] = "Combat Shield";
 
 			if (company = 8) and(obj_creation.equal_specialists = 0) then mobi[company][k] = "Jump Pack";
 			spawn_unit = TTRPG[company][k];
