@@ -659,7 +659,7 @@ if (shop = "equipment2") {
 
     i += 1;
     x_mod[i] = 9;
-    item[i] = "Servo Arms";
+    item[i] = "Servo-arm";
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 30;
     if (rene == 1) {

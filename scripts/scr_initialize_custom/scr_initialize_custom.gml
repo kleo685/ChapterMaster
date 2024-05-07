@@ -944,7 +944,7 @@ function scr_initialize_custom() {
 		wep1[i, 16] = "Power Axe";
 		wep2[i, 16] = "Storm Bolter";
 		armour[i, 16] = "Artificer Armour";
-		gear[i, 16] = "Servo Arms";
+		gear[i, 16] = "Servo-arm";
 		mobi[i, 16] = "";
 		role[i, 17] = "Librarian";
 		wep1[i, 17] = "Force Staff";
@@ -1000,6 +1000,13 @@ function scr_initialize_custom() {
 		special_weapons: ["Flamer", "Flamer", "Flamer", "Meltagun", "Meltagun", "Plasma Gun"],
 		melee_weapons: ["Chainsword", "Chainsword", "Chainsword", "Chainsword", "Chainsword", "Chainsword", "Chainsword", "Chainsword", "Chainsword", "Power Sword", "Power Sword", "Power Sword", "Lightning Claw", "Lightning Claw", "Lightning Claw", "Power Fist", "Power Fist", "Thunder Hammer"],
 		ranged_weapons: ["Bolter", "Bolter", "Bolter", "Bolter", "Bolter", "Bolter", "Storm Bolter", "Storm Bolter", "Storm Bolter", "Combiflamer", "Combiflamer", "Plasma Pistol"],
+	}
+
+	var weapon_weighted_lists = {
+		heavy_weapons: [["Heavy Bolter", 4], ["Missile Launcher", 3], ["Multi-Melta", 2], ["Lascannon", 1]],
+		special_weapons: [["Flamer", 3], ["Meltagun", 2], ["Plasma Gun", 1]],
+		melee_weapons: [["Chainsword", 5], ["Power Sword", 4], ["Lightning Claw", 3], ["Power Fist", 2], ["Thunder Hammer", 1]],
+		ranged_weapons: [["Bolter", 4], ["Storm Bolter", 3], ["Combiflamer", 2], ["Plasma Pistol", 1]],
 	}
 
 	var armour_weighted_lists = {
@@ -2070,11 +2077,11 @@ function scr_initialize_custom() {
 	race[company, 2] = 1;
 	loc[company, 2] = home_name;
 	role[company, 2] = "Forge Master";
-	wep1[company, 2] = "Conversion Beam Projector";
+	wep1[company, 2] = "Plasma Pistol";
 	name[company, 2] = obj_creation.fmaster;
-	wep2[company, 2] = "Power Weapon";
+	wep2[company, 2] = "Thunder Hammer";
 	armour[company, 2] = "Artificer Armour";
-	gear[company, 2] = "Master Servo Arms";
+	gear[company, 2] = "Servo-harness";
 	chaos[company, 2] = 0;
 	experience[company, 2] = 475;
 	spawn_unit = TTRPG[company, 2];
@@ -2197,12 +2204,13 @@ function scr_initialize_custom() {
 		name[company][k] = global.name_generator.generate_space_marine_name();
 		spawn_unit = TTRPG[company][k];
 		spawn_unit.spawn_old_guard();
-		wep1[company][k] = wep1[101, 16];
-		wep2[company][k] = choose_weighted([["Bolt Pistol", 4], ["Bolter", 4], ["Combiflamer", 1], ["Plasma Pistol", 1]]);
+		wep1[company][k] = choose_weighted(weapon_weighted_lists.ranged_weapons);
+		wep2[company][k] = choose_weighted(weapon_weighted_lists.melee_weapons);
 		armour[company][k] = "Artificer Armour";
-		gear[company][k] = gear[101, 16];
+		mobi[company][k] = "Mounted Conversion Beam Projector";
 		experience[company][k] = 100;
 	}
+
 	// Librarians
 	repeat(epistolary) {
 		k += 1;

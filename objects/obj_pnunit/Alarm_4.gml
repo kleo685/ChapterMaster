@@ -23,7 +23,7 @@ repeat(600){i+=1;
             obj_ncombat.apothecaries_alive++;
             obj_ncombat.apoth+=1;
         }
-        if (marine_type[i]=obj_ini.role[100][16]) and (marine_gear[i]=="Servo Arms") and (marine_dead[i]=0){
+        if (marine_type[i]=obj_ini.role[100][16]) and (marine_gear[i]=="Servo-arm") and (marine_dead[i]=0){
             obj_ncombat.techmarines_alive+=1;
             obj_ncombat.techma+=1;
         }

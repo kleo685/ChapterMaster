@@ -44,9 +44,9 @@ function scr_add_man(man_role, target_company, choice_armour, choice_weapons, ch
 				break;
 	        case "Techpriest":
 	            obj_ini.wep1[target_company][good]="Power Weapon";
-	            obj_ini.wep2[target_company][good]="Conversion Beam Projector";
+	            obj_ini.wep2[target_company][good]="Plasma Gun";
 	            obj_ini.armour[target_company][good]="Dragon Scales";
-	            obj_ini.gear[target_company][good]="Servo Arms";
+	            obj_ini.gear[target_company][good]="Servo-arm";
 	            obj_ini.experience[target_company][good]=100;
 	            obj_ini.race[target_company][good]=3;
 				unit = new TTRPG_stats("mechanicus", target_company, good, "tech_priest");

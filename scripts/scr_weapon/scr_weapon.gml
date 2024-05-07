@@ -501,6 +501,24 @@ global.weapons={
         "tags":["power", "mace", "siege", "pious"],
         "req_exp":200,
     },
+    "Mechanical Arm": {
+        "abbreviation": "MechArm", 
+        "attack": {
+            "standard": 650,
+            "master_crafted": 750,
+            "artifact": 900
+        },
+        "melee_mod": {
+            "standard": 1.3,
+            "master_crafted": 1.3,
+            "artifact": 1.3
+        },
+        "description": "A powerful mechanical arm that can be used for battlefield repairs or even be put to use as weapons.",
+        "range": 1,
+        "spli": 8,
+        "arp": 1,
+        "tags":["siege"],
+    },
     "Tome":{
         "abbreviation": "Tome",                
         "attack": {
@@ -912,12 +930,11 @@ global.weapons={
             "artifact": 600
         },
         "description": "The Conversion Beam Projector is a heavy energy weapon that harnesses advanced technology to project a concentrated beam of destructive energy. Armor detonates as the matter that comproises it is transformed into pure energy.",
-        "melee_hands": 0,
-        "ranged_hands": 1,
-        "ammo": 1,
-        "range": 20,
-        "spli": 3,
-        "arp": 1
+        "ammo": 10,
+        "range": 18,
+        "spli": 2,
+        "arp": 1,
+        "tags":["energy", "heavy_weapon"]
     },
     "Integrated Bolter": {
         "abbreviation": "IntgBltr", 
@@ -1943,19 +1960,15 @@ global.gear = {
       "special_properties": ["Planet Destroyer"],
       "description": "A weapon of the Emperor, and His divine judgment, this weapon can be placed upon a planet to obliterate it entirely.",
     },
-    "Servo Arms": {
-    "abbreviation": "SrvArms",
-      "special_properties": ["Integrated Flamer, Repairs Vehicles"],
-      "description": "A pair of powerful mechanical arms. They include several tools that allow trained Astartes to repair vehicles rapidly alongside an integrated flamer to beat back the Emperor's foes.",
-        "melee_hands": 0.25,
-        "ranged_hands": 0.25,  
+    "Servo-arm": {
+        "abbreviation": "SrvArm",
+        "special_properties": ["Integrated Flamer, Repairs Vehicles"],
+        "description": "A powerful mechanical arm. It includes several tools that allow trained Techmarines to repair vehicles rapidly alongside an integrated flamer to beat back the Emperor's foes.",
     },
-    "Master Servo Arms": {
-    "abbreviation": "MsSrvArms",
-      "special_properties": ["Integrated Flamer, Repairs Vehicles"],
-      "description": "This master servo harness includes additional mechanical arms and tools, allowing a greater capacity and rate of repairs.",
-        "melee_hands": 0.25,
-        "ranged_hands": 0.25,  
+    "Servo-harness": {
+        "abbreviation": "SrvHrnss",
+        "special_properties": ["Integrated Flamer, Integrated Plasma Cutter, Repairs Vehicles"],
+        "description": "This backpack-mounted contraption is a mobile shrine to the Omnissiah. It incorporates many blessed tools, mechanical limbs and weapons, all of which enable a Techmarine in the field to make battlefield repairs to vehicles, shore up defenses, or to assist his brethren in combat.",
     },
     "Smoke Launchers": {
       "description": "Useful for providing concealment in open terrain, these launchers project wide-spectrum concealing smoke to prevent accurate targeting of the vehicle.",
@@ -2043,7 +2056,11 @@ global.gear = {
         "artifact": 15
       },
       "weight": 40,   
-    }
+    },
+    "Mounted Conversion Beam Projector": {
+        "abbreviation": "CnvBmPrj",    
+        "description": "The Conversion Beam Projector is a heavy energy weapon that harnesses advanced technology to project a concentrated beam of destructive energy. Armor detonates as the matter that comproises it is transformed into pure energy.",
+    },
     // Add more mobility items as needed...
   }
 }

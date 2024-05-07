@@ -106,7 +106,7 @@ function scr_ruins_reward(star_system, planet, _ruins) {
 	    }if (ruins_type=8){
 			wep1=choose("Iron Halo");wen1=choose(1,2);
 	        wep2=choose("Company Standard");wen2=choose(1);
-	        wep3=choose("Master Servo Arms");wen3=choose(1);
+	        wep3=choose("Servo-harness");wen3=choose(1);
 	    }
 		
     

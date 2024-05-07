@@ -120,11 +120,11 @@ function scr_draw_unit_image(x_draw, y_draw){
         }
         if (unit_gear="Psychic Hood"){
             hood=-50;
-        }else if (unit_gear="Servo Arms" || unit_gear="Master Servo Arms"){
+        }else if (unit_gear="Servo-arm" || unit_gear="Servo-harness"){
             var mas;
             // mas=string_count("Master",gear());
-            if (unit_gear="Servo Arms") then mas=0;
-            if (unit_gear="Master Servo Arms") then mas=1;
+            if (unit_gear="Servo-arm") then mas=0;
+            if (unit_gear="Servo-harness") then mas=1;
         
             if (mas=0){
                 if (specialist_colours=0 || specialist_colours>1) then arm=1;
@@ -764,7 +764,8 @@ function scr_draw_unit_image(x_draw, y_draw){
                     }
                 }
 
-                if (unit_gear == "Iron Halo" && !halo_bypass) { // Draw the Iron Halo
+                // Draw the Iron Halo
+                if (unit_gear == "Iron Halo" && !halo_bypass) {
                     var halo_color = 0;
                     var halo_type = 0; // 0,2,4...
                     var halo_offset_y = 0;

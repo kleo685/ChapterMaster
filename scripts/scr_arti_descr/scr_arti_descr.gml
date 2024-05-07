@@ -14,7 +14,7 @@ function scr_arti_descr() {
 		else if (type()=="Bionics") then typ="gear";
 		else if (type()=="Psychic Hood") then typ="gear";
 		else if (type()=="Jump Pack") then typ="gear";
-		else if (type()=="Servo Arms") then typ="gear";
+		else if (type()=="Servo-arm") then typ="gear";
 		else if (type()=="Casket") then typ="device";
 		else if (type()=="Chalice") then typ="device";
 		else if (type()=="Statue") then typ="device";

@@ -346,7 +346,7 @@ if (ticked=1){// Select a random marine and have them perform an action
             if (t2="Bionics") then t5=choose("GLD","GLO","RUN","SOO");// Soothing appearance
             if (t2="Psychic Hood") then t5=choose("FIN","GLD","BUR","MASK");// fine cloth, gold, ever burning, mask
             if (t2="Jump Pack") then t5=choose("SPI","SKRE","WHI","SIL");// spikes, screaming, white flame, silent
-            if (t2="Servo Arms") then t5=choose("GLD","TEN","GOR","SOO");// gold, tentacles, gorilla build, soothing appearance
+            if (t2="Servo-arm") then t5=choose("GLD","TEN","GOR","SOO");// gold, tentacles, gorilla build, soothing appearance
         }
         if (t1="Device") and (t2!="Robot"){
             t4=choose("GOLD","CRU","GLO","ADA");// skulls, falling angel, thin, tentacle, mindfuck

@@ -69,7 +69,7 @@ function scr_add_artifact(artifact_type, artifact_tags, is_identified, artifact_
 	    if (rand2<=20){t2="Rosarius";}
 	    else if (rand2<=45){t2="Psychic Hood";}
 	    else if (rand2<=80){t2="Jump Pack";}
-	    else if (rand2<=100){t2="Servo Arms";}
+	    else if (rand2<=100){t2="Servo-arm";}
 	}
 
 	if (t1="Device") and (t2=""){good=0;
@@ -117,7 +117,7 @@ function scr_add_artifact(artifact_type, artifact_tags, is_identified, artifact_
 	    if (t2="Bionics") then t5=choose("GLD","GLO","RUN","SOO");// Soothing appearance
 	    if (t2="Psychic Hood") then t5=choose("FIN","GLD","BUR","MASK");// fine cloth, gold, ever burning, mask
 	    if (t2="Jump Pack") then t5=choose("SPI","SKRE","WHI","SIL");// spikes, screaming, white flame, silent
-	    if (t2="Servo Arms") then t5=choose("GLD","TEN","GOR","SOO");// gold, tentacles, gorilla build, soothing appearance
+	    if (t2="Servo-arm") then t5=choose("GLD","TEN","GOR","SOO");// gold, tentacles, gorilla build, soothing appearance
 	}else if (t1="Device") and (t2!="Robot"){
 	    t4=choose("GOLD","CRU","GLO","ADA");// skulls, falling angel, thin, tentacle, mindfuck
 	    if (t2!="Statue") then t5=choose("SKU","FAL","THI","TEN","MIN");

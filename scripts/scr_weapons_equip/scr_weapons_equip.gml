@@ -350,11 +350,11 @@ function scr_weapons_equip() {
 		    i+=1;item_name[i]="(None)";
 		    // i+=1;item_name[i]="Bionics";
 		    i+=1;item_name[i]="Iron Halo";
-		    i+=1;item_name[i]="Master Servo Arms";
+		    i+=1;item_name[i]="Servo-harness";
 		    i+=1;item_name[i]="Narthecium";
 		    i+=1;item_name[i]="Psychic Hood";
 		    i+=1;item_name[i]="Rosarius";
-		    i+=1;item_name[i]="Servo Arms";	
+		    i+=1;item_name[i]="Servo-arm";	
 		}	
 	}
 	if (tc=5) and (dude=1){ // dude=1 for normal infantry gear
