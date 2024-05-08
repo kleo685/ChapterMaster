@@ -2130,6 +2130,7 @@ function scr_initialize_custom() {
 		wep1[company][k] = choose_weighted(weapon_weighted_lists.ranged_weapons);
 		wep2[company][k] = choose_weighted(weapon_weighted_lists.melee_weapons);
 		armour[company][k] = "Artificer Armour";
+		gear[company][k] = "Servo-arm";
 		mobi[company][k] = "Mounted Conversion Beam Projector";
 		experience[company][k] = 100;
 	}

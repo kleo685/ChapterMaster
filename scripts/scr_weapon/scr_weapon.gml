@@ -1962,13 +1962,15 @@ global.gear = {
     },
     "Servo-arm": {
         "abbreviation": "SrvArm",
-        "special_properties": ["Integrated Flamer, Repairs Vehicles"],
+        "special_properties": ["Repairs Vehicles"],
         "description": "A powerful mechanical arm. It includes several tools that allow trained Techmarines to repair vehicles rapidly alongside an integrated flamer to beat back the Emperor's foes.",
+        "second_profiles":["Mechanical Arm", "Flamer"],
     },
     "Servo-harness": {
         "abbreviation": "SrvHrnss",
-        "special_properties": ["Integrated Flamer, Integrated Plasma Cutter, Repairs Vehicles"],
+        "special_properties": ["Repairs Vehicles"],
         "description": "This backpack-mounted contraption is a mobile shrine to the Omnissiah. It incorporates many blessed tools, mechanical limbs and weapons, all of which enable a Techmarine in the field to make battlefield repairs to vehicles, shore up defenses, or to assist his brethren in combat.",
+        "second_profiles":["Mechanical Arm", "Flamer", "Plasma Pistol"],
     },
     "Smoke Launchers": {
       "description": "Useful for providing concealment in open terrain, these launchers project wide-spectrum concealing smoke to prevent accurate targeting of the vehicle.",
@@ -2055,6 +2057,7 @@ global.gear = {
     "Mounted Conversion Beam Projector": {
         "abbreviation": "CnvBmPrj",    
         "description": "The Conversion Beam Projector is a heavy energy weapon that harnesses advanced technology to project a concentrated beam of destructive energy. Armor detonates as the matter that comproises it is transformed into pure energy.",
+        "second_profiles":["Conversion Beam Projector"],
     },
     // Add more mobility items as needed...
   }

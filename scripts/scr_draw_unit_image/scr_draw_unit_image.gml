@@ -301,6 +301,7 @@ function scr_draw_unit_image(x_draw, y_draw){
                 set_shader_color(ShaderType.Lens, Colors.Lime);
                 set_shader_color(ShaderType.Trim, Colors.Silver);
                 set_shader_color(ShaderType.RightPauldron, Colors.Red);
+                set_shader_color(ShaderType.Weapon, Colors.Black);
                 ttrim=1;
                 specialist_colours=0;
             }
