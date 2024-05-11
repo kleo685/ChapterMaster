@@ -745,7 +745,7 @@ global.weapons={
         },
         "description": "A huge vehicle-mounted flame weapon that fires with explosive force. The reservoir is liable to explode.",
         "melee_hands": 0,
-        "ranged_hands": 2.25,
+        "ranged_hands": 3,
         "ammo": 0,
         "range": 3.1,
         "spli": 20,
