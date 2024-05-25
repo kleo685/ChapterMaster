@@ -818,9 +818,7 @@ function scr_draw_unit_image(_background=false){
                 if (armour_type==ArmourType.Normal){
                     if (ui_specialist==5 && armour_bypass==false){
                         if (array_contains(traits, "tinkerer")){
-                            //specific_armour_sprite="none";
-                            armour_sprite =spr_techmarine_core;
-                            specific_armour_sprite = spr_techmarine_core;
+                            armour_draw=[spr_techmarine_core,0];
                             armour_bypass = true;
                         }
                     }
