@@ -970,7 +970,7 @@ function scr_ui_advisors() {
         draw_set_font(fnt_40k_14);
 
         if (recruit_trial = "Blood Duel") {
-            blurp3 = "- 2-4 years of training.#- 10-30% More recruits.#- 10% Chance to burn gene-seed per recruiting speed.";
+            blurp3 = "- 2-4 years of training.#- 10-60% More recruits, depending on the recruiting speed.#- 10-60% Chance to burn gene-seed, depending on the recruiting speed.";
             blurp2 = "THE BLOOD DUEL?  HAT DO I EVEN NEED TO EXPLAIN, CHAPTER MASTER?  ASPIRANTS ENTER.  NEOPHYTES LEAVE.  Those worthy of serving the Emperor are rewarded justly and those merely pretending at glory are lost in the BLOOD AND THUNDER of the dome.  Do not be alarmed at the carnage.  The Apothecarium has become quite adept at rebuilding those fit to serve.  The others are given to the " + string(obj_ini.role[100, 16]) + "s.  The mind is a terrible thing to waste and the Emperor does hate waste.  Not every man is useful as an Astartes but every man is useful.";
         }
         if (recruit_trial = "Hunting the Hunter") {
