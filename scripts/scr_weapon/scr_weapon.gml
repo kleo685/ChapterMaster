@@ -67,7 +67,7 @@ global.weapons={
     } ,
     "melee_hands": 0.9,
     "ranged_hands":1,
-    "tags":["shield"],
+    "tags":["shield", "terminator"],
     "hp_mod":{
       "standard": 30,
       "master_crafted": 35,
@@ -268,7 +268,7 @@ global.weapons={
         "spli": 4,
         "arp": 1,
         "special_properties": ["Parry"],
-        "tags":["power", "sword"],
+        "tags":["power", "sword", "terminator"],
     },
     "Power Spear": {
         "abbreviation": "PwrSpear",
@@ -290,7 +290,7 @@ global.weapons={
         "spli": 6,
         "arp": 1,
         "special_properties": ["Parry"],
-        "tags":["power", "spear"],
+        "tags":["power", "spear", "terminator"],
     },
     "Chainfist": {
      "abbreviation": "ChFst",
@@ -305,7 +305,7 @@ global.weapons={
         "range": 1,
         "spli": 2,
         "arp": 1,
-        "tags":["power", "chain", "fist", "dual", "siege"],
+        "tags":["power", "chain", "fist", "dual", "siege", "terminator"],
     },
     "Lascutter": {
        "abbreviation": "Lasct",
@@ -340,7 +340,7 @@ global.weapons={
         "spli": 3,
         "arp": 1,
         "special_properties": ["Parry"],
-        "tags":["power", "sword","elder","xenos"],
+        "tags":["power", "sword", "eldar","xenos"],
     },
     "Power Weapon": {
         "abbreviation": "PwrWpn",
@@ -361,7 +361,7 @@ global.weapons={
         "range": 1,
         "spli": 3,
         "arp": 1,
-        "tags":["power"],
+        "tags":["power", "terminator"],
     },
     "Power Axe": {
         "abbreviation": "PwrAxe",       
@@ -382,7 +382,7 @@ global.weapons={
         "range": 1,
         "spli": 5,
         "arp": 1,
-        "tags":["power", "axe", "dual"],
+        "tags":["power", "axe", "dual", "terminator"],
     },
     "Executioner Power Axe": {
        "abbreviation": "ExPwrAxe",       
@@ -424,7 +424,7 @@ global.weapons={
         "range": 1,
         "spli": 2,
         "arp": 1,
-        "tags":["power", "dual", "fist"],
+        "tags":["power", "dual", "fist", "terminator"],
     },
     "Power Fists": {
         "abbreviation": "PwrFsts", 
@@ -440,7 +440,7 @@ global.weapons={
         "range": 1,
         "spli": 4,
         "arp": 1,
-        "tags":["power","fist","pair"],
+        "tags":["power","fist","pair", "terminator"],
     },
     "Boltstorm Gauntlet": {
         "abbreviation": "BlstGnt", 
@@ -457,7 +457,7 @@ global.weapons={
         "spli": 2,
         "arp": 1,
         "second_profiles":["Integrated Bolter"],
-        "tags":["power","fist"],
+        "tags":["power","fist", "terminator"],
     },
     "Lightning Claw": {
     "abbreviation": "LghtClw",             
@@ -473,7 +473,7 @@ global.weapons={
         "range": 1,
         "spli": 5,
         "arp": 1,
-        "tags":["power", "dual", "fist"],
+        "tags":["power", "dual", "fist", "terminator"],
     },
     "Dreadnought Lightning Claw": {
     "abbreviation": "LghtClw",             
@@ -515,7 +515,7 @@ global.weapons={
         "range": 1,
         "spli": 10,
         "arp": 1,
-        "tags":["power", "hammer", "siege"],
+        "tags":["power", "hammer", "siege", "terminator"],
         "req_exp":140,
     },
     "Heavy Thunder Hammer": {
@@ -559,7 +559,7 @@ global.weapons={
         "range": 1,
         "spli": 10,
         "arp": 1,
-        "tags":["power", "mace", "siege"],
+        "tags":["power", "mace", "siege", "terminator"],
         "req_exp":100,
     },
     "Mace of Absolution": {
@@ -582,7 +582,7 @@ global.weapons={
         "range": 1,
         "spli": 10,
         "arp": 1,
-        "tags":["power", "mace", "siege", "pious"],
+        "tags":["power", "mace", "siege", "pious", "terminator"],
         "req_exp":100,
     },
     "Tome":{
@@ -625,7 +625,7 @@ global.weapons={
         "range": 1,
         "spli": 4,
         "arp": 1,
-        "tags":["power", "mace", "pious"],
+        "tags":["power", "mace", "pious", "terminator"],
     },
     "Relic Blade": {
       "abbreviation": "RlcBld",               
@@ -646,7 +646,7 @@ global.weapons={
         "range": 1,
         "spli": 3,
         "arp": 1,
-         "tags":["arcane", "sword"],
+         "tags":["arcane", "sword", "terminator"],
     },
     "Bolt Pistol": {
          "abbreviation": "BltPstl",               
@@ -742,7 +742,7 @@ global.weapons={
         "range": 2,
         "spli": 5,
         "arp": -1,
-        "tags":["flame","heavy_ranged"]
+        "tags":["flame","heavy_ranged", "terminator"]
     },
     "CCW Heavy Flamer": {
         "abbreviation": "CCWHvyFlmr",               
@@ -898,7 +898,7 @@ global.weapons={
         "range": 14,
         "spli": 2,
         "arp": 1,
-        "tags":["plasma", "heavy_weapon", "dreadnought"]
+        "tags":["plasma", "heavy_weapon", "dreadnought", "terminator"]
     },
     "Sniper Rifle": {
         "abbreviation": "SnprRfl",        
@@ -930,7 +930,7 @@ global.weapons={
         "range": 12,
         "spli": 20,
         "arp": 1,
-        "tags":["heavy_ranged", "dreadnought"]
+        "tags":["heavy_ranged", "dreadnought", "terminator"]
     },
     "Autocannon": {
         "abbreviation": "Autocnn",       
@@ -1384,7 +1384,7 @@ global.weapons={
         "range": 10,
         "spli": 6,
         "arp": 0,
-        "tags":["bolt"]
+        "tags":["bolt", "terminator"]
     },
     "Flamer": {
         "abbreviation": "Flmr", 
@@ -1438,7 +1438,7 @@ global.weapons={
         "spli": 3,
         "arp": 0,
         "second_profiles":["Flamer"],
-        "tags":["combi", "bolt"]
+        "tags":["combi", "bolt", "terminator"]
     },    
     "Incinerator": {
         "attack": {
@@ -1475,7 +1475,7 @@ global.weapons={
         "spli": 5,
         "arp": 1,
 		"special_description": "Spell Damage +100%",
-        "tags":["force",]
+        "tags":["force", "terminator"]
     },
 	"Force Sword": {
         "abbreviation": "FrcSwrd",
@@ -1498,7 +1498,7 @@ global.weapons={
         "arp": 1,
         "special_description": "Spell damage +25%",
         "special_properties": ["Parry"],
-        "tags":["force", "sword"],
+        "tags":["force", "sword", "terminator"],
 	},
 	"Force Axe": {
         "abbreviation": "FrcAxe",
@@ -1520,7 +1520,7 @@ global.weapons={
         "spli": 5,
         "arp": 1,
 		"special_description":  "Able to be dual-wielded, Spell damage +25%",
-        "tags":["force", "axe", "dual"],
+        "tags":["force", "axe", "dual", "terminator"],
 	},
      "Twin Linked Lascannon Turret": {
         "attack": {
@@ -1735,7 +1735,8 @@ global.gear = {
       },
       "melee_hands":8,
       "ranged_hands":8,      
-      "description": "A massive war-machine that can be piloted by an honored Astarte, who otherwise would have fallen in combat. Some of the Astartes consider this a fate worse than death"
+      "description": "A massive war-machine that can be piloted by an honored Astarte, who otherwise would have fallen in combat. Some of the Astartes consider this a fate worse than death",
+      "tags":["dreadnought"],
     },
     "Tartaros": {
         "abbreviation": "Tartrs", 
