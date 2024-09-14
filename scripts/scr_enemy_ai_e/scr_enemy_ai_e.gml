@@ -616,54 +616,49 @@ function scr_enemy_ai_e() {
                     //scr_alert("green","owner", "Recruitment is slowed due to lack of population on our recruitment worlds",0,0);
                     if (p_large[run] = 0) then p_population[run] -= 1;
 
-                    var recruit_chance = 999;
+                    var recruit_chance = 0;
                     var aspirant = 0;
                     var new_recruit_corruption = 10;
                     var months_to_neo = 72;
                     var dista = 0;
                     var onceh = 0;
-                    var recruit_chance_array = [0, 250, 200, 150, 125, 100];
-                    if (obj_controller.recruiting>0){
-                        recruit_chance = irandom(recruit_chance_array[obj_controller.recruiting]) + 1;
+                    var recruit_chance_array = [0, 200, 200, 150, 125, 100];
+                    var _planet_type_recruit_mod = {
+                        "Hive" : 0.005,
+                        "Temperate" : 0.05,
+                        "Feudal" : 0.075,
+                        "Forge" : 0.05,
+                        "Shrine" : 0.05,
+                        "Desert" : 0.1,
+                        "Ice" : 0.1,
+                        "Agri" : 0.02,
+                        "Death" : 0.15,
+                        "Lava" : 0.1,
+                    }
+                    var planet_type = p_type[run];
+                    if (obj_controller.recruiting > 0){
+                        recruit_chance = ((_planet_population / 100000) * _planet_type_recruit_mod[$ planet_type]) * (obj_controller.recruiting / 5);
+                        show_debug_message(recruit_chance);
                     }
 
                     // 135; recruiting
                     // new_recruit_corruption isn't really relevant as corruption in marines doesn't matter
                     // by default it takes 72 turns (6 years) to train
 
-                    var planet_type_recruit_chance = {
-                        "hive" : 40,
-                        "Temperate" : 20,
-                        "Feudal" : 20,
-                        "Forge" : 15,
-                        "Shrine" : 15,
-                        "Desert" : 15,
-                        "Ice" : 15,
-                        "Agri" : 10,
-                        "Death" : 10,
-                        "Lava" : 7,
-                    }
-                    var planet_type = p_type[run];
+
 
                     // if a planet type has less than half it's max pop, you get 20% less spacey marines
-                    if (_planet_population <= halfpop) {
-                        recruit_chance += 1.2;
-                       // scr_alert("red", "owner", "The populations you attain aspirants from are less populant than required, chances of recruiting aspirants is 20% lower", 0, 0);
-                    }
+                    // if (_planet_population <= halfpop) {
+                    //     recruit_chance += 1.2;
+                    //    // scr_alert("red", "owner", "The populations you attain aspirants from are less populant than required, chances of recruiting aspirants is 20% lower", 0, 0);
+                    // }
 
                     // This is the area has trial types that don't care about planet type 
                     // xp is given in a latter if loop
 
                     switch (obj_controller.recruit_trial) {
                         case "Blood Duel":
-                            recruit_chance *= 1 - (obj_controller.recruiting / 10);
-                            if (obj_controller.recruiting > 0) {
-                                var wasted_gene_seed = irandom_range(1, 10);
-                                if (wasted_gene_seed <= obj_controller.recruiting) {
-                                    (obj_controller.gene_seed) -= 1;
-                                    scr_alert("red", "owner", "Blood Duels are efficient in time, but costly in risk with gene material. Gene-seed has been lost.", 0, 0);
-                                }
-                            }
+                            recruit_chance *= 1 + (obj_controller.recruiting / 10);
                             break;
                         case "Survival of the Fittest":
                             if (p_type[run] == "Desert") or (p_type[run] == "Ice") or (p_type[run] == "Death") or (p_type[run] == "Lava") {
@@ -685,9 +680,18 @@ function scr_enemy_ai_e() {
                     // xp gain for the recruit is here
                     // as well as planet type buffs or nerfs
 
-                    if (struct_exists(planet_type_recruit_chance, planet_type)){
-                        if (recruit_chance <= planet_type_recruit_chance[$ planet_type]){
-                            aspirant = 1;
+                    show_debug_message(recruit_chance);
+                    if (recruit_chance >= random_range(0,1)){
+                        aspirant = 1;
+                        if (obj_controller.recruit_trial == "Blood Duel" || obj_controller.recruit_trial == "Duplus Lunaris"){
+                            if (obj_controller.recruiting > 0) {
+                                var wasted_gene_seed = irandom_range(1, 10);
+                                if (wasted_gene_seed <= obj_controller.recruiting) {
+                                    (obj_controller.gene_seed) -= 1;
+                                    aspirant -= 1;
+                                    scr_alert("red", "owner", "An aspirant has died durning the implantation process. A gene-seed has been lost.", 0, 0);
+                                }
+                            }
                         }
                     }
 
@@ -748,6 +752,9 @@ function scr_enemy_ai_e() {
                                 new_recruit_exp += irandom(10) + 15;
                                 months_to_neo += choose(18, 24, 24, 24, 36, 36);
                                 new_recruit_corruption -= choose(4, 6, 8);
+                                break;
+                            case "Duplus Lunaris":
+                                months_to_neo = choose(12, 13, 14, 15, 16, 17);
                                 break;
                             default:
                                 break;

@@ -187,12 +187,20 @@ else if (menu==15) and (cooldown<=0){
             }
             if (recruit_trial=="Apprenticeship") and (onceh==0){
                 onceh=1;
+                recruit_trial="Duplus Lunaris";
+            }
+            if (recruit_trial=="Duplus Lunaris") and (onceh==0){
+                onceh=1;
                 recruit_trial="Blood Duel";
             }
         }
         if (mouse_x>=xx+492) and (mouse_x<=xx+528){
             cooldown=8000;
             if (recruit_trial=="Blood Duel") and (onceh==0){
+                onceh=1;
+                recruit_trial="Duplus Lunaris";
+            }
+            if (recruit_trial=="Duplus Lunaris") and (onceh==0){
                 onceh=1;
                 recruit_trial="Apprenticeship";
             }

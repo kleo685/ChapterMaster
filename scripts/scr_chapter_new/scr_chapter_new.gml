@@ -244,7 +244,7 @@ if (argument0="White Scars"){founding="N/A";points=150;
 	    selected_chapter=5;chapter=argument0;icon=5;icon_name="ba";founding=0;fleet_type=1;strength=5;purity=9;stability=9;cooperation=7;
 	    adv[1]="Melee Enthusiasts";dis[1]="Black Rage";
 	    homeworld="Desert";homeworld_name="Baal";
-	    homeworld_exists=1;recruiting_exists=0;homeworld_rule=3;aspirant_trial="Blood Duel";
+	    homeworld_exists=1;recruiting_exists=0;homeworld_rule=3;aspirant_trial="Duplus Lunaris";
 	    // Pauldron2: Left, Pauldron: Right
 	    color_to_main="Sanguine Red";color_to_secondary="Sanguine Red";color_to_trim="Lighter Black";
 	    color_to_pauldron="Sanguine Red";color_to_pauldron2="Sanguine Red";color_to_lens="Lime";

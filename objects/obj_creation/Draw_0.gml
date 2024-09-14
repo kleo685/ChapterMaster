@@ -1048,13 +1048,14 @@ if (slide=3){
     draw_text_transformed(780,512,string_hash_to_newline(string(aspirant_trial)),0.5,0.5,0);
     
     var asp_info;asp_info="";
-    if (aspirant_trial="Blood Duel") then asp_info="- 2-4 years of training.#- 10-30% more recruits.#- 10% chance to burn gene-seed per recruiting speed.";
+    if (aspirant_trial="Blood Duel") then asp_info="- 2-4 years of training.#- +10% Aspirants per recruiting speed.#- +10% chance of Aspirants dying per recruiting speed.";
     if (aspirant_trial="Hunting the Hunter") then asp_info="- 6 years of training.#- 7-20 starting XP on Desert, Ice and Death planets";
-    if (aspirant_trial="Survival of the Fittest") then asp_info="- 6 years of training.#- 10-30% more recruits on Desert, Ice, Death and Lava planets.#- 20-50% more recruits on Feudal planets.";
+    if (aspirant_trial="Survival of the Fittest") then asp_info="- 6 years of training.#- 10-30% more Aspirants on Desert, Ice, Death and Lava planets.#- 20-50% more Aspirants on Feudal planets.";
     if (aspirant_trial="Exposure") then asp_info="- 3-5 years of training on Desert, Ice, Forge, Lava and Death planets.#- 6 years of training on all other planets.";
     if (aspirant_trial="Knowledge of Self") then asp_info="- 7.5-9 years of training.#- 15-25 starting XP.#- Additional 5-10 starting XP on Temperate planets.";
     if (aspirant_trial="Challenge") then asp_info="- 5.5-6.5 years of training.#- 20% chance to gain 10-20 starting XP.";
-    if (aspirant_trial="Apprenticeship") then asp_info="- 10-11 years of training.#- 34-43 starting XP.#- 30-50% more recruits on Lava planets.";
+    if (aspirant_trial="Apprenticeship") then asp_info="- 10-11 years of training.#- 34-43 starting XP.#- 30-50% more Aspirants on Lava planets.";
+    if (aspirant_trial="Duplus Lunaris") then asp_info="- 1.5 years of training.#- 10% Chance to burn gene-seed per recruiting speed.";
     draw_text_ext_transformed(700,544,string_hash_to_newline(string(asp_info)),64,950,0.5,0.5,0);
      
     if (scr_hit(750,480,950,510)){tooltip="Aspirant Trial";tooltip2="A special challenge is needed for Aspirants to be judged worthy of becoming Astartes.  After completing the Trial they then become a Neophyte, beginning implantation and training.";}
@@ -1068,7 +1069,8 @@ if (slide=3){
         if (aspirant_trial="Exposure") and (onceh=0){aspirant_trial="Survival of the Fittest";onceh=1;}
         if (aspirant_trial="Survival of the Fittest") and (onceh=0){aspirant_trial="Hunting the Hunter";onceh=1;}
         if (aspirant_trial="Hunting the Hunter") and (onceh=0){aspirant_trial="Blood Duel";onceh=1;}
-        if (aspirant_trial="Blood Duel") and (onceh=0){aspirant_trial="Apprenticeship";onceh=1;}
+        if (aspirant_trial="Blood Duel") and (onceh=0){aspirant_trial="Duplus Lunaris";onceh=1;}
+        if (aspirant_trial="Duplus Lunaris") and (onceh=0){aspirant_trial="Apprenticeship";onceh=1;}
     }
     
     if (custom>1) then draw_sprite_stretched(spr_creation_arrow,1,738,502,32,32);
@@ -1080,7 +1082,8 @@ if (slide=3){
         if (aspirant_trial="Exposure") and (onceh=0){aspirant_trial="Knowledge of Self";onceh=1;}
         if (aspirant_trial="Knowledge of Self") and (onceh=0){aspirant_trial="Challenge";onceh=1;}
         if (aspirant_trial="Challenge") and (onceh=0){aspirant_trial="Apprenticeship";onceh=1;}
-        if (aspirant_trial="Apprenticeship") and (onceh=0){aspirant_trial="Blood Duel";onceh=1;}
+        if (aspirant_trial="Apprenticeship") and (onceh=0){aspirant_trial="Duplus Lunaris";onceh=1;}
+        if (aspirant_trial="Duplus Lunaris") and (onceh=0){aspirant_trial="Blood Duel";onceh=1;}
     }
     
     
