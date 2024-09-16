@@ -94,7 +94,7 @@ function set_fleet_movement(){
 	    
 	    var eta=0;
 	    eta=floor(point_distance(x,y,action_x,action_y)/action_spd)+1;
-	    if (connected=0) then eta=eta*2;
+	    if (connected=0) then eta=eta*3;
 	    if (connected=1) then connected=1;
 	    
 	    if (owner=eFACTION.Inquisition) and (action_eta<2) then action_eta=2;
@@ -151,7 +151,7 @@ function set_fleet_movement(){
 	        }        
 	        
 	        eta=floor(point_distance(x,y,action_x,action_y)/action_spd)+1;
-	        if (connected=0) then eta=eta*2;
+	        if (connected=0) then eta=eta*3;
 	        if (connected=1) then connected=1;
 	        
 	        if (action_eta<=0) or (owner  != eFACTION.Inquisition){
@@ -213,7 +213,7 @@ function calculate_fleet_eta(xx,yy,xxx,yyy, fleet_speed,star1=true, star2=true){
 		star1 = instance_nearest(xx,yy, obj_star);
 	}
 	eta=floor(point_distance(xx,yy,xxx,yyy)/fleet_speed)+1;
-	if (!warp_lane) then eta*=2;
+	if (!warp_lane) then eta*=3;
 	if (instance_exists(star2)){
 		if (star2.storm){
 			eta += 10000;
@@ -225,7 +225,7 @@ function fastest_route_algorithm(start_x,start_y, xx,yy,ship_speed, start_from_s
 	var star_number = instance_number(obj_star);
 	target = instance_nearest(xx,yy,obj_star);
 	self.ship_speed = ship_speed;
-	worst_case = (floor(point_distance(start_x,start_y, xx,yy)/ship_speed+2))*2;
+	worst_case = (floor(point_distance(start_x,start_y, xx,yy)/ship_speed+2))*3;
 	start_star = instance_nearest(start_x,start_y,obj_star).id;
 	unvisited_stars = [
 		[start_star,-1, [], false],
@@ -288,17 +288,22 @@ function fastest_route_algorithm(start_x,start_y, xx,yy,ship_speed, start_from_s
 
 	final_route_info = unvisited_stars[array_length(unvisited_stars)-1];
 	static draw_route = function(){
-	    draw_set_color(c_blue);
-        draw_set_alpha(1);            
+		var old_color = draw_get_color();
+		var old_alpha = draw_get_alpha();
+		draw_set_color(c_red);
+        draw_set_alpha(1);
+
         var cur_star = start_star;
         for (var i=0;i<array_length(final_route_info[2]);i++){
-             draw_line_dashed(cur_star.x,cur_star.y,final_route_info[2][i].x,final_route_info[2][i].y,16,0.5);
-             cur_star = final_route_info[2][i];
+            draw_line_dashed(cur_star.x,cur_star.y,final_route_info[2][i].x,final_route_info[2][i].y,16,0.5);
+            cur_star = final_route_info[2][i];
         }
         draw_line_dashed(cur_star.x,cur_star.y,final_route_info[0].x,final_route_info[0].y,16,0.5);
         var eta = $"ETA {final_route_info[1]+1}";
-        if (obj_controller.zoomed=0) then draw_text_transformed(cur_star.x+16,cur_star.y+15,eta,1,1,0);
-        if (obj_controller.zoomed=1) then draw_text_transformed(cur_star.x+24,cur_star.y+40,eta,5,5,0);             
+        if (obj_controller.zoomed=0) then draw_text_transformed_outline(cur_star.x+16,cur_star.y+15,eta,1,1,0);
+        if (obj_controller.zoomed=1) then draw_text_transformed_outline(cur_star.x+24,cur_star.y+40,eta,5,5,0);
+		draw_set_color(old_color);
+		draw_set_color(old_alpha);
 	}
 	static final_array_path = function(){
 		var final_path = final_route_info[2];
@@ -314,13 +319,13 @@ function fastest_route_algorithm(start_x,start_y, xx,yy,ship_speed, start_from_s
 
 
 function calculate_action_speed(capitals=true, frigates=true, escorts=true){
-	var fleet_speed=128;
+	var fleet_speed=384;
 	if (capitals>0){
-	    fleet_speed=100;
+		fleet_speed=300;
 	} else if (frigates>0){
-	    fleet_speed=128;
+		fleet_speed=384;
 	}else if (escorts>0){
-	    fleet_speed=174;
+		fleet_speed=522;
 	}
 	if (obj_controller.stc_ships>=6) and (fleet_speed>=100) then fleet_speed*=0.8;
 	return fleet_speed;

@@ -13,7 +13,7 @@ if (action!=""){
     
     var eta;eta=0;
     eta=floor(point_distance(x,y,action_x,action_y)/action_spd)+1;
-    if (connected=0) then eta=eta*2;
+    if (connected=0) then eta=eta*3;
     if (connected=1) then connected=1;
     
     if (owner=eFACTION.Inquisition) and (action_eta<2) then action_eta=2;
@@ -74,7 +74,7 @@ if (action=""){
         }        
         
         eta=floor(point_distance(x,y,action_x,action_y)/action_spd)+1;
-        if (connected=0) then eta=eta*2;
+        if (connected=0) then eta=eta*3;
         if (connected=1) then connected=1;
         
         if (action_eta<=0) or (owner  != eFACTION.Inquisition){
