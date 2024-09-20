@@ -212,7 +212,8 @@ global.trait_list = {
 		dexterity:-2,
 		display_name:"Feet On the Ground",
 		flavour_text:"Prefer to keep both feet on the ground",
-		effect:"reduction in combat effectiveness when using Bikes or Jump Packs"
+		effect:"reduction in combat effectiveness when using Bikes or Jump Packs",
+		effect_value:0.1,
 	},
 	"tyrannic_vet":{
 		wisdom :[2,3,"max"],
@@ -364,6 +365,7 @@ global.trait_list = {
 		constitution:[2,2,"max"],
 		flavour_text:"Compelled towards the thrill of combat, they revel in the raw, primal dance of battle, often relying on nothing more than the crushing power of their fists",
 		effect:"bonus to fist type weaponry",
+		effect_value:0.1,
 	},
 	"tech_heretic":{
 		display_name:"Tech Heretic",
@@ -409,6 +411,7 @@ global.trait_list = {
 		display_name : "Duelist",
 		flavour_text:"a superlative duelist favoring traditional dueling weaponry",
 		effect:"Bonus to using swords and advantages in duels",
+		effect_value:0.3,
 
 	},
 	"siege_master" : {
@@ -1631,76 +1634,100 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 			return damage_res;
 		};
 
-		static ranged_hands_limit = function(){
-			var ranged_carrying = 0;
-			var carry_string = "";
-			var ranged_hands_limit = 2;
+		static calc_weight_limit = function(){
+			var _wep1 = get_weapon_one_data();
+			var _wep2 = get_weapon_two_data();
+			var weight_limit = 0;
+			var weight_tip = $"";
+			var stats_bonus = 0;
+			var gear_bonus = 0;
+			var stats_tip = $"";
+			var gear_tip = $"";
+			var weight_carrying = 0;
+			var carrying_tip = $"";
 
-			var wep_one_carry = get_weapon_one_data("ranged_hands");
-			if (wep_one_carry != 0){
-				ranged_carrying += wep_one_carry;
-				carry_string += $"{weapon_one()}: {wep_one_carry}#";
+			var _wep_one_weight = get_weapon_one_data("weight");
+			if (_wep_one_weight != 0){
+				weight_carrying += _wep_one_weight;
+				carrying_tip += $"-{weapon_one()}: {_wep_one_weight}#";
 			}
-			var wep_two_carry = get_weapon_two_data("ranged_hands");
-			if (wep_two_carry != 0){
-				ranged_carrying += wep_two_carry;
-				carry_string += $"{weapon_two()}: {wep_two_carry}#";
+			var _wep_two_weight = get_weapon_two_data("weight");
+			if (_wep_two_weight != 0){
+				weight_carrying += _wep_two_weight;
+				carrying_tip += $"-{weapon_two()}: {_wep_two_weight}#";
 			}
-			if ranged_carrying != 0{
-				carry_string = $"    =Carrying=#" + carry_string;
+			var armour_weight = get_armour_data("weight");
+			if (armour_weight != 0){
+				weight_carrying += armour_weight;
+				carrying_tip += $"-{armour()}: {armour_weight}#";
+			}
+			var gear_weight = get_gear_data("weight");
+			if (gear_weight != 0){
+				weight_carrying += gear_weight;
+				carrying_tip += $"-{gear()}: {gear_weight}#";
+			}
+			var mobility_weight = get_mobility_data("weight");
+			if (mobility_weight != 0){
+				weight_carrying += mobility_weight;
+				carrying_tip += $"-{mobility_item()}: {mobility_weight}#";
 			}
 
-			carry_string += $"    =Maximum=#"
-			if (base_group == "astartes"){
-				ranged_hands_limit = 2
-			} else if base_group == "tech_priest" {
-				ranged_hands_limit = 1+(technology/100);;
-			}else if base_group == "human" {
-				ranged_hands_limit = 1;
-			}	
-			carry_string+=$"Base: {ranged_hands_limit}#";
-			if (strength>=50){
-				ranged_hands_limit+=0.5;
-				carry_string+="STR: +0.5#";
+			if (strength != 0) {
+				var str_bonus = strength * 2;
+				stats_bonus += str_bonus;
+				stats_tip += string_concat("-Strength: +", round(str_bonus), "#");
 			}
-			if (ballistic_skill>=50){
-				ranged_hands_limit+=0.25;
-				carry_string+="BS: +0.25#";
-			}			
-			var armour_carry = get_armour_data("ranged_hands");
-			if (armour_carry!=0){
-				ranged_hands_limit+=armour_carry;
-				carry_string+=$"{armour()}: {format_number_with_sign(armour_carry)}#";
+			if (constitution != 0) {
+				var con_bonus = constitution * 0.5;
+				stats_bonus += con_bonus;
+				stats_tip += string_concat("-Constitution: +", round(con_bonus), "#");
+			}		
+
+			var armour_carry = get_armour_data("max_weight");
+			if (armour_carry != 0) {
+				gear_bonus += armour_carry;
+				gear_tip += $"-{armour()}: {format_number_with_sign(armour_carry)}#";
 			}
-			var gear_carry = get_gear_data("ranged_hands");
-			if (gear_carry!=0){
-				ranged_hands_limit+=gear_carry;
-				carry_string+=$"{gear()}: {format_number_with_sign(gear_carry)}#";
+			var gear_carry = get_gear_data("max_weight");
+			if (gear_carry != 0) {
+				gear_bonus += gear_carry;
+				gear_tip += $"-{gear()}: {format_number_with_sign(gear_carry)}#";
 			}
-			var mobility_carry = get_mobility_data("ranged_hands");
-			if (mobility_carry!=0){
-				ranged_hands_limit+=mobility_carry;
-				carry_string+=$"{mobility_item()}: {format_number_with_sign(mobility_carry)}#";
-			}							
-			return [ranged_carrying,ranged_hands_limit,carry_string]						
+			var mobility_carry = get_mobility_data("max_weight");
+			if (mobility_carry != 0) {
+				gear_bonus += mobility_carry;
+				gear_tip += $"-{mobility_item()}: {format_number_with_sign(mobility_carry)}#";
+			}
+
+			if (weight_carrying != 0){
+				weight_tip += "Carrying:#" + carrying_tip;
+			}
+			weight_limit = round(stats_bonus + gear_bonus);
+			if (weight_limit != 0){
+				weight_tip += "#Limit:#" + stats_tip + gear_tip;
+			}
+
+			return [weight_carrying, weight_limit, weight_tip];
 		}
 
 		static ranged_attack = function(weapon_slot=0){
-			encumbered_ranged=false;			
-			//base modifyer based on unit skill set
-			ranged_att = 100*(((ballistic_skill/50) + (dexterity/400)+ (experience()/500)));
 			var final_range_attack=0;
-			var explanation_string = $"Stat Mod: x{ranged_att/100}#  BS: x{ballistic_skill/50}#  DEX: x{dexterity/400}#  EXP: x{experience()/500}#";
-			//determine capavbility to weild bulky weapons
-			var carry_data =ranged_hands_limit();
+			var experience_val = experience();
+			var range_attack_mod = 1;
+			var explanation_string = "";
+			var bs_mod = 0;
+			var dex_mod = 0;
+			var exp_mod = 0;
+			var stat_mod = 0;
+			var carry_data = calc_weight_limit();
+			var total_gear_mod = 0;	
+			var primary_weapon_tip = "";
+			var second_weapon_tip = "";
 
-			//base multiplyer
-			var range_multiplyer = 1;
-
-			//grab generic structs for weapons
+			// Grab generic structs for weapons
 			var _wep1 = get_weapon_one_data();
 			var _wep2 = get_weapon_two_data();
-
+			// Default to fists if no weapon
 			if (!is_struct(_wep1)) then _wep1 = new equipment_struct({},"");
 			if (!is_struct(_wep2)) then _wep2 = new equipment_struct({},"");
 			if (allegiance==global.chapter_name){
@@ -1708,14 +1735,38 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 				_wep2.owner_data("chapter");
 			}
 			var primary_weapon= new equipment_struct({},"");
-			var secondary_weapon= new equipment_struct({},"");
+			var secondary_weapon= new equipment_struct({},"");	
+	
+			// Apply stat bonuses
+			bs_mod = ballistic_skill/200 - 0.1;
+			dex_mod = dexterity/2000 - 0.01;
+			exp_mod = experience_val/2500 - 0.02;
+			stat_mod = (bs_mod + dex_mod + exp_mod);
+			range_attack_mod += stat_mod;
+			explanation_string += $"#Stats: {format_number_with_sign(stat_mod*100)}%";
+			explanation_string += $"#BS: {format_number_with_sign(bs_mod*100)}%";
+			explanation_string += $"#DEX: {format_number_with_sign(dex_mod*100)}%";
+			explanation_string += $"#EXP: {format_number_with_sign(exp_mod*100)}%";
+
+			// Apply penalty for going over the weight limit
 			if (carry_data[0]>carry_data[1]){
-				encumbered_ranged=true;					
-				ranged_att*=0.6;
-				explanation_string+=$"Encumbered:X0.6#";
-			}			
+				var encumbrance = 1 - power(carry_data[1] / carry_data[0], 2);
+				// var enc_negation = (dexterity + ballistic_skill) * 0.001
+				// var enc_penalty = encumbrance + enc_negation;
+				if encumbrance < 1 {
+					encumbered_ranged = true;
+					range_attack_mod -= encumbrance;
+					explanation_string += $"#Encumbrance: -{round(encumbrance*100)}%";
+					// explanation_string+=$"#Encumbrance negation:";
+					// explanation_string+=$"#Dexterity: {dexterity/10}%";
+					// explanation_string+=$"#Ballistic Skill: {ballistic_skill/10}%";
+					// explanation_string+=$"#Total: {enc_negation*100}%";
+				}
+			}	
+
+			// If there are multiple weapons
 			if (weapon_slot==0){
-				//decide if any weapons are ranged
+				// Handle second profile weapons
 				if (_wep1.range<=1.1 && _wep2.range<=1.1){
 					if (array_length(_wep1.second_profiles) + array_length(_wep2.second_profiles) ==0){
 						ranged_damage_data = [final_range_attack,explanation_string,carry_data,primary_weapon, secondary_weapon];
@@ -1725,7 +1776,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 							var sec_profile = gear_weapon_data("weapon",other_profiles[sec],"all",false,weapon_one_quality);
 							if (is_struct(sec_profile)){
 								if (sec_profile.range>1.1 && sec_profile.attack>0){
-									final_range_attack+=(sec_profile.attack*(ranged_att/100));
+									final_range_attack+=(sec_profile.attack*(range_attack_mod/100));
 									explanation_string+=$"{sec_profile.name} +{sec_profile.attack}#";
 								}
 							}
@@ -1735,13 +1786,14 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 						ranged_damage_data = [final_range_attack,explanation_string,carry_data,primary_weapon, secondary_weapon];
 					}
 					return ranged_damage_data;
+				// Pick the ranged weapon
 				} else {
 					if (_wep1.range<=1.1){
 						primary_weapon=_wep2;
 					} else if (_wep2.range<=1.1){
 						primary_weapon=_wep1;
+					// If both weapons are ranged pick best
 					} else {
-						//if both weapons are ranged pick best
 						if (_wep1.attack>_wep2.attack){
 							primary_weapon=_wep1;
 							secondary_weapon=_wep2;
@@ -1751,6 +1803,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 						}
 					}
 				}
+			// If there is only one weapon
 			} else {
 				if (weapon_slot==1){
 					primary_weapon=_wep1;
@@ -1758,228 +1811,255 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 					primary_weapon=_wep2;
 				}
 			};
-			//calculate chapter specific bonus
-			if (allegiance==global.chapter_name){//calculate player specific bonuses
+
+			// Apply chapter trait bonuses
+			if (allegiance==global.chapter_name){
 				if (primary_weapon.has_tag("bolt")){
 					if (array_contains(obj_ini.adv, "Bolter Drilling") && base_group=="astartes"){
-						range_multiplyer+=0.15;
-						explanation_string+=$"Bolter Drilling:X1.15#"
+						range_attack_mod += 0.15;
+						explanation_string+=$"Bolter Drilling: x1.15#"
 					}
 				}
 			}
-			if (!encumbered_ranged){
-			 	var total_gear_mod=0;							
-				total_gear_mod+=get_armour_data("ranged_mod");
-				total_gear_mod+=get_gear_data("ranged_mod");
-				total_gear_mod+=get_mobility_data("ranged_mod");
-				total_gear_mod+=_wep1.ranged_mod;
-				total_gear_mod+=_wep2.ranged_mod;
-				ranged_att+=total_gear_mod;
-				explanation_string+=$"Gear Mod: x{(total_gear_mod/100)+1}#";			
-				if (has_trait("feet_floor") && mobility_item()!=""){
-					ranged_att*=0.9;
-					explanation_string+=$"{global.trait_list.feet_floor.display_name}:X0.9#";
-				}
+
+			// Apply gear mods						
+			total_gear_mod += get_armour_data("ranged_mod");
+			total_gear_mod += get_gear_data("ranged_mod");
+			total_gear_mod += get_mobility_data("ranged_mod");
+			total_gear_mod += _wep1.ranged_mod;
+			total_gear_mod += _wep2.ranged_mod;
+			if total_gear_mod != 0{
+				range_attack_mod += total_gear_mod / 100;
+				explanation_string += $"#Gear: {format_number_with_sign(total_gear_mod)}%";	
 			}
-			//return final ranged damage output
-			final_range_attack = floor((ranged_att/100)* primary_weapon.attack);
-			explanation_string = $"{primary_weapon.name}: {primary_weapon.attack}#" + explanation_string
-			if (!encumbered_ranged){
-				if (primary_weapon.has_tag("pistol") &&secondary_weapon.has_tag("pistol")){
-					final_range_attack+=floor((ranged_att/100)* secondary_weapon.attack);
-					explanation_string+=$"Dual Pistols: +{secondary_weapon.attack}#";			
-				} else if (secondary_weapon.attack>0){
-					var second_attack =floor((ranged_att/100)* secondary_weapon.attack)*0.5;
-					final_range_attack+=second_attack;
-					explanation_string+=$"Secondary: +{second_attack}#";			
-				}
+
+			// Apply trait mods
+			if (has_trait("feet_floor") && mobility_item()!=""){
+				range_attack_mod += 0.1;
+				explanation_string += $"{global.trait_list.feet_floor.display_name}: x1.1#";
 			}
-			ranged_damage_data = [final_range_attack,explanation_string,carry_data,primary_weapon, secondary_weapon];
+
+			explanation_string = $"##Mod: {format_number_with_sign((range_attack_mod-1)*100)}%" + explanation_string;
+			var primary_attack = round(primary_weapon.attack * range_attack_mod);
+			// Add secondary weapon attack
+			// if (primary_weapon.has_tag("pistol") &&secondary_weapon.has_tag("pistol")){
+			// 	final_range_attack+=round(range_attack_mod * secondary_weapon.attack);
+			// 	explanation_string+=$"Dual Pistols: +{secondary_weapon.attack}#";			
+			// }
+
+			var one_h_limit = carry_data[1] / 16;
+			var second_attack = secondary_weapon.attack;
+			var primary_weapon_penalty = 1;
+			var second_weapon_penalty = 1;
+			if (second_attack > 0) {
+				second_attack = second_attack * range_attack_mod;
+				var penalized_primary_attack = primary_attack;
+				if primary_weapon.weight > one_h_limit{
+					primary_weapon_penalty = power(one_h_limit / primary_weapon.weight, 4);
+					penalized_primary_attack *= primary_weapon_penalty;
+					primary_weapon_tip = $"(x{primary_weapon_penalty})";
+				}
+				var penalized_second_attack = second_attack;
+				if secondary_weapon.weight > one_h_limit{
+					second_weapon_penalty = power(one_h_limit / secondary_weapon.weight, 4);
+					penalized_second_attack *= second_weapon_penalty;
+					second_weapon_tip = $"(x{second_weapon_penalty})";
+				}
+				if penalized_primary_attack + penalized_second_attack > primary_attack{
+					primary_attack = round(penalized_primary_attack);
+					second_attack = round(penalized_second_attack);
+					primary_weapon_tip = $"{primary_weapon.name}: {primary_attack} " + primary_weapon_tip;
+					second_weapon_tip = $"#{secondary_weapon.name}: {second_attack} " + second_weapon_tip;			
+				} else {
+					second_attack *= 0;
+					primary_weapon_tip = $"{primary_weapon.name}: {primary_attack}";
+					second_weapon_tip = $"#{secondary_weapon.name} is too heavy for one hand!";
+				}
+			} else {
+				primary_weapon_tip = $"{primary_weapon.name}: {primary_attack}";
+			}
+			explanation_string = primary_weapon_tip + second_weapon_tip + explanation_string;
+
+			final_range_attack =  primary_attack + second_attack;
+			ranged_damage_data = [final_range_attack, explanation_string, carry_data, primary_weapon, secondary_weapon];
 			return ranged_damage_data;
-		};
+		};	
 
-		static melee_hands_limit = function(){
-			var melee_carrying = 0;
-			var carry_string = "";
-			var melee_hands_limit = 2;
-
-			var wep_one_carry = get_weapon_one_data("melee_hands");
-			if (wep_one_carry != 0){
-				melee_carrying += wep_one_carry;
-				carry_string += $"{weapon_one()}: {wep_one_carry}#";
-			}
-			var wep_two_carry = get_weapon_two_data("melee_hands");
-			if (wep_two_carry != 0){
-				melee_carrying += wep_two_carry;
-				carry_string += $"{weapon_two()}: {wep_two_carry}#";
-			}
-			if melee_carrying != 0{
-				carry_string = $"    =Carrying=#" + carry_string;
-			}
-
-			carry_string += $"    =Maximum=#"
-			if (base_group == "astartes"){
-				melee_hands_limit = 2
-			} else if base_group == "tech_priest" {
-				melee_hands_limit = 1+(technology/100);
-			}else if base_group == "human" {
-				melee_hands_limit = 1;
-			}				
-			carry_string+="Base: 2#";
-			if (strength>=50){
-				melee_hands_limit+=0.25;
-				carry_string+="STR: +0.25#";
-			}
-			if (weapon_skill>=50){
-				melee_hands_limit+=0.25;
-				carry_string+="WS: +0.25#";
-			}
-			if (has_trait("champion")){
-				melee_hands_limit+=0.25;
-				carry_string+="Champion: +0.25#";
-			}
-			var armour_carry = get_armour_data("melee_hands")
-			if (armour_carry!=0){
-				melee_hands_limit+=armour_carry;
-				carry_string+=$"{armour()}: {format_number_with_sign(armour_carry)}#";
-			}
-			var gear_carry = get_gear_data("melee_hands");
-			if (gear_carry!=0){
-				melee_hands_limit+=gear_carry;
-				carry_string+=$"{gear()}: {format_number_with_sign(gear_carry)}#";
-			}
-			var mobility_carry = get_mobility_data("melee_hands");
-			if (mobility_carry!=0){
-				melee_hands_limit+=mobility_carry;
-				carry_string+=$"{mobility_item()}: {format_number_with_sign(mobility_carry)}#";
-			}						
-			return [melee_carrying,melee_hands_limit,carry_string]						
-		}		
-		static melee_attack = function(weapon_slot=0){
-			encumbered_melee=false;
-			melee_att = 100*(((weapon_skill/100) * (strength/20)) + (experience()/1000)+0.1);
-			var explanation_string = string_concat("#Stats: ", format_number_with_sign(round(((melee_att/100)-1)*100)), "%#");
-			explanation_string += "  Base: +10%#";
-			explanation_string += string_concat("  WSxSTR: ", format_number_with_sign(round((((weapon_skill/100)*(strength/20))-1)*100)), "%#");
-			explanation_string += string_concat("  EXP: ", format_number_with_sign(round((experience()/1000)*100)), "%#");
-
-			melee_carrying = melee_hands_limit();
+		static total_melee_mod = function(_weapon) {
+			var _ws_mod = 0;
+			var _str_mod = 0;
+			var _exp_mod = 0;
+			var _stat_mod = 0;
+			var _gear_mod = 0;
+			var _total_melee_mod = 0;
+			var _tooltip = "";
+			var _experience_val = experience();
 			var _wep1 = get_weapon_one_data();
 			var _wep2 = get_weapon_two_data();
-			if (!is_struct(_wep1)) then _wep1 = new equipment_struct({},"");
-			if (!is_struct(_wep2)) then _wep2 = new equipment_struct({},"");
-			if (allegiance==global.chapter_name){
+			
+			_ws_mod = weapon_skill / 200 - 0.1;
+			_str_mod = strength / 2000 - 0.01;
+			_exp_mod = _experience_val / 2500 - 0.02;
+			_stat_mod = (_ws_mod + _str_mod + _exp_mod);
+			_total_melee_mod += _stat_mod;
+			_tooltip += $"#Stats: {format_number_with_sign(_stat_mod*100)}%";
+			_tooltip += $"#-Weapon Skill: {format_number_with_sign(_ws_mod*100)}%";
+			_tooltip += $"#-Strength: {format_number_with_sign(_str_mod*100)}%";
+			_tooltip += $"#-Experience: {format_number_with_sign(_exp_mod*100)}%";
+
+			// Apply gear mods
+			_gear_mod += get_armour_data("melee_mod");
+			_gear_mod += get_gear_data("melee_mod");
+			_gear_mod += get_mobility_data("melee_mod");
+			_gear_mod += _wep1.melee_mod;
+			_gear_mod += _wep2.melee_mod;
+			if _gear_mod != 0 {
+				_total_melee_mod += _gear_mod / 100;
+				_tooltip += $"#Gear: {format_number_with_sign(_gear_mod)}%";
+			}
+
+			if (has_trait("feet_floor") && mobility_item() != "") {
+				_total_melee_mod -= global.trait_list.feet_floor.effect_value;
+				_tooltip += $"#{global.trait_list.feet_floor.display_name}: -{global.trait_list.feet_floor.effect_value * 100}%";
+			}
+			if (_weapon.has_tag("fist") && has_trait("brawler")) {
+				_total_melee_mod += global.trait_list.brawler.effect_value;
+				_tooltip += $"#{global.trait_list.brawler.display_name}: +{global.trait_list.brawler.effect_value * 100}%";
+				}
+			if (_weapon.has_tag("sword") && has_trait("duelist")){
+				_total_melee_mod += global.trait_list.duelist.effect_value;
+				_tooltip += $"#{global.trait_list.duelist.display_name}: +{global.trait_list.duelist.effect_value * 100}%";
+			}	
+
+			// Apply various misc bonuses
+			if IsSpecialist("libs") {
+				if (_weapon.has_tag("force")) {
+					var force_modifier = (((weapon_skill / 100) * (psionic / 10) * (intelligence / 10)) + (_experience_val / 1000)) - 1;
+					_total_melee_mod += force_modifier;
+					_tooltip += $"#Force Weapon: x{force_modifier}";
+					_tooltip += $"#-WS x PSI x INT: x{(weapon_skill/100)*(psionic/10)*(intelligence/10)}";
+					_tooltip += $"#-EXP: x{_experience_val/1000}";
+				}		
+			}
+
+			// End mod calculation
+			_tooltip = $"##Total Bonus: {format_number_with_sign((_total_melee_mod)*100)}%" + _tooltip;
+
+			return [_total_melee_mod, _tooltip,]
+		}
+
+		static melee_attack = function(weapon_slot = 0) {
+			var final_melee_attack = 0;
+			var experience_val = experience();
+			var melee_attack_mod = 1;
+			var explanation_string = "";
+
+			// Grab generic structs for weapons
+			var _wep1 = get_weapon_one_data();
+			var _wep2 = get_weapon_two_data();
+			// Default to fists if no weapon
+			if (!is_struct(_wep1)) then _wep1 = new equipment_struct({}, "");
+			if (!is_struct(_wep2)) then _wep2 = new equipment_struct({}, "");
+			if (allegiance == global.chapter_name) {
 				_wep1.owner_data("chapter");
 				_wep2.owner_data("chapter");
 			}
-			var primary_weapon;
-			var secondary_weapon="none";
-			if (weapon_slot==0){
-				//if player has not melee weapons
-				var valid1 = ((_wep1.range<=1.1 && _wep1.range!=0) || (_wep1.has_tags(["pistol","flame"])));
-				var valid2 = ((_wep2.range<=1.1 && _wep2.range!=0) || (_wep2.has_tags(["pistol","flame"])));
-				if (!valid1 && !valid2){
-					primary_weapon=new equipment_struct({},"");//create blank weapon struct
-					primary_weapon.attack=strength/3;//calculate damage from player fists
-					primary_weapon.name="fists";
-					primary_weapon.range = 1;
-					primary_weapon.ammo = -1;					
-				} else {
-					if (!valid1 && valid2){
-						primary_weapon=_wep2;
-					} else if (valid1 && !valid2){
-						primary_weapon=_wep1;
-					} else {
-						var highest = _wep1.attack>_wep2.attack ? _wep1 :_wep2;
-						var lowest = _wep1.attack<=_wep2.attack ? _wep1 :_wep2;
-						if (!highest.has_tags(["pistol","flame"])){
-							primary_weapon = highest;
-							secondary_weapon=lowest;
-						}else if (!lowest.has_tags(["pistol","flame"])){
-							primary_weapon = lowest;
-							secondary_weapon=highest;
-						} else {
-							primary_weapon=highest;
-							melee_att*=0.5;
-							if (primary_weapon.has_tag("flame")){
-								explanation_string+=$"Primary is Flame: -50%#"
-							} else if primary_weapon.has_tag("pistol"){
-								explanation_string+=$"Primary is Pistol: -50%#"
-							}
-							secondary_weapon=lowest;
-						}
-					}
-				}
-			} else {
-				if (weapon_slot==1){
-					primary_weapon=_wep1;
-				} else if (weapon_slot==2){
-					primary_weapon=_wep2;
-				}
-			};
-			var basic_wep_string = $"{primary_weapon.name}: {primary_weapon.attack}#";
-			if IsSpecialist("libs") or has_trait("warp_touched"){
-				if (primary_weapon.has_tag("force") ||_wep2.has_tag("force")){
-					var force_modifier = (((weapon_skill/100) * (psionic/10) * (intelligence/10)) + (experience()/1000)+0.1);
-					primary_weapon.attack *= force_modifier;
-					basic_wep_string += $"Active Force Weapon: x{force_modifier}#  Base: 0.10#  WSxPSIxINT: x{(weapon_skill/100)*(psionic/10)*(intelligence/10)}#  EXP: x{experience()/1000}#";
-				}		
-			};
-			explanation_string = basic_wep_string + explanation_string
+			var primary_weapon = new equipment_struct({}, "");
+			var secondary_weapon = new equipment_struct({}, "");
 
-			if (melee_carrying[0]>melee_carrying[1]){
-				encumbered_melee=true;	
-				melee_att*=0.6;
-				explanation_string+=$"Encumbered: x0.6#"
-			}
-			if (!encumbered_melee){
-			 	var total_gear_mod=0;							
-				total_gear_mod+=get_armour_data("melee_mod");
-				total_gear_mod+=get_gear_data("melee_mod");
-				total_gear_mod+=get_mobility_data("melee_mod");
-				total_gear_mod+=_wep1.melee_mod;
-				total_gear_mod+=_wep2.melee_mod;
-				melee_att+=total_gear_mod;
-				explanation_string+=$"#Gear Mod: {(total_gear_mod/100)*100}%#";
-				//TODO make trait data like this more structured to be able to be moddable
-				if (has_trait("feet_floor") && mobility_item()!=""){
-					melee_att*=0.9;
-					explanation_string+=$"{global.trait_list.feet_floor.display_name}: x0.9#";
+			// If no slot specified, process both
+			if (weapon_slot == 0) {
+				// If both weapons are ranged or empty - use fists as melee
+				if (((_wep1.range > 1.1 || _wep1.range == 0) && (_wep2.range > 1.1 || _wep2.range == 0))) {
+					primary_weapon = new equipment_struct({}, "");
+					primary_weapon.attack = strength / 2;
+					primary_weapon.name = "Fists"; 
+				// If both weapons are melee
+				} else if (_wep1.range <= 1.1 && _wep2.range <= 1.1) {
+					var best_weapon = _wep1.attack > _wep2.attack ? _wep1 : _wep2;
+					var worst_weapon = _wep1.attack <= _wep2.attack ? _wep1 : _wep2;
+					primary_weapon = best_weapon;
+					secondary_weapon = worst_weapon;
+				// If 1st weapon is melee
+				} else if (_wep1.range <= 1.1) {
+					primary_weapon = _wep1;
+					secondary_weapon = _wep2;
+				// If 2nd weapon is melee
+				} else if (_wep2.range <= 1.1) {
+					primary_weapon = _wep2;
+					secondary_weapon = _wep1;
 				}
-				if (primary_weapon.has_tag("fist") && has_trait("brawler")){
-					melee_att*=1.1;
-					explanation_string+=$"{global.trait_list.brawler.display_name}: x1.1#";
+				// Else only use the specified slot's weapon
+				} else {
+				if (weapon_slot == 1) {
+					primary_weapon = _wep1;
+				} else if (weapon_slot == 2) {
+					primary_weapon = _wep2;
+							}
+			};
+
+			var _total_melee_mod = total_melee_mod(primary_weapon);
+			melee_attack_mod += _total_melee_mod[0];
+			var primary_weapon_explanation = _total_melee_mod[1];
+
+			_total_melee_mod = total_melee_mod(secondary_weapon);
+			melee_attack_mod += _total_melee_mod[0];
+			var second_weapon_explanation = _total_melee_mod[1];
+
+
+			// Apply penalty for going over the weight limit
+			var carry_data = calc_weight_limit();
+			if (carry_data[0] > carry_data[1]) {
+				var encumbrance = 1 - power(carry_data[1] / carry_data[0], 2);
+				// var enc_negation = (dexterity + ballistic_skill) * 0.001
+				// var enc_penalty = encumbrance + enc_negation;
+				if encumbrance < 1 {
+					encumbered_melee = true;
+					melee_attack_mod -= encumbrance;
+					explanation_string += $"#Encumbrance: -{round(encumbrance*100)}%";
+					// explanation_string+=$"#Encumbrance negation:";
+					// explanation_string+=$"#Dexterity: {dexterity/10}%";
+					// explanation_string+=$"#Ballistic Skill: {ballistic_skill/10}%";
+					// explanation_string+=$"#Total: {enc_negation*100}%";
 				}
-				if (primary_weapon.has_tag("sword") && has_trait("duelist")){
-					melee_att*=1.3;
-					explanation_string+=$"{global.trait_list.duelist.display_name}: x1.3#";
-				}				
 			}
-			var final_attack =  floor((melee_att/100)*primary_weapon.attack);
-			if (secondary_weapon!="none" && !encumbered_melee){
-				var side_arm_data="Standard: x0.5";
-				var secondary_modifier = 0.5;
-				if (primary_weapon.has_tag("dual") && secondary_weapon.has_tag("dual")){
-					secondary_modifier=1
-					side_arm_data="Dual: x1";
-				} else if (secondary_weapon.has_tag("pistol")){
-					if (melee_carrying[0]+0.8>=melee_carrying[1]){
-						secondary_modifier=0;
-					}else {
-						secondary_modifier = 0.6;
-						side_arm_data="Pistol: x0.8";
+
+			// Dual wielding calculations
+			var primary_attack = round(primary_weapon.attack * melee_attack_mod);
+			var one_h_limit = carry_data[1] / 16;
+			var second_attack = 0;
+			if (secondary_weapon.range <= 1.1) || (secondary_weapon.has_tag("pistol")) {
+				second_attack = secondary_weapon.attack;
+				// The melee mod is not applied to secondary ranged weapons;
+				if secondary_weapon.range <= 1.1{
+					second_attack = round(second_attack * melee_attack_mod);
+				}
+				var penalized_primary_attack = primary_attack;
+				if primary_weapon.weight > one_h_limit {
+					var one_h_penalty = power(one_h_limit / primary_weapon.weight, 4);
+					penalized_primary_attack *= one_h_penalty;
+				}
+				var penalized_second_attack = second_attack;
+				if secondary_weapon.weight > one_h_limit {
+					var one_h_penalty = power(one_h_limit / secondary_weapon.weight, 4);
+					penalized_second_attack *= one_h_penalty;
 					}
-				} else if (secondary_weapon.has_tag("flame")){
-					secondary_modifier = 0.3;
-					side_arm_data="Flame: x0.3";
+				if (!secondary_weapon.has_tag("pistol")) {
+					penalized_second_attack *= 0.4;
 				}
-				var side_arm = floor(secondary_modifier*((melee_att/100)*secondary_weapon.attack));
-				if (side_arm>0){
-					final_attack+=side_arm;
-					explanation_string+=$"Side Arm: +{side_arm}({side_arm_data})#";
+				if penalized_primary_attack + penalized_second_attack > primary_attack {
+					primary_attack = penalized_primary_attack;
+					second_attack = penalized_second_attack;
+					explanation_string = $"##{secondary_weapon.name}: {second_attack}" + second_weapon_explanation;
+				} else {
+					second_attack *= 0;
+					explanation_string = $"##{secondary_weapon.name} is too heavy for one hand";
 				}
 			}
-			melee_damage_data=[final_attack,explanation_string,melee_carrying,primary_weapon, secondary_weapon];
+			explanation_string = $"{primary_weapon.name}: {primary_attack}" + primary_weapon_explanation + explanation_string;
+
+			final_melee_attack = primary_attack + second_attack;
+			melee_damage_data = [final_melee_attack, explanation_string, carry_data, primary_weapon, secondary_weapon];
 			return melee_damage_data;
 		};
 
