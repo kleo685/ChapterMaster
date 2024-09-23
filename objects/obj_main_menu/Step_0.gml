@@ -74,7 +74,7 @@ if (fade<=20){
     if (mouse_x>=414) and (mouse_y>=273) and (mouse_x<578) and (mouse_y<290) then hi=4;
     
     if (instance_exists(obj_saveload)){
-        // if (scr_hit(sdfgsdgsdg)=true) then hi=6;
+        // if (point_in_area(sdfgsdgsdg)=true) then hi=6;
     }
 }
 

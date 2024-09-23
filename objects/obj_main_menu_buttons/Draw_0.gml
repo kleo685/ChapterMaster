@@ -30,7 +30,7 @@ if (room_get_name(room)="Creation"){
     var _spr_width = sprite_get_width(spr_mm_butts_small) * 2;
     shader_set_uniform_f(shader_get_uniform(light_dark_shader, "highlight"), 1+hover[0]/10);
     draw_sprite_ext(spr_mm_butts_small, 1, x,yy, 2, 2, 0, c_white, 1);
-    if (scr_hit(x,yy, x+_spr_width, yy+_spr_height)){
+    if (point_in_area(x,yy, x+_spr_width, yy+_spr_height)){
         if (hover[0]<20){
             hover[0]++;
         }
@@ -73,7 +73,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
             var y_start = 500+((20*2.2)*i);
             shader_set_uniform_f(shader_get_uniform(light_dark_shader, "highlight"), 1+hover[i]/10);
             draw_sprite_ext(spr_mm_butts, i, 580,y_start, 2.2, 2.2, 0, c_white, 1);
-            if (scr_hit(580,y_start, 580+width, y_start+height)){
+            if (point_in_area(580,y_start, 580+width, y_start+height)){
                 if (hover[i]<20){
                     hover[i]++;
                 }

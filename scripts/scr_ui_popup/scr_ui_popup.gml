@@ -53,7 +53,7 @@ function scr_ui_popup() {
 				draw_set_color(c_gray);
 				draw_rectangle(base_x1, base_y1 + y_offset, base_x2, base_y2 + y_offset, 0);
 		
-				if (scr_hit(base_x1, base_y1 + y_offset, base_x2, base_y2 + y_offset) == true) {
+				if (point_in_area(base_x1, base_y1 + y_offset, base_x2, base_y2 + y_offset) == true) {
 					draw_set_color(c_black);
 					draw_set_alpha(0.2);
 					draw_rectangle(base_x1, base_y1 + y_offset, base_x2, base_y2 + y_offset, 0);
@@ -123,7 +123,7 @@ function scr_ui_popup() {
 			            draw_set_color(c_black);
 			            draw_text_transformed(xx+496,yy+14+((r-1)*22),string_hash_to_newline(string(butt)),1,0.9,0);draw_set_alpha(1);
 		            
-			            if (scr_hit(xx+494,yy+12+((r-1)*22),xx+614,yy+32+((r-1)*22))=true){
+			            if (point_in_area(xx+494,yy+12+((r-1)*22),xx+614,yy+32+((r-1)*22))=true){
 			                if (alp<=0.33) then draw_set_alpha(0.1);
 			                if (alp>0.33) then draw_set_alpha(0.2);
 			                draw_set_color(0);
@@ -295,7 +295,7 @@ function scr_ui_popup() {
 	        draw_rectangle(xx+300,yy+45,xx+400,yy+65,0);
 	        draw_set_halign(fa_center);draw_set_color(0);
 	        draw_text(xx+350,yy+47,string_hash_to_newline("Build"));draw_text(xx+351,yy+48,string_hash_to_newline("Build"));
-	        if (scr_hit(xx+300,yy+45,xx+400,yy+65)=true){
+	        if (point_in_area(xx+300,yy+45,xx+400,yy+65)=true){
 	            draw_set_alpha(0.2);draw_rectangle(xx+300,yy+45,xx+400,yy+65,0);draw_set_alpha(1);
             
 	            if (obj_controller.cooldown<=0) and (obj_controller.mouse_left=1) and (obj_controller.requisition>=1000){
@@ -312,7 +312,7 @@ function scr_ui_popup() {
 	        draw_set_halign(fa_center);
 	        draw_set_color(0);
 	        draw_text(xx+350,yy+112,string_hash_to_newline("Build"));draw_text(xx+351,yy+113,string_hash_to_newline("Build"));
-	        if (scr_hit(xx+300,yy+110,xx+400,yy+130)){
+	        if (point_in_area(xx+300,yy+110,xx+400,yy+130)){
 	            draw_set_alpha(0.2);
 	            draw_rectangle(xx+300,yy+110,xx+400,yy+130,0);
 	            draw_set_alpha(1);
@@ -332,7 +332,7 @@ function scr_ui_popup() {
 	        draw_rectangle(xx+300,yy+175,xx+400,yy+195,0);
 	        draw_set_halign(fa_center);draw_set_color(0);
 	        draw_text(xx+350,yy+177,string_hash_to_newline("Build"));draw_text(xx+351,yy+178,string_hash_to_newline("Build"));
-	        if (scr_hit(xx+300,yy+175,xx+400,yy+195)){
+	        if (point_in_area(xx+300,yy+175,xx+400,yy+195)){
 	            draw_set_alpha(0.2);draw_rectangle(xx+300,yy+175,xx+400,yy+195,0);draw_set_alpha(1);
             
 	            if (obj_controller.cooldown<=0) and (obj_controller.mouse_left=1) and (obj_controller.requisition>=4000){
@@ -351,7 +351,7 @@ function scr_ui_popup() {
 	    draw_set_halign(fa_center);
 	    draw_set_color(0);
 	    draw_text(xx+312,yy+388,string_hash_to_newline("Back"));
-	    if (scr_hit(xx+312-60,yy+388,xx+312+60,yy+420)=true){
+	    if (point_in_area(xx+312-60,yy+388,xx+312+60,yy+420)=true){
 	        draw_set_alpha(0.2);
 	        draw_rectangle(xx+312-60,yy+388,xx+312+60,yy+420,0);draw_set_alpha(1);
         
@@ -491,7 +491,7 @@ function scr_ui_popup() {
 			            		if (string_width(name)*scale>179) then scale-=0.05;
 			            	}
 			            }
-			            if (scr_hit(xx+10,yy+y3,xx+width-10,yy+y3+18)){
+			            if (point_in_area(xx+10,yy+y3,xx+width-10,yy+y3+18)){
 			                if (string_width(name)*scale>135){
 			                	for (i=0;i<9;i++){
 			                		if (string_width(name)*scale>135) then scale-=0.05;
@@ -588,7 +588,7 @@ function scr_ui_popup() {
 	var yy=__view_get( e__VW.YView, 0 )+0;
 	if (zoomed == 0){
 		// Requisition income tooltip
-		if (scr_hit(xx+5,yy+10,xx+137,yy+38)){
+		if (point_in_area(xx+5,yy+10,xx+137,yy+38)){
 		    var tx=0,ty=0,plu="";
 				tool1="Requisition Points#";
 				tool2=tool1;
@@ -647,7 +647,7 @@ function scr_ui_popup() {
 		}
 
 		// Current Loyalty tooltip
-		if (scr_hit(xx+247,yy+10,xx+328,yy+38)){
+		if (point_in_area(xx+247,yy+10,xx+328,yy+38)){
 		    var  tx=0,ty=0,tool1="",tool2="",plu="";
 
 		    var d,lines;d=0;lines=0;
@@ -672,7 +672,7 @@ function scr_ui_popup() {
 		}
 
 		// Stored Gene-Seed tooltip
-		if (scr_hit(xx+373,yy+10,xx+443,yy+38)){
+		if (point_in_area(xx+373,yy+10,xx+443,yy+38)){
 		    var tx=0,ty=0,tool1="",tool2="",plu="";
 		    tool1="Gene-Seed";
 		    if (tool1!=""){
@@ -680,7 +680,7 @@ function scr_ui_popup() {
 		    }
 		}
 		// Current Astartes tooltip
-		if (scr_hit(xx+478, yy+3, xx+552, yy+38)){
+		if (point_in_area(xx+478, yy+3, xx+552, yy+38)){
 		    var tx=0,ty=0,tool1="",tool2="",plu="";
 		    tool1="Astartes#(Normal/Command)";
 		    tool2="Astartes";
@@ -690,7 +690,7 @@ function scr_ui_popup() {
 		}
 		// Turn tooltip
 		if (menu == 0) and (diplomacy<=0){
-			if (scr_hit(xx+1435,yy+40,xx+1580,yy+267)){
+			if (point_in_area(xx+1435,yy+40,xx+1580,yy+267)){
 			    var tx=0,ty=0,tool1="",tool2="",plu="";
 			    tool1=$"Turn :{obj_controller.turn}";
 			    tool2="Astartes";
@@ -700,12 +700,12 @@ function scr_ui_popup() {
 			}
 		}
 			// Forge Points income tooltip
-	    if (scr_hit(xx+153,yy+10,xx+241,yy+38)){
+	    if (point_in_area(xx+153,yy+10,xx+241,yy+38)){
 	        tooltip_draw(obj_controller.forge_string);
 	    }		
 
 		// Penitence/Blood Debt tooltip
-		if (scr_hit(xx+923,yy+10,xx+1060,yy+38)) and (penitent==1) {
+		if (point_in_area(xx+923,yy+10,xx+1060,yy+38)) and (penitent==1) {
 		    var tx=0,ty=0,tool1="",tool2="",plu="",hei_bonus;
 	    
 		    var endb=0,endb2="";

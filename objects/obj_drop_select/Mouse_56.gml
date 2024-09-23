@@ -24,7 +24,7 @@ var i, fy, why, onceh, loca, add_ground;i=0;why=0;onceh=0;loca=0;add_ground=0;
 if (l_size>0) then loca=1;
 
 if (obj_controller.cooldown<=0){fy=1;
-    if (fy=1) and (scr_hit(xx+47,yy+107+why,xx+161,yy+122+why)=true){// Leftest
+    if (fy=1) and (point_in_area(xx+47,yy+107+why,xx+161,yy+122+why)=true){// Leftest
         if (loca=1) and (l_size>0){onceh=0;// Case 1: it is first slot, local
             if (onceh=0) and (ship_all[500]=0){onceh=1;obj_controller.cooldown=8000;ship_all[500]=1;add_ground=1;}
             if (onceh=0) and (ship_all[500]=1){onceh=1;obj_controller.cooldown=8000;ship_all[500]=0;add_ground=-1;}
@@ -36,25 +36,25 @@ if (loca=1){fy+=1;if (fy=5) then fy=1;}i=0;
 
 if (obj_controller.cooldown<=0){
     repeat(24-loca){i+=1;
-        if (fy=1) and (scr_hit(xx+47,yy+107+why,xx+161,yy+122+why)=true){// Leftest
+        if (fy=1) and (point_in_area(xx+47,yy+107+why,xx+161,yy+122+why)=true){// Leftest
             if (ship[i]!=""){// Case 3: it is a later slot, ship
                 if (onceh=0) and (ship_all[i]=0){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],true,i,attack);}
                 if (onceh=0) and (ship_all[i]=1){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],false,i,attack);}
             }
         }
-        if (fy=2) and (scr_hit(xx+164,yy+107+why,xx+278,yy+122+why)=true){// 2nd
+        if (fy=2) and (point_in_area(xx+164,yy+107+why,xx+278,yy+122+why)=true){// 2nd
             if (ship[i]!=""){
                 if (onceh=0) and (ship_all[i]=0){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],true,i,attack);}
                 if (onceh=0) and (ship_all[i]=1){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],false,i,attack);}
             }
         }
-        if (fy=3) and (scr_hit(xx+281,yy+107+why,xx+395,yy+122+why)=true){// 3rd
+        if (fy=3) and (point_in_area(xx+281,yy+107+why,xx+395,yy+122+why)=true){// 3rd
             if (ship[i]!=""){
                 if (onceh=0) and (ship_all[i]=0){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],true,i,attack);}
                 if (onceh=0) and (ship_all[i]=1){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],false,i,attack);}
             }
         }
-        if (fy=4) and (scr_hit(xx+398,yy+107+why,xx+512,yy+122+why)=true){// 4th
+        if (fy=4) and (point_in_area(xx+398,yy+107+why,xx+512,yy+122+why)=true){// 4th
             if (ship[i]!=""){
                 if (onceh=0) and (ship_all[i]=0){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],true,i,attack);}
                 if (onceh=0) and (ship_all[i]=1){onceh=1;obj_controller.cooldown=8000;scr_drop_fiddle(ship_ide[i],false,i,attack);}

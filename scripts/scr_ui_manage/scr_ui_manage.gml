@@ -109,7 +109,7 @@ function scr_ui_manage() {
 	        if (obj_ini.company_title[managing]="") then bar_wid=400;
         	string_h = string_height(string_hash_to_newline("LOL"));
 	        draw_rectangle(xx+800-(bar_wid/2),yy+108,xx+800+(bar_wid/2),yy+100+string_h,1);
-	        click_check = scr_hit(xx+800-(bar_wid/2),yy+108,xx+800+(bar_wid/2),yy+100+string_h);
+	        click_check = point_in_area(xx+800-(bar_wid/2),yy+108,xx+800+(bar_wid/2),yy+100+string_h);
 	        obj_cursor.image_index=0;
 	        if (!click_check) and (mouse_left==1) and (cooldown<=0){
 	         text_bar=0;

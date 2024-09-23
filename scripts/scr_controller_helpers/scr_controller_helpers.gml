@@ -46,11 +46,11 @@ function scr_menu_clear_up(specific_area_function){
 
 		    if (zoomed==0) and (!instance_exists(obj_ingame_menu)) and (!instance_exists(obj_popup)){
 		        // Main Menu
-		        if (scr_hit(xx+1485,yy+7,xx+1589,yy+48)){
+		        if (point_in_area(xx+1485,yy+7,xx+1589,yy+48)){
 		            instance_create(0,0,obj_ingame_menu);
 		        }
 		        // Menu - Help
-		        if (scr_hit(xx+1375,yy+7,xx+1480,yy+48)) and (cooldown<=0){
+		        if (point_in_area(xx+1375,yy+7,xx+1480,yy+48)) and (cooldown<=0){
 		            if (menu!=17.5) and (onceh==0){
 		                menu=17.5;
 		                onceh=1;

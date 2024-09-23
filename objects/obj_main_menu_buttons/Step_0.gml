@@ -7,7 +7,7 @@ if (room_get_name(room)="Creation"){
     xx=x;yy=y;
     var _spr_height = sprite_get_height(spr_mm_butts_small) * 2;
     var _spr_width = sprite_get_width(spr_mm_butts_small) * 2;
-    if (scr_hit(xx,yy,xx+_spr_width,yy+_spr_height)=true) and (fading=0) then hover[1]=1;
+    if (point_in_area(xx,yy,xx+_spr_width,yy+_spr_height)=true) and (fading=0) then hover[1]=1;
     if (cooldown>0) then cooldown-=1;
     if (fading=0) and (fade>0) then fade-=1;
     if (fading=1) and ((fade<40) or (crap>0) or (button=1)) then fade+=1;
@@ -24,7 +24,7 @@ if (!instance_exists(obj_popup)) and (!instance_exists(obj_credits)) and (!insta
 }
 if ((instance_exists(obj_saveload)) or (instance_exists(obj_credits))) and (fading=0){
     xx=687;
-    if (scr_hit(xx,yy,xx+265,yy+48)=true) then hover[6]=1;
+    if (point_in_area(xx,yy,xx+265,yy+48)=true) then hover[6]=1;
 }
 
 

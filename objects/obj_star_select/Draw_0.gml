@@ -47,7 +47,7 @@ if (mouse_check_button(mb_left)){
         sta2=point_distance(mouse_x,mouse_y,sta1.x,sta1.y);
         closes=true;
         if (sta2>15){
-            if (scr_hit(
+            if (point_in_area(
                 xx+27,
                 yy+165,
                 xx+300,
@@ -55,7 +55,7 @@ if (mouse_check_button(mb_left)){
             ){
                 closes=false
             } else if (obj_controller.selecting_planet>0){
-                if (scr_hit(
+                if (point_in_area(
                     main_data_slate.XX-4,
                     yy+165,
                     main_data_slate.XX+main_data_slate.width,
@@ -63,7 +63,7 @@ if (mouse_check_button(mb_left)){
                 )){
                     closes=false;
                 }
-                if (scr_hit(
+                if (point_in_area(
                     garrison_data_slate.XX-4,
                     yy+165,
                     garrison_data_slate.XX+garrison_data_slate.width,
@@ -79,7 +79,7 @@ if (mouse_check_button(mb_left)){
                 }
 
                 if (!is_string(feature)){
-                    if (scr_hit(
+                    if (point_in_area(
                         feature.main_slate.XX,
                         feature.main_slate.YY,
                         feature.main_slate.XX+feature.main_slate.width,
@@ -93,7 +93,7 @@ if (mouse_check_button(mb_left)){
             var shutters = [shutter_1, shutter_2, shutter_3, shutter_4];
             for (var i=0; i<4;i++){
                 shutter_button = shutters[i];
-                if (scr_hit(shutter_button.XX,shutter_button.YY,shutter_button.XX+shutter_button.width,shutter_button.YY+shutter_button.height)){
+                if (point_in_area(shutter_button.XX,shutter_button.YY,shutter_button.XX+shutter_button.width,shutter_button.YY+shutter_button.height)){
                     closes=false;
                     break;
                 }
@@ -141,7 +141,7 @@ if (global.cheat_debug && obj_controller.selecting_planet && !loading)
         if (point_and_click(rect)){
             debug = true;
         }
-        if (scr_hit(((xx + 184) - 123), ((xx + 184) + 123), (yy + 200), (yy + 226)) == true){
+        if (point_in_area(((xx + 184) - 123), ((xx + 184) + 123), (yy + 200), (yy + 226)) == true){
             draw_rectangle(((xx + 184) - 123), (yy + 200), ((xx + 184) + 123), (yy + 226), false);
         }
     }
@@ -390,7 +390,7 @@ if (obj_controller.selecting_planet!=0){
                 
                 draw_text_glow(xx+671, yy+281,string(improve_cost),16291875,0);
                 
-                if (scr_hit(xx+481,yy+282,xx+716,yy+300)){
+                if (point_in_area(xx+481,yy+282,xx+716,yy+300)){
                     draw_set_color(0);
                     draw_set_alpha(0.2);
                     draw_rectangle(xx+481,yy+280,xx+716,yy+298,0);
@@ -603,7 +603,7 @@ if (obj_controller.selecting_planet!=0){
                 var defence_data  = determine_pdf_defence(target.p_pdf[cur_planet], garrison,target.p_fortified[cur_planet]);
                 var defence_string = $"Planetary Defence : {defence_data[0]}";
                 draw_text(xx+20, yy+half_way, defence_string);
-                if (scr_hit(xx+20, yy+half_way+10, xx+20+string_width(defence_string), yy+half_way+10+20)){
+                if (point_in_area(xx+20, yy+half_way+10, xx+20+string_width(defence_string), yy+half_way+10+20)){
                     tooltip_draw(defence_data[1], 400);
                 }
                 if (garrison.dispo_change!="none"){
@@ -630,7 +630,7 @@ if (obj_controller.selecting_planet!=0){
             var doner_length = array_length(potential_doners);
             if (doner_length){
                 //TODO swap this out for an object button with a bound tooltip option
-                if (scr_hit(draw_unit_buttons([xx+20, yy+half_way], "Request Colonists"))){
+                if (point_in_area(draw_unit_buttons([xx+20, yy+half_way], "Request Colonists"))){
                     tooltip_draw("Planets with higher populations can provide more recruits both for your chapter and to keep a planets PDF bolstered, however colonists from other planets bring with them their home planets influences and evils /n REQ : 1000");
                     if (mouse_check_button_pressed(mb_left)){
                         var doners = potential_doners[irandom(doner_length-1)];
@@ -777,7 +777,7 @@ if (debug){
     xx=__view_get( e__VW.XView, 0 )+0;
     yy=__view_get( e__VW.YView, 0 )+0;
     
-    if (scr_hit(xx+274,yy+426,xx+337,yy+451)=true) and (obj_controller.cooldown<=0) and (obj_controller.mouse_left=1){
+    if (point_in_area(xx+274,yy+426,xx+337,yy+451)=true) and (obj_controller.cooldown<=0) and (obj_controller.mouse_left=1){
         debug=0;
         obj_controller.cooldown=8000;
         exit;

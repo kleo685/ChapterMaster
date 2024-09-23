@@ -699,9 +699,9 @@ function scr_ui_diplomacy() {
 	        draw_text(xx+857.5,yy+797,string_hash_to_newline("Exit"));
         
 	        draw_set_alpha(0.2);
-	        if (scr_hit(xx+510,yy+649,xx+615,yy+668)=true) then draw_rectangle(xx+510,yy+649,xx+615,yy+668,0);
-	        if (scr_hit(xx+630,yy+649,xx+735,yy+668)=true) then draw_rectangle(xx+630,yy+649,xx+735,yy+668,0);
-	        if (scr_hit(xx+818,yy+796,xx+897,yy+815)=true) then draw_rectangle(xx+818,yy+796,xx+897,yy+815,0);
+	        if (point_in_area(xx+510,yy+649,xx+615,yy+668)=true) then draw_rectangle(xx+510,yy+649,xx+615,yy+668,0);
+	        if (point_in_area(xx+630,yy+649,xx+735,yy+668)=true) then draw_rectangle(xx+630,yy+649,xx+735,yy+668,0);
+	        if (point_in_area(xx+818,yy+796,xx+897,yy+815)=true) then draw_rectangle(xx+818,yy+796,xx+897,yy+815,0);
 	        draw_set_alpha(1);
         
 	        draw_set_halign(fa_left);draw_set_font(fnt_40k_14);draw_set_color(38144);
@@ -709,7 +709,7 @@ function scr_ui_diplomacy() {
 	            draw_set_alpha(1);if (disposition[diplomacy]<trade_disp[1]) then draw_set_alpha(0.3);
 	            draw_text_ext(xx+347,yy+382,string_hash_to_newline(string(trade_theirs[1])),-1,136);
 	            if (trade_theirs[1]!="") then draw_line(xx+342,yy+422,xx+485,yy+422);
-	            if (trade_theirs[1]!="") and (scr_hit(xx+342,yy+371,xx+485,yy+422)=true){
+	            if (trade_theirs[1]!="") and (point_in_area(xx+342,yy+371,xx+485,yy+422)=true){
 	                draw_set_color(c_gray);draw_set_alpha(0.15);
 	                draw_rectangle(xx+342,yy+371,xx+485,yy+422,0);
 	                draw_set_color(38144);
@@ -719,7 +719,7 @@ function scr_ui_diplomacy() {
 	            draw_set_alpha(1);if (disposition[diplomacy]<trade_disp[2]) then draw_set_alpha(0.3);
 	            draw_text_ext(xx+347,yy+430,string_hash_to_newline(string(trade_theirs[2])),-1,136);
 	            if (trade_theirs[2]!="") then draw_line(xx+342,yy+470,xx+485,yy+470);
-	            if (trade_theirs[2]!="") and (scr_hit(xx+342,yy+422,xx+485,yy+470)=true){
+	            if (trade_theirs[2]!="") and (point_in_area(xx+342,yy+422,xx+485,yy+470)=true){
 	                draw_set_color(c_gray);draw_set_alpha(0.15);
 	                draw_rectangle(xx+342,yy+422,xx+485,yy+470,0);
 	                draw_set_color(38144);
@@ -729,7 +729,7 @@ function scr_ui_diplomacy() {
 	            draw_set_alpha(1);if (disposition[diplomacy]<trade_disp[3]) then draw_set_alpha(0.3);
 	            draw_text_ext(xx+347,yy+478,string_hash_to_newline(string(trade_theirs[3])),-1,136);
 	            if (trade_theirs[3]!="") then draw_line(xx+342,yy+517,xx+485,yy+517);
-	            if (trade_theirs[3]!="") and (scr_hit(xx+342,yy+470,xx+485,yy+517)=true){
+	            if (trade_theirs[3]!="") and (point_in_area(xx+342,yy+470,xx+485,yy+517)=true){
 	                draw_set_color(c_gray);draw_set_alpha(0.15);
 	                draw_rectangle(xx+342,yy+470,xx+485,yy+517,0);
 	                draw_set_color(38144);
@@ -739,7 +739,7 @@ function scr_ui_diplomacy() {
 	            draw_set_alpha(1);if (disposition[diplomacy]<trade_disp[4]) then draw_set_alpha(0.3);
 	            draw_text_ext(xx+347,yy+525,string_hash_to_newline(string(trade_theirs[4])),-1,136);
 	            if (trade_theirs[4]!="") then draw_line(xx+342,yy+564,xx+485,yy+564);
-	            if (trade_theirs[4]!="") and (scr_hit(xx+342,yy+517,xx+485,yy+564)=true){
+	            if (trade_theirs[4]!="") and (point_in_area(xx+342,yy+517,xx+485,yy+564)=true){
 	                draw_set_color(c_gray);draw_set_alpha(0.15);
 	                draw_rectangle(xx+342,yy+517,xx+485,yy+564,0);
 	                draw_set_color(38144);
@@ -749,7 +749,7 @@ function scr_ui_diplomacy() {
 	            draw_set_alpha(1);if (disposition[diplomacy]<trade_disp[5]) then draw_set_alpha(0.3);
 	            draw_text_ext(xx+347,yy+572,string_hash_to_newline(string(trade_theirs[5])),-1,136);
 	            if (trade_theirs[5]!="") then draw_line(xx+342,yy+611,xx+485,yy+611);
-	            if (trade_theirs[5]!="") and (scr_hit(xx+342,yy+564,xx+485,yy+611)=true){
+	            if (trade_theirs[5]!="") and (point_in_area(xx+342,yy+564,xx+485,yy+611)=true){
 	                draw_set_color(c_gray);draw_set_alpha(0.15);
 	                draw_rectangle(xx+342,yy+564,xx+485,yy+611,0);
 	                draw_set_color(38144);
@@ -761,7 +761,7 @@ function scr_ui_diplomacy() {
 	        xx+=419;
 	        if (requisition<=0) then draw_set_alpha(0.33);draw_text_ext(xx+347,yy+379,string_hash_to_newline(string(trade_mine[1])),-1,136);draw_set_alpha(1);
 	        if (trade_mine[1]!="") then draw_line(xx+342,yy+422,xx+485,yy+422);
-	        if (scr_hit(xx+342,yy+371,xx+485,yy+422)=true){
+	        if (point_in_area(xx+342,yy+371,xx+485,yy+422)=true){
 	            draw_set_color(c_gray);draw_set_alpha(0.15);
 	            draw_rectangle(xx+342,yy+371,xx+485,yy+422,0);
 	            draw_set_color(38144);
@@ -770,7 +770,7 @@ function scr_ui_diplomacy() {
         
 	        if (gene_seed<=0) then draw_set_alpha(0.33);draw_text_ext(xx+347,yy+430,string_hash_to_newline(string(trade_mine[2])),-1,136);draw_set_alpha(1);
 	        if (trade_mine[2]!="") then draw_line(xx+342,yy+470,xx+485,yy+470);
-	        if (scr_hit(xx+342,yy+422,xx+485,yy+470)=true){
+	        if (point_in_area(xx+342,yy+422,xx+485,yy+470)=true){
 	            draw_set_color(c_gray);draw_set_alpha(0.15);
 	            draw_rectangle(xx+342,yy+422,xx+485,yy+470,0);
 	            draw_set_color(38144);
@@ -779,7 +779,7 @@ function scr_ui_diplomacy() {
         
 	        if (stc_wargear_un+stc_vehicles_un+stc_ships_un<=0) then draw_set_alpha(0.33);draw_text_ext(xx+347,yy+478,string_hash_to_newline(string(trade_mine[3])),-1,136);draw_set_alpha(1);
 	        if (trade_mine[3]!="") then draw_line(xx+342,yy+517,xx+485,yy+517);
-	        if (scr_hit(xx+342,yy+470,xx+485,yy+517)=true){
+	        if (point_in_area(xx+342,yy+470,xx+485,yy+517)=true){
 	            draw_set_color(c_gray);draw_set_alpha(0.15);
 	            draw_rectangle(xx+342,yy+470,xx+485,yy+517,0);
 	            draw_set_color(38144);
@@ -788,7 +788,7 @@ function scr_ui_diplomacy() {
         
 	        if (info_chips<=0) then draw_set_alpha(0.33);draw_text_ext(xx+347,yy+525,string_hash_to_newline(string(trade_mine[4])),-1,136);draw_set_alpha(1);
 	        if (trade_mine[4]!="") then draw_line(xx+342,yy+564,xx+485,yy+564);
-	        if (scr_hit(xx+342,yy+517,xx+485,yy+564)=true){
+	        if (point_in_area(xx+342,yy+517,xx+485,yy+564)=true){
 	            draw_set_color(c_gray);draw_set_alpha(0.15);
 	            draw_rectangle(xx+342,yy+517,xx+485,yy+564,0);
 	            draw_set_color(38144);

@@ -487,8 +487,8 @@ function scr_ui_advisors() {
 
             draw_sprite(spr_creation_check, che + 1, cx, cy);
             draw_set_alpha(1);
-            // if (scr_hit(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
-            if (scr_hit(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
+            // if (point_in_area(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
+            if (point_in_area(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
                 var onceh = 0;
                 cooldown = 8000;
                 if (onceh = 0) and((fest_planet = 0)) {
@@ -517,8 +517,8 @@ function scr_ui_advisors() {
             draw_sprite(spr_creation_check, che + 1, cx, cy);
             draw_set_alpha(1);
 
-            // if (scr_hit(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
-            if (scr_hit(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
+            // if (point_in_area(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
+            if (point_in_area(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
                 var onceh = 0;
                 cooldown = 8000;
                 if (onceh = 0) and(fest_planet = 1) and(fest_type != "Triumphal March") {
@@ -565,8 +565,8 @@ function scr_ui_advisors() {
 
             draw_sprite(spr_creation_check, che + 1, cx, cy);
             draw_set_alpha(1);
-            // if (scr_hit(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
-            if (scr_hit(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
+            // if (point_in_area(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
+            if (point_in_area(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
                 var onceh = 0;
                 cooldown = 8000;
                 if (fest_type = "Tournament") or(fest_type = "Deathmatch") then onceh = 1;
@@ -614,8 +614,8 @@ function scr_ui_advisors() {
             cy -= 4;
             draw_sprite(spr_creation_check, che + 1, cx, cy);
             draw_set_alpha(1);
-            // if (scr_hit(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
-            if (scr_hit(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
+            // if (point_in_area(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
+            if (point_in_area(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
                 var onceh = 0;
                 cooldown = 8000;
                 if (fest_type = "Imperial Mass") and(known[5] = 0) then onceh = 1;
@@ -665,8 +665,8 @@ function scr_ui_advisors() {
             cy -= 4;
             draw_sprite(spr_creation_check, che + 1, cx, cy);
             draw_set_alpha(1);
-            // if (scr_hit(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
-            if (scr_hit(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
+            // if (point_in_area(cx+31,cy,cx+260,cy+20)=true){tool1="Planet";tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";}
+            if (point_in_area(cx, cy, cx + 32, cy + 32) = true) and(mouse_left = 1) and(cooldown <= 0) and(dropdown_open = 0) {
                 var onceh = 0;
                 cooldown = 8000;
                 if (fest_type = "Imperial Mass") and(known[5] = 0) then onceh = 1;
@@ -719,7 +719,7 @@ function scr_ui_advisors() {
 
             if (requisition < fest_cost) then draw_set_color(c_red);
             draw_text(xx + 1388, yy + 784, string_hash_to_newline(string(fest_cost)));
-            if (scr_hit(xx + 1302, yy + 780, xx + 1423, yy + 805) = true) and(doable = true) {
+            if (point_in_area(xx + 1302, yy + 780, xx + 1423, yy + 805) = true) and(doable = true) {
                 draw_set_color(c_white);
                 draw_set_alpha(0.2);
                 draw_rectangle(xx + 1302, yy + 780, xx + 1433, yy + 805, 0);
@@ -748,7 +748,7 @@ function scr_ui_advisors() {
             draw_rectangle(xx + 1132, yy + 780, xx + 1253, yy + 805, 0);
             draw_set_color(c_black);
             draw_text(xx + 1192, yy + 783, string_hash_to_newline("Cancel"));
-            if (scr_hit(xx + 1132, yy + 780, xx + 1253, yy + 805) = true) {
+            if (point_in_area(xx + 1132, yy + 780, xx + 1253, yy + 805) = true) {
                 draw_set_color(c_white);
                 draw_set_alpha(0.2);
                 draw_rectangle(xx + 1132, yy + 780, xx + 1253, yy + 805, 0);

@@ -163,7 +163,7 @@ function scr_librarium(){
 
                     //TODO solidify following button into a proper styled struct button
                     var ident_button = [xx+532,yy+715,xx+709,yy+733]; 
-                    if (scr_hit(ident_button)){
+                    if (point_in_area(ident_button)){
                         draw_set_alpha(0.2);
                         draw_rectangle(xx + 532, yy + 715, xx + 709, yy + 733, 0);
                         draw_set_alpha(1);                        

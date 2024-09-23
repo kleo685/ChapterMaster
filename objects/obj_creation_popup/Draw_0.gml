@@ -45,7 +45,7 @@ if (col_shift){
                     draw_rectangle(x1, y1, x2, y2, 0);
                     draw_set_color(38144);
                     draw_rectangle(x1, y1, x2, y2, 1);
-                    if (scr_hit(x1, y1, x2, y2) = true) {
+                    if (point_in_area(x1, y1, x2, y2) = true) {
                         draw_set_color(c_white);
                         draw_set_alpha(0.2);
                         draw_rectangle(x1, y1, x2, y2, 0);
@@ -80,7 +80,7 @@ if (col_shift){
         draw_rectangle(634 - (string_width(string_hash_to_newline("CANCEL")) / 2), 722, 634 + (string_width(string_hash_to_newline("CANCEL")) / 2), 742, 0);
         draw_set_color(0);
         draw_text(634, 723, string_hash_to_newline("CANCEL"));
-        if (scr_hit(634 - (string_width(string_hash_to_newline("CANCEL")) / 2), 722, 634 + (string_width(string_hash_to_newline("CANCEL")) / 2), 742) = true) {
+        if (point_in_area(634 - (string_width(string_hash_to_newline("CANCEL")) / 2), 722, 634 + (string_width(string_hash_to_newline("CANCEL")) / 2), 742) = true) {
             draw_set_color(c_white);
             draw_set_alpha(0.2);
             draw_rectangle(634 - (string_width(string_hash_to_newline("CANCEL")) / 2), 722, 634 + (string_width(string_hash_to_newline("CANCEL")) / 2), 742, 0);
@@ -91,7 +91,7 @@ if (col_shift){
             }
         }
 
-        if (!scr_hit(430,536,845,748) && mouse_check_button_pressed(mb_left) &&  obj_creation.cooldown == 0) {
+        if (!point_in_area(430,536,845,748) && mouse_check_button_pressed(mb_left) &&  obj_creation.cooldown == 0) {
             obj_creation.cooldown = 8000;
             instance_destroy();
         }
@@ -109,7 +109,7 @@ if (col_shift){
         if (obj_creation.text_selected="unit_name"+string(ide)) and (obj_creation.text_bar>30) then draw_text_transformed(444,550,string_hash_to_newline(string(obj_creation.role[co,ide])),0.6,0.6,0);
         if (obj_creation.text_selected="unit_name"+string(ide)) and (obj_creation.text_bar<=30) then draw_text_transformed(444,550,string_hash_to_newline(string(obj_creation.role[co,ide])+"|"),0.6,0.6,0);
         var hei=string_height_ext(string_hash_to_newline(string(obj_creation.role[co,ide])+"Q"),-1,580)*0.6;
-        if (scr_hit(444,550,820,550+hei)){obj_cursor.image_index=2;
+        if (point_in_area(444,550,820,550+hei)){obj_cursor.image_index=2;
             tooltip="Astartes Role Name";
             tooltip2=$"The name of this Astartes Role.  The plural form will be ''{obj_creation.role[co,ide]}s''.";
             if (obj_creation.mouse_left=1) and (obj_creation.cooldown<=0){
@@ -149,7 +149,7 @@ if (col_shift){
             draw_rectangle(x5,y5,x5-string_width(string_hash_to_newline(title)),y5+string_height(string_hash_to_newline(title))-2,0);
             draw_set_color(0);draw_text(x5,y5,string_hash_to_newline(string(title)));
             
-            if (scr_hit(x5-string_width(string_hash_to_newline(title)),y5,x5,y5+string_height(string_hash_to_newline(title))-2)=true){
+            if (point_in_area(x5-string_width(string_hash_to_newline(title)),y5,x5,y5+string_height(string_hash_to_newline(title))-2)=true){
                 draw_set_color(c_white);draw_set_alpha(0.2);
                 draw_rectangle(x5,y5,x5-string_width(string_hash_to_newline(title)),y5+string_height(string_hash_to_newline(title))-2,0);
                 if (obj_creation.mouse_left=1) and (obj_creation.cooldown<=0){
@@ -176,14 +176,14 @@ if (col_shift){
         draw_set_halign(fa_center);draw_set_font(fnt_40k_14b);if (target_gear>0) then draw_set_alpha(0.5);
         draw_set_color(38144);draw_rectangle(634-(string_width(string_hash_to_newline("CONFIRM"))/2),722,634+(string_width(string_hash_to_newline("CONFIRM"))/2),742,0);
         draw_set_color(0);draw_text(634,723,string_hash_to_newline("CONFIRM"));
-        if (scr_hit(634-(string_width(string_hash_to_newline("CONFIRM"))/2),722,634+(string_width(string_hash_to_newline("CONFIRM"))/2),742)=true) and (target_gear=0){
+        if (point_in_area(634-(string_width(string_hash_to_newline("CONFIRM"))/2),722,634+(string_width(string_hash_to_newline("CONFIRM"))/2),742)=true) and (target_gear=0){
             draw_set_color(c_white);draw_set_alpha(0.2);
             draw_rectangle(634-(string_width(string_hash_to_newline("CONFIRM"))/2),722,634+(string_width(string_hash_to_newline("CONFIRM"))/2),742,0);draw_set_alpha(1);
             if (obj_creation.mouse_left=1) and (obj_creation.role[co,ide]!="") and (badname=0){obj_creation.cooldown=8000;instance_destroy();}
         }draw_set_alpha(1);
         
         draw_set_halign(fa_left);
-        if (scr_hit(434,591,594,709)=true){
+        if (point_in_area(434,591,594,709)=true){
             tooltip="Gear";tooltip2="The equipment this Astartes Role defaults to.  Note that if defaults are set to expensive items the Astartes may instead be provided with more usual equipment.";
         }
     }
@@ -219,7 +219,7 @@ if (target_gear>0){
             if (string_width(string_hash_to_newline(item_name[h]))<140) then draw_text_transformed(x3,y3,string_hash_to_newline(item_name[h]),1,1,0);y3+=space;
             
             // x2 was 1150
-            if (scr_hit(x3,y3-space,x3+143,y3+17-space)=true){
+            if (point_in_area(x3,y3-space,x3+143,y3+17-space)=true){
                 if (string_width(string_hash_to_newline(item_name[h]))<140){
                     draw_set_color(c_white);draw_set_alpha(0.2);
                     draw_text_transformed(x3,y3-space,string_hash_to_newline(item_name[h]),1,1,0);draw_set_alpha(1);
@@ -253,7 +253,7 @@ if (target_gear>0){
                 if (string_width(string_hash_to_newline(item_name[h]))>=140) then draw_text_transformed(x3,y3,string_hash_to_newline(item_name[h]),0.75,1,0);
                 if (string_width(string_hash_to_newline(item_name[h]))<140) then draw_text_transformed(x3,y3,string_hash_to_newline(item_name[h]),1,1,0);y3+=space;
                 
-                if (scr_hit(x3,y3-space,x3+143,y3+17-space)=true){
+                if (point_in_area(x3,y3-space,x3+143,y3+17-space)=true){
                     
                     if (string_width(string_hash_to_newline(item_name[h]))<140){
                         draw_set_color(c_white);draw_set_alpha(0.2);
@@ -286,7 +286,7 @@ if (target_gear>0){
     draw_set_halign(fa_center);draw_set_font(fnt_40k_14b);
     draw_set_color(38144);draw_rectangle(1008-(string_width(string_hash_to_newline("CANCEL"))/2),722,1008+(string_width(string_hash_to_newline("CANCEL"))/2),742,0);
     draw_set_color(0);draw_text(1008,723,string_hash_to_newline("CANCEL"));
-    if (scr_hit(1008-(string_width(string_hash_to_newline("CANCEL"))/2),722,1008+(string_width(string_hash_to_newline("CANCEL"))/2),742)=true){
+    if (point_in_area(1008-(string_width(string_hash_to_newline("CANCEL"))/2),722,1008+(string_width(string_hash_to_newline("CANCEL"))/2),742)=true){
         draw_set_color(c_white);draw_set_alpha(0.2);
         draw_rectangle(1008-(string_width(string_hash_to_newline("CANCEL"))/2),722,1008+(string_width(string_hash_to_newline("CANCEL"))/2),742,0);draw_set_alpha(1);
         if (obj_creation.mouse_left=1){obj_creation.cooldown=8000;target_gear=0;}

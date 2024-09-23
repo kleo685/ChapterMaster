@@ -165,7 +165,7 @@ function scr_unit_quick_find_pane() constructor{
 	main_panel.inside_method = function(){
 		var xx = main_panel.XX;
 		var yy = main_panel.YY;
-		is_entered = scr_hit(xx, yy, xx+main_panel.width, yy+main_panel.height);
+		is_entered = point_in_area(xx, yy, xx+main_panel.width, yy+main_panel.height);
 		if (view_area=="fleets"){
 			var cur_fleet;
 			draw_set_color(c_white);
@@ -177,7 +177,7 @@ function scr_unit_quick_find_pane() constructor{
 		    var i = start_fleet;
 		    while(i<instance_number(obj_p_fleet) && (yy+90+(20*i)+12 +20)<main_panel.YY+yy+main_panel.height)		
 			{
-				if (scr_hit(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
+				if (point_in_area(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
 					draw_set_color(c_gray);
 					draw_rectangle(xx+10+20, yy+90+(20*i)-2,xx+main_panel.width-20,yy+90+(20*i)+18, 0)
 					draw_set_color(c_white);
@@ -213,12 +213,12 @@ function scr_unit_quick_find_pane() constructor{
 			var any_hover = false;
 			if (hover_item!="none"){
 				var loc=hover_item.location;
-				hover_entered = scr_hit(loc[0],loc[1],loc[2],loc[3]);
+				hover_entered = point_in_area(loc[0],loc[1],loc[2],loc[3]);
 			}		    
 		    while(i<array_length(system_names) && (yy+90+(20*i)+12 +20)<main_panel.YY+yy+main_panel.height){
 		    	system_data = garrison_log[$system_names[i]];
 		    	registered_hover=false;
-				if (scr_hit(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
+				if (point_in_area(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
 					if (!hover_entered){
 						draw_set_color(c_gray);
 						draw_rectangle(xx+10+20, yy+90+(20*i)-2,xx+main_panel.width-20,yy+90+(20*i)+18, 0);
@@ -290,7 +290,7 @@ function scr_unit_quick_find_pane() constructor{
 			{
 				mission = mission_log[i];
 				entered=false;
-				if (scr_hit(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
+				if (point_in_area(xx+10, yy+90+(20*i),xx+main_panel.width,yy+90+(20*i)+18)){
 					draw_set_color(c_gray);
 					draw_rectangle(xx+10+20, yy+90+(20*i)-2,xx+main_panel.width-20,yy+90+(20*i)+18, 0)
 					draw_set_color(c_white);

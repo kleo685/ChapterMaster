@@ -12,7 +12,7 @@ var xx,yy;
 xx=__view_get( e__VW.XView, 0 )+x;
 yy=__view_get( e__VW.YView, 0 )+y;
 
-if (scr_hit(xx+19,yy+46,xx+280,yy+70)=false) and (value_is_string=false){
+if (point_in_area(xx+19,yy+46,xx+280,yy+70)=false) and (value_is_string=false){
     if (string_length(inputing) > 0 and is_real(real(inputing))){
         if (real(inputing)>maximum){inputing=string(maximum);keyboard_string=string(maximum);}
     }

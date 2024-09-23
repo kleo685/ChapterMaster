@@ -813,7 +813,7 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
     //
     if (trading==1) or (trading==2){
         // Exit
-        if (scr_hit(xx+818,yy+796,xx+897,yy+815)==true){
+        if (point_in_area(xx+818,yy+796,xx+897,yy+815)==true){
             cooldown=8;
             trading=0;
             scr_dialogue("trade_close");
@@ -836,7 +836,7 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
             // Also need to disable the popup OFFER TERMS option
         }
         // Clear Terms
-        if (scr_hit(xx+510,yy+649,xx+615,yy+668)==true){
+        if (point_in_area(xx+510,yy+649,xx+615,yy+668)==true){
             cooldown=8;
             click2=1;
             trade_likely="";
@@ -855,7 +855,7 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
             }
         }
         // Trade Here?
-        if (scr_hit(xx+630,yy+649,xx+735,yy+668)==true){
+        if (point_in_area(xx+630,yy+649,xx+735,yy+668)==true){
             cooldown=8;
             click2=1;
             if (diplo_last!="offer") then scr_trade(true);
@@ -869,27 +869,27 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
 
         // Opponent things to offer
         if (trading_artifact==0){
-            if (scr_hit(xx+342,yy+371,xx+485,yy+422)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[1]){
+            if (point_in_area(xx+342,yy+371,xx+485,yy+422)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[1]){
                 cooldown=8;
                 click2=1;
                 scr_trade_add(string(trade_theirs[1]));
             }
-            if (scr_hit(xx+342,yy+422,xx+485,yy+470)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[2]){
+            if (point_in_area(xx+342,yy+422,xx+485,yy+470)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[2]){
                 cooldown=8;
                 click2=1;
                 scr_trade_add(string(trade_theirs[2]));
             }
-            if (scr_hit(xx+342,yy+470,xx+485,yy+517)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[3]){
+            if (point_in_area(xx+342,yy+470,xx+485,yy+517)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[3]){
                 cooldown=8;
                 click2=1;
                 scr_trade_add(string(trade_theirs[3]));
             }
-            if (scr_hit(xx+342,yy+517,xx+485,yy+564)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[4]){
+            if (point_in_area(xx+342,yy+517,xx+485,yy+564)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[4]){
                 cooldown=8;
                 click2=1;
                 scr_trade_add(string(trade_theirs[4]));
             }
-            if (scr_hit(xx+342,yy+564,xx+485,yy+611)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[5]){
+            if (point_in_area(xx+342,yy+564,xx+485,yy+611)==true) and (cooldown<=0) and (disposition[diplomacy]>=trade_disp[5]){
                 cooldown=8;
                 click2=1;
                 scr_trade_add(string(trade_theirs[5]));
@@ -898,28 +898,28 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
         xx+=419;
         // Player Things to Offer
         // Requisition
-        if (scr_hit(xx+342,yy+371,xx+485,yy+422)==true) and (minz!=0) and (cooldown<=0) and (trade_req>0){
+        if (point_in_area(xx+342,yy+371,xx+485,yy+422)==true) and (minz!=0) and (cooldown<=0) and (trade_req>0){
             cooldown=8000;
             click2=1;
             get_integer2("Requisition offered?",trade_req,"m"+string(minz),"Requisition");
             scr_trade(false);
         }
         // Gene-seed
-        if (scr_hit(xx+342,yy+422,xx+485,yy+470)==true) and (minz!=0) and (cooldown<=0) and (trade_gene>0){
+        if (point_in_area(xx+342,yy+422,xx+485,yy+470)==true) and (minz!=0) and (cooldown<=0) and (trade_gene>0){
             cooldown=8000;
             click2=1;
             get_integer2("Gene-Seed offered?",trade_gene,"m"+string(minz),"Gene-Seed");
             scr_trade(false);
         }
         // STC Fragment
-        if (scr_hit(xx+342,yy+470,xx+485,yy+517)==true) and (minz!=0) and (cooldown<=0) and (trade_chip>0){
+        if (point_in_area(xx+342,yy+470,xx+485,yy+517)==true) and (minz!=0) and (cooldown<=0) and (trade_chip>0){
             cooldown=8000;
             click2=1;
             get_integer2("STC Fragments offered?",trade_chip,"m"+string(minz),"STC Fragment");
             scr_trade(false);
         }
         // Info Chips
-        if (scr_hit(xx+342,yy+517,xx+485,yy+564)==true) and (minz!=0) and (cooldown<=0) and (trade_info>0){
+        if (point_in_area(xx+342,yy+517,xx+485,yy+564)==true) and (minz!=0) and (cooldown<=0) and (trade_info>0){
             cooldown=8000;
             click2=1;
             get_integer2("Info Chips offered?",trade_info,"m"+string(minz),"Info Chip");
@@ -928,28 +928,28 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
         xx-=419;
         // Remove items buttons
         if (trading_artifact==0){
-            if (scr_hit(xx+507,yy+399,xx+527,yy+418)==true) and (trade_tnum[2]==0) and (trade_tnum[1]!=0) and (cooldown<=0){
+            if (point_in_area(xx+507,yy+399,xx+527,yy+418)==true) and (trade_tnum[2]==0) and (trade_tnum[1]!=0) and (cooldown<=0){
                 trade_tnum[1]=0;
                 trade_take[1]="";
                 cooldown=8000;
                 click2=1;
                 scr_trade(false);
             }
-            if (scr_hit(xx+507,yy+419,xx+527,yy+438)==true) and (trade_tnum[3]==0) and (trade_tnum[2]!=0) and (cooldown<=0){
+            if (point_in_area(xx+507,yy+419,xx+527,yy+438)==true) and (trade_tnum[3]==0) and (trade_tnum[2]!=0) and (cooldown<=0){
                 trade_tnum[2]=0;
                 trade_take[2]="";
                 cooldown=8000;
                 click2=1;
                 scr_trade(false);
             }
-            if (scr_hit(xx+507,yy+439,xx+527,yy+458)==true) and (trade_tnum[4]==0) and (trade_tnum[3]!=0) and (cooldown<=0){
+            if (point_in_area(xx+507,yy+439,xx+527,yy+458)==true) and (trade_tnum[4]==0) and (trade_tnum[3]!=0) and (cooldown<=0){
                 trade_tnum[3]=0;
                 trade_take[3]="";
                 cooldown=8000;
                 click2=1;
                 scr_trade(false);
             }
-            if (scr_hit(xx+507,yy+459,xx+527,yy+478)==true) and (trade_tnum[4]!=0) and (cooldown<=0){
+            if (point_in_area(xx+507,yy+459,xx+527,yy+478)==true) and (trade_tnum[4]!=0) and (cooldown<=0){
                 trade_tnum[4]=0;
                 trade_take[4]="";
                 cooldown=8000;
@@ -957,7 +957,7 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
                 scr_trade(false);
             }
         }
-        if (scr_hit(xx+507,yy+547,xx+527,yy+566)==true) and (trade_mnum[2]==0) and (trade_mnum[1]!=0) and (cooldown<=0){
+        if (point_in_area(xx+507,yy+547,xx+527,yy+566)==true) and (trade_mnum[2]==0) and (trade_mnum[1]!=0) and (cooldown<=0){
             if (trade_give[1]=="Requisition") then trade_req+=trade_mnum[1];
             if (trade_give[1]=="Gene-Seed") then trade_gene+=trade_mnum[1];
             if (trade_give[1]=="STC Fragment") then trade_chip+=trade_mnum[1];
@@ -968,7 +968,7 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
             click2=1;
             scr_trade(false);
         }
-        if (scr_hit(xx+507,yy+567,xx+527,yy+586)==true) and (trade_mnum[3]==0) and (trade_mnum[2]!=0) and (cooldown<=0){
+        if (point_in_area(xx+507,yy+567,xx+527,yy+586)==true) and (trade_mnum[3]==0) and (trade_mnum[2]!=0) and (cooldown<=0){
             if (trade_give[2]=="Requisition") then trade_req+=trade_mnum[2];
             if (trade_give[2]=="Gene-Seed") then trade_gene+=trade_mnum[2];
             if (trade_give[2]=="STC Fragment") then trade_chip+=trade_mnum[2];
@@ -979,7 +979,7 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
             click2=1;
             scr_trade(false);
         }
-        if (scr_hit(xx+507,yy+587,xx+527,yy+606)==true) and (trade_mnum[4]==0) and (trade_mnum[3]!=0) and (cooldown<=0){
+        if (point_in_area(xx+507,yy+587,xx+527,yy+606)==true) and (trade_mnum[4]==0) and (trade_mnum[3]!=0) and (cooldown<=0){
             if (trade_give[3]=="Requisition") then trade_req+=trade_mnum[3];
             if (trade_give[3]=="Gene-Seed") then trade_gene+=trade_mnum[3];
             if (trade_give[3]=="STC Fragment") then trade_chip+=trade_mnum[3];
@@ -990,7 +990,7 @@ if (menu==20) and (diplomacy>0) or ((diplomacy<-5) and (diplomacy>-6)) and (cool
             click2=1;
             scr_trade(false);
         }
-        if (scr_hit(xx+507,yy+607,xx+527,yy+626)==true) and (trade_mnum[4]!=0) and (cooldown<=0){
+        if (point_in_area(xx+507,yy+607,xx+527,yy+626)==true) and (trade_mnum[4]!=0) and (cooldown<=0){
             if (trade_give[4]=="Requisition") then trade_req+=trade_mnum[4];
             if (trade_give[4]=="Gene-Seed") then trade_gene+=trade_mnum[4];
             if (trade_give[4]=="STC Fragment") then trade_chip+=trade_mnum[4];

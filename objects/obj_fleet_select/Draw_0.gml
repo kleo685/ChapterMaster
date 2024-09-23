@@ -48,7 +48,7 @@ var player_fleet = instance_nearest(x,y,obj_p_fleet);
 if (player_fleet.just_left){
     var cancel_button= draw_unit_buttons([player_fleet.x+20, player_fleet.y-10], "X",[1,1], c_red,, fnt_40k_30b, 1);
 
-    if (scr_hit(cancel_button)){
+    if (point_in_area(cancel_button)){
         currently_entered = true;
     }
 

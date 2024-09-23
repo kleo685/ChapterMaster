@@ -93,7 +93,7 @@ function unit_button_object() constructor{
 		}
 	}
 	static draw = function(allow_click = true){
-		if (scr_hit(x1, y1, x2, y2) && tooltip!=""){
+		if (point_in_area(x1, y1, x2, y2) && tooltip!=""){
 			tooltip_draw(tooltip);
 		}
 		if (allow_click){

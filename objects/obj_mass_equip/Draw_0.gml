@@ -20,7 +20,7 @@ if (total_role_number>0){
     draw_set_halign(fa_center);draw_set_color(c_gray);
     draw_rectangle(xx+114,yy+626,xx+560,yy+665,0);
     draw_set_color(0);draw_text(xx+333,yy+636,string_hash_to_newline("Requip All "+string(obj_ini.role[100,role])+" With Default Items"));
-    if (scr_hit(xx+114,yy+626,xx+560,yy+665)=true){
+    if (point_in_area(xx+114,yy+626,xx+560,yy+665)=true){
         draw_set_color(c_white);draw_set_alpha(0.2);if (good1+good2+good3+good4+good5!=5) then draw_set_alpha(0.1);
         draw_rectangle(xx+114,yy+626,xx+560,yy+665,0);draw_set_alpha(1);
         if (obj_controller.mouse_left=1) and (good1+good2+good3+good4+good5=5){
@@ -92,7 +92,7 @@ if (total_role_number>0) and (tab>0){
             if (string_width(string_hash_to_newline(item_name[h]))<140) then draw_text_transformed(x3,y3,string_hash_to_newline(item_name[h]),1,1,0);y3+=space;
             
             // x2 was 1150
-            if (scr_hit(x3,y3-space,x3+143,y3+17-space)=true){
+            if (point_in_area(x3,y3-space,x3+143,y3+17-space)=true){
                 if (string_width(string_hash_to_newline(item_name[h]))<140){
                     draw_set_color(c_white);draw_set_alpha(0.2);
                     draw_text_transformed(x3,y3-space,string_hash_to_newline(item_name[h]),1,1,0);draw_set_alpha(1);
@@ -130,7 +130,7 @@ if (total_role_number>0) and (tab>0){
                 if (string_width(string_hash_to_newline(item_name[h]))>=140) then draw_text_transformed(x3,y3,string_hash_to_newline(item_name[h]),0.75,1,0);
                 if (string_width(string_hash_to_newline(item_name[h]))<140) then draw_text_transformed(x3,y3,string_hash_to_newline(item_name[h]),1,1,0);y3+=space;
                 
-                if (scr_hit(x3,y3-space,x3+143,y3+17-space)=true){
+                if (point_in_area(x3,y3-space,x3+143,y3+17-space)=true){
                     
                     if (string_width(string_hash_to_newline(item_name[h]))<140){
                         draw_set_color(c_white);draw_set_alpha(0.2);
@@ -166,7 +166,7 @@ if (total_role_number>0) and (tab>0){
     draw_set_halign(fa_center);draw_set_font(fnt_40k_14b);
     draw_set_color(c_gray);draw_rectangle(xx+1347-(string_width(string_hash_to_newline("CANCEL"))/2),yy+720,xx+1347+(string_width(string_hash_to_newline("CANCEL"))/2),yy+741,0);
     draw_set_color(0);draw_text(xx+1347,yy+721,string_hash_to_newline("CANCEL"));
-    if (scr_hit(xx+1347-(string_width(string_hash_to_newline("CANCEL"))/2),yy+720,xx+1347+(string_width(string_hash_to_newline("CANCEL"))/2),yy+741)=true){
+    if (point_in_area(xx+1347-(string_width(string_hash_to_newline("CANCEL"))/2),yy+720,xx+1347+(string_width(string_hash_to_newline("CANCEL"))/2),yy+741)=true){
         draw_set_color(c_white);draw_set_alpha(0.2);
         draw_rectangle(xx+1347-(string_width(string_hash_to_newline("CANCEL"))/2),yy+720,xx+1347+(string_width(string_hash_to_newline("CANCEL"))/2),yy+741,0);draw_set_alpha(1);
         if (obj_controller.mouse_left=1){obj_controller.cooldown=8000;tab=0;}

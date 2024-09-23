@@ -647,7 +647,7 @@ function scr_draw_recruit_advisor(){
     		draw_text_ext(xx + 20 + 16, yy + 120 , string_hash_to_newline(scr_compile_trial_bonus_string(cur_trial)), -1, 280);
     	}
     }
-    if (scr_hit(lower_middle_box)){
+    if (point_in_area(lower_middle_box)){
     	left_panel.percent_mod_draw_cut(xx + 10, yy + 38, 0.38, 1, 6);
     } else {
     	left_panel.percent_mod_draw_cut(xx + 10, yy + 38, 0.38, 1, -6);

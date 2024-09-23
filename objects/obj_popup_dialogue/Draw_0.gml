@@ -12,7 +12,7 @@ draw_set_halign(fa_center);
 draw_text_ext(xx+150,yy+7,string_hash_to_newline(question),18,260);
 
 if (instance_exists(obj_cursor)){obj_cursor.image_index=0;}
-if (scr_hit(xx+19,yy+46,xx+280,yy+70)=true) and (instance_exists(obj_cursor)){obj_cursor.image_index=2;}
+if (point_in_area(xx+19,yy+46,xx+280,yy+70)=true) and (instance_exists(obj_cursor)){obj_cursor.image_index=2;}
 
 
 draw_set_font(fnt_40k_14);
@@ -28,7 +28,7 @@ draw_set_color(c_gray);
 draw_set_alpha(0.5);draw_rectangle(xx+26,yy+103,xx+126,yy+123,1);
 draw_set_alpha(0.25);draw_rectangle(xx+27,yy+104,xx+125,yy+122,1);
 draw_set_alpha(1);draw_text(xx+76,yy+105,string_hash_to_newline("Cancel"));
-if (scr_hit(xx+26,yy+103,xx+126,yy+123)=true){
+if (point_in_area(xx+26,yy+103,xx+126,yy+123)=true){
     draw_set_alpha(0.1);draw_set_color(c_white);
     draw_rectangle(xx+26,yy+103,xx+126,yy+123,0);
     draw_set_alpha(1);if (instance_exists(obj_cursor)){obj_cursor.image_index=1;}
@@ -43,7 +43,7 @@ draw_set_color(c_gray);
 draw_set_alpha(0.5);draw_rectangle(xx+175,yy+103,xx+275,yy+123,1);
 draw_set_alpha(0.25);draw_rectangle(xx+176,yy+104,xx+274,yy+122,1);
 draw_set_alpha(1);draw_text(xx+225,yy+105,string_hash_to_newline("Accept"));
-if (scr_hit(xx+175,yy+103,xx+275,yy+123)=true){
+if (point_in_area(xx+175,yy+103,xx+275,yy+123)=true){
     draw_set_alpha(0.1);draw_set_color(c_white);
     draw_rectangle(xx+175,yy+103,xx+275,yy+123,0);
     draw_set_alpha(1);if (instance_exists(obj_cursor)){obj_cursor.image_index=1;}

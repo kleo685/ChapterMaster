@@ -20,7 +20,7 @@ function scr_ui_settings() {
 		// Back arrow
 	    draw_sprite_ext(spr_arrow,0,xx+25,yy+70,2,2,0,c_white,1);
 		
-	    if (scr_hit(xx+25,yy+70,xx+25+64,yy+70+64)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(xx+25,yy+70,xx+25+64,yy+70+64)=true) and (mouse_left=1) and (cooldown<=0){
 	        with(obj_formation_bar){instance_destroy();}
 	        cooldown=8000;
 			menu=21;
@@ -44,8 +44,8 @@ function scr_ui_settings() {
 	    obj_cursor.image_index=0;
     
 	    if (formating>3) and (obj_cursor.dragging=0){
-	        if (scr_hit(xx+800-(bar_wid/2),yy+66,xx+800+(bar_wid/2),yy+66+string_height("LOL"))=false) and (mouse_left=1) and (cooldown<=0) then text_bar=0;
-	        if (scr_hit(xx+800-(bar_wid/2),yy+66,xx+800+(bar_wid/2),yy+66+string_height("LOL"))=true){
+	        if (point_in_area(xx+800-(bar_wid/2),yy+66,xx+800+(bar_wid/2),yy+66+string_height("LOL"))=false) and (mouse_left=1) and (cooldown<=0) then text_bar=0;
+	        if (point_in_area(xx+800-(bar_wid/2),yy+66,xx+800+(bar_wid/2),yy+66+string_height("LOL"))=true){
 	            obj_cursor.image_index=2;
 	            if (cooldown<=0) and (mouse_left=1) and (text_bar=0){
 	                cooldown=8000;text_bar=1;keyboard_string=bat_formation[formating];
@@ -78,11 +78,11 @@ function scr_ui_settings() {
 		draw_sprite(spr_creation_check,che+1,cx,cy);
 		draw_set_alpha(1);
 		// Attack command tool tips
-	    if (scr_hit(cx+31,cy,cx+260,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260,cy+20)=true){
 			tool1="Attack";
 			tool2="Allows the use of vehicles, and bikes, but prevents this formation from being used during Raids.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0) and (formating>3){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0) and (formating>3){
 			var onceh=0;
 			cooldown=8000;
 	        if (onceh=0) and ((bat_formation_type[formating]=0) or (bat_formation_type[formating]=2)){
@@ -104,11 +104,11 @@ function scr_ui_settings() {
 		draw_sprite(spr_creation_check,che+1,cx,cy);
 		draw_set_alpha(1);
 		// Raid action tooltip
-	    if (scr_hit(cx+31,cy,cx+260,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260,cy+20)=true){
 			tool1="Raid";
 			tool2="Prevents the use of vehicles, and bikes, but allows this formation to be used for Raids.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0) and (formating>3){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0) and (formating>3){
 			var onceh;
 			onceh=0;
 			cooldown=8000;
@@ -267,7 +267,7 @@ function scr_ui_settings() {
 			ide=settings;
         
 	        draw_sprite_ext(spr_arrow,0,xx+25,yy+70,2,2,0,c_white,1);// Back
-	        if (scr_hit(xx+25,yy+70,xx+25+64,yy+70+64)=true) and (mouse_left=1) and (cooldown<=0){
+	        if (point_in_area(xx+25,yy+70,xx+25+64,yy+70+64)=true) and (mouse_left=1) and (cooldown<=0){
 	            cooldown=8000;
 				with(obj_mass_equip){instance_destroy();}
 				menu=21;exit;
@@ -330,7 +330,7 @@ function scr_ui_settings() {
 	            draw_rectangle(x5,y5,x5-string_width(title),y5+string_height(title)-2,0);
 	            draw_set_color(0);draw_text(x5,y5,string(title));
             
-	            if (scr_hit(x5-string_width(title),y5,x5,y5+string_height(title)-2)=true){
+	            if (point_in_area(x5-string_width(title),y5,x5,y5+string_height(title)-2)=true){
 	                draw_set_color(c_white);
 					draw_set_alpha(0.2);
 	                draw_rectangle(x5,y5,x5-string_width(title),y5+string_height(title)-2,0);
@@ -383,11 +383,11 @@ function scr_ui_settings() {
 		cy=yy+234;
 		
 	    draw_sprite(spr_creation_check,che+2,cx,cy);
-	    if (scr_hit(cx+31,cy,cx+260,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260,cy+20)=true){
 			tool1="Allow Astartes Transfer";
 			tool2="Turned off by default. Allows you to transfer Astartes in the same way as vehicles.";
 			}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh;
 			onceh=0;cooldown=8000;
 			if (onceh=0) and (command_set[1]=0){
@@ -406,11 +406,11 @@ function scr_ui_settings() {
 		cy=yy+269;
 		
 	    draw_sprite(spr_creation_check,che+2,cx,cy);
-	    if (scr_hit(cx+31,cy,cx+300,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+300,cy+20)=true){
 			tool1="Codex Compliant Organization";
 			tool2="When enabled, marine promotions are limited based on their current company and EXP, overall following the Codex Astartes promotion sequence." + "\n\n" + "When disabled, you can promote marines to any company, from any company, disregarding any EXP requirements." + "\n" + "Terminators, Dreadnoughts and Company Command roles retain EXP requirements however.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[2]=1){
@@ -429,11 +429,11 @@ function scr_ui_settings() {
 		cy=yy+304;
 		
 	    draw_sprite(spr_creation_check,che+2,cx,cy);
-	    if (scr_hit(cx+31,cy,cx+300,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+300,cy+20)=true){
 			tool1="Modest Livelry";
 			tool2="Turned off by default.  Prevents Advantages and Disadvantages from changing the appearances of your marines, effectively disabling any special ornamentation or possible battle wear.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (blandify=0){
@@ -450,7 +450,7 @@ function scr_ui_settings() {
     
 	    draw_text(xx+28,yy+332,"Company Command Structure");
 		
-	    if (scr_hit(xx+28,yy+332,xx+316,yy+352)=true){
+	    if (point_in_area(xx+28,yy+332,xx+316,yy+352)=true){
 			tool1="Comany Command Structure";
 			tool2="The default members of your Company Command.";
 		}
@@ -468,7 +468,7 @@ function scr_ui_settings() {
 		cy=yy+355;
 		
 		draw_sprite(spr_creation_check,che+2,cx,cy);
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[3]=0){
@@ -486,7 +486,7 @@ function scr_ui_settings() {
 		cy=yy+382;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[4]=0){
@@ -504,7 +504,7 @@ function scr_ui_settings() {
 		cy=yy+409;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[5]=0){
@@ -522,7 +522,7 @@ function scr_ui_settings() {
 		cy=yy+436;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[6]=0){
@@ -540,7 +540,7 @@ function scr_ui_settings() {
 		cy=yy+463;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[7]=0){
@@ -558,7 +558,7 @@ function scr_ui_settings() {
 		cy=yy+490;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[8]=0){
@@ -576,7 +576,7 @@ function scr_ui_settings() {
 		cy=yy+517;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[9]=0){
@@ -592,7 +592,7 @@ function scr_ui_settings() {
 	    yy-=35;
     
 	    draw_text(xx+28,yy+611,"Boarding Objective");
-	    if (scr_hit(xx+28,yy+611,xx+316,yy+611+20)=true){
+	    if (point_in_area(xx+28,yy+611,xx+316,yy+611+20)=true){
 			tool1="Boarding Objective";
 			tool2="The objective of your Astartes once they board an enemy ship.";
 		}
@@ -605,11 +605,11 @@ function scr_ui_settings() {
 		cx=xx+31;
 		cy=yy+611+23;draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx+31,cy,cx+260,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260,cy+20)=true){
 			tool1="Damage Systems";
 			tool2="Your Astartes will attempt to disable the ship by attacking the ship bridge and systems.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[20]=0){
@@ -624,11 +624,11 @@ function scr_ui_settings() {
 		cy=yy+611+50;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx+31,cy,cx+260,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260,cy+20)=true){
 			tool1="Use Plasma Bombs";
 			tool2="Your Astartes will use equipped Plasma Bombs to massively damage the boarded ship.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[21]=0) and (command_set[22]=0){
@@ -647,11 +647,11 @@ function scr_ui_settings() {
 		cy=yy+611+77;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx+31,cy,cx+260,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260,cy+20)=true){
 			tool1="Commandeer Ship";
 			tool2="Your Astartes will attempt to commandeer the vessel, to be permenantely used or salvaged.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=100) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=100) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[22]=0){
@@ -667,7 +667,7 @@ function scr_ui_settings() {
     
 	    if (command_set[22]=1) then draw_set_alpha(0.5);
 	    draw_text(xx+28,yy+747,"Post-Boarding");
-	    if (scr_hit(xx+28,yy+747,xx+316-150,yy+767)=true){
+	    if (point_in_area(xx+28,yy+747,xx+316-150,yy+767)=true){
 			tool1="Post-Boarding";
 			tool2="What your Boarders will do after achieving their objective.  This is disabled if your objective is to Commandeer the enemy ships.";
 		}
@@ -680,11 +680,11 @@ function scr_ui_settings() {
 		cx=xx+31;
 		cy=yy+747+23;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
-	    if (scr_hit(cx+31,cy,cx+260-70,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260-70,cy+20)=true){
 			tool1="Board Next Nearest";
 			tool2="After disabling an enemy vessel your Astartes will launch a new boarding mission at the nearest enemy.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[23]=0) and (command_set[22]=0){
@@ -699,11 +699,11 @@ function scr_ui_settings() {
 		cx=xx+51;
 		cy=yy+747+50;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
-	    if (scr_hit(cx+31,cy,cx+260-70,cy+20)=true){
+	    if (point_in_area(cx+31,cy,cx+260-70,cy+20)=true){
 			tool1="Return and Recuperate";
 			tool2="After disabling an enemy vessel your Astartes will return to their mother vessel and heal.";
 		}
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[24]=0) and (command_set[22]=0){
@@ -716,7 +716,7 @@ function scr_ui_settings() {
     
 	    xx+=260;
 	    draw_text(xx+28,yy+747,"Automatic Boarding");
-	    if (scr_hit(xx+28,yy+747,xx+316,yy+767)=true){
+	    if (point_in_area(xx+28,yy+747,xx+316,yy+767)=true){
 			tool1="Automatic Boarding";
 			tool2="If checked your ships will launch Boarding teams automatically when an eligible target is in range.";
 		}
@@ -729,7 +729,7 @@ function scr_ui_settings() {
 		cy=yy+747+23;
 		
 		draw_sprite(spr_creation_check,che+2,cx,cy);
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[25]=0){
@@ -747,7 +747,7 @@ function scr_ui_settings() {
 		cy=yy+747+50;
 		draw_sprite(spr_creation_check,che+2,cx,cy);
 		
-	    if (scr_hit(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
+	    if (point_in_area(cx,cy,cx+32,cy+32)=true) and (mouse_left=1) and (cooldown<=0){
 			var onceh=0;
 			cooldown=8000;
 			if (onceh=0) and (command_set[26]=0){
@@ -795,7 +795,7 @@ function scr_ui_settings() {
 				draw_rectangle(xxx,yyy,xxx+289,yyy+20,0);
 	            draw_set_color(0);
 				draw_text(xxx,yyy,obj_ini.role[100,ide]);
-	            if (scr_hit(xxx,yyy,xxx+289,yyy+20)=true){/*if (custom=2) then draw_set_alpha(0.2);if (custom<2) then */
+	            if (point_in_area(xxx,yyy,xxx+289,yyy+20)=true){/*if (custom=2) then draw_set_alpha(0.2);if (custom<2) then */
 					draw_set_alpha(0.1);
 					draw_set_color(c_white);
 					draw_rectangle(xxx,yyy,xxx+289,yyy+20,0);
@@ -827,7 +827,7 @@ function scr_ui_settings() {
 	        if (ides>0) then shw=romanNumerals[ides - 1] + " Company";
 	        draw_text(xxx,yyy,string(shw));
         
-	        if (scr_hit(xxx,yyy,xxx+289,yyy+20)=true){/*if (custom=2) then draw_set_alpha(0.2);if (custom<2) then */
+	        if (point_in_area(xxx,yyy,xxx+289,yyy+20)=true){/*if (custom=2) then draw_set_alpha(0.2);if (custom<2) then */
 				draw_set_alpha(0.1);
 				draw_set_color(c_white);
 				draw_rectangle(xxx,yyy,xxx+289,yyy+20,0);
@@ -866,7 +866,7 @@ function scr_ui_settings() {
         
 	        if (shw!="") or (isnew=true){
 				draw_text(xxx,yyy,string(shw));
-	            if (scr_hit(xxx,yyy,xxx+289,yyy+20)=true){/*if (custom=2) then draw_set_alpha(0.2);if (custom<2) then */
+	            if (point_in_area(xxx,yyy,xxx+289,yyy+20)=true){/*if (custom=2) then draw_set_alpha(0.2);if (custom<2) then */
 					draw_set_alpha(0.1);
 					draw_set_color(c_white);
 					draw_rectangle(xxx,yyy,xxx+289,yyy+20,0);

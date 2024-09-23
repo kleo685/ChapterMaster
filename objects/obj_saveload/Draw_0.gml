@@ -107,7 +107,7 @@ if (menu=1) or (menu=2){// This is the other one
             
             
             var high;high=0;
-            if (scr_hit(x2,y2,x2+1526,y2+149)=true){
+            if (point_in_area(x2,y2,x2+1526,y2+149)=true){
                 // high=1;
                 debug="Save:"+string(save[o])+", array position:"+string(o)+", turn:"+string(save_turn[o]);
             }
@@ -157,7 +157,7 @@ if (menu=1) or (menu=2){// This is the other one
             draw_set_color(c_gray);draw_rectangle(x2+807,y2+113,x2+951,y2+146,0);
             draw_set_color(c_black);draw_rectangle(x2+807,y2+113,x2+951,y2+146,1);
             draw_text_transformed(x2+879,y2+117,string_hash_to_newline("Delete Game"),0.7,0.7,0);
-            if (scr_hit(x2+807,y2+113,x2+951,y2+146)=true){
+            if (point_in_area(x2+807,y2+113,x2+951,y2+146)=true){
                 draw_set_alpha(0.1);draw_set_color(c_white);draw_rectangle(x2+807,y2+113,x2+951,y2+146,0);draw_set_alpha(1);
                 if (mouse_left>=1) and (!instance_exists(obj_popup)) and (cooldown<=0){// Clear
                     var com;com=instance_create(0,0,obj_popup);
@@ -175,7 +175,7 @@ if (menu=1) or (menu=2){// This is the other one
             draw_set_color(c_gray);draw_rectangle(x2+977,y2+113,x2+1121,y2+146,0);
             draw_set_color(c_black);draw_rectangle(x2+977,y2+113,x2+1121,y2+146,1);
             draw_text_transformed(x2+1050,y2+117,string_hash_to_newline("Restart Game"),0.7,0.7,0);
-            if (scr_hit(x2+977,y2+113,x2+1121,y2+146)=true){
+            if (point_in_area(x2+977,y2+113,x2+1121,y2+146)=true){
                 draw_set_alpha(0.1);draw_set_color(c_white);draw_rectangle(x2+977,y2+113,x2+1121,y2+146,0);draw_set_alpha(1);
                 if (mouse_left>=1) and (!instance_exists(obj_popup)) and (cooldown<=0){
                     if (file_exists("save"+string(save[o])+".ini")){// Resets the data
@@ -206,7 +206,7 @@ if (menu=1) or (menu=2){// This is the other one
             draw_set_color(c_gray);draw_rectangle(x2+1317,y2+113,x2+1461,y2+146,0);
             draw_set_color(c_black);draw_rectangle(x2+1317,y2+113,x2+1461,y2+146,1);
             draw_text_transformed(x2+1385,y2+117,string_hash_to_newline("Load Game"),0.7,0.7,0);
-            if (scr_hit(x2+1317,y2+113,x2+1461,y2+146)=true){
+            if (point_in_area(x2+1317,y2+113,x2+1461,y2+146)=true){
                 draw_set_alpha(0.1);draw_set_color(c_white);draw_rectangle(x2+1317,y2+113,x2+1461,y2+146,0);draw_set_alpha(1);
                 
                 if (mouse_left>=1) and (!instance_exists(obj_popup)) and (cooldown<=0){// Load
@@ -239,7 +239,7 @@ if (menu=1) or (menu=2){// This is the other one
             draw_set_color(c_gray);draw_rectangle(x2+1317,y2+113,x2+1461,y2+146,0);
             draw_set_color(c_black);draw_rectangle(x2+1317,y2+113,x2+1461,y2+146,1);
             draw_text_transformed(x2+1386,y2+117,string_hash_to_newline("Save Game"),0.7,0.7,0);
-            if (scr_hit(x2+1317,y2+113,x2+1461,y2+146)=true){
+            if (point_in_area(x2+1317,y2+113,x2+1461,y2+146)=true){
                 draw_set_alpha(0.1);draw_set_color(c_white);draw_rectangle(x2+1317,y2+113,x2+1461,y2+146,0);draw_set_alpha(1);
                 if (mouse_left>=1) and (cooldown<=0){var onceh;onceh=0;
                     if (instance_exists(obj_main_menu)){with(obj_main_menu){part_particles_clear(p_system);}}

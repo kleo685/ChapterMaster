@@ -29,7 +29,7 @@ var scale = obj_controller.zoomed ? 2 : 1;
 if (!global.load && (obj_controller.zoomed || in_camera_view(star_box_shape()))) {
     if (garrison){
         draw_sprite(spr_new_resource,3,x-30,y+15);
-        if (scr_hit(x-40,y+10,x-10,y+35)){
+        if (point_in_area(x-40,y+10,x-10,y+35)){
             tooltip_draw("Marine Garrison in system");
         }
     }

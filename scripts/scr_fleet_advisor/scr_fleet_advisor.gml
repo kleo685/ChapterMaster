@@ -83,7 +83,7 @@ function scr_fleet_advisor(){
                 draw_text(xx + 1372, yy + 80 + (i * 20), $"{round((obj_ini.ship_hp[i] / obj_ini.ship_maxhp[i]) * 100)}% HP");
                 draw_text(xx + 1450, yy + 80 + (i * 20),$"{obj_ini.ship_carrying[i]} / {obj_ini.ship_capacity[i]} Space");
 
-                if scr_hit(xx + 950,yy + 80 + (i * 20),xx + 1546,yy + 100 + (i * 20)) {
+                if point_in_area(xx + 950,yy + 80 + (i * 20),xx + 1546,yy + 100 + (i * 20)) {
                     if (cn.temp[101] != obj_ini.ship[i]) {
                         cn.temp[101] = obj_ini.ship[i];
                         cn.temp[102] = obj_ini.ship_class[i];

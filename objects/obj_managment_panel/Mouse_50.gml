@@ -8,7 +8,7 @@ if (obj_controller.cooldown<=0){
     if (header=2){wid=175;hei=200;}
     if (header=1){wid=150;hei=320;}
     
-    if scr_hit(x2,y2,x2+wid,y2+hei){
+    if point_in_area(x2,y2,x2+wid,y2+hei){
         obj_controller.cooldown=8000;
         obj_controller.managing=manage;
         var new_manage = manage;

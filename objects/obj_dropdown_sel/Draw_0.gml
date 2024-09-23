@@ -12,7 +12,7 @@ tooltip="";
 tooltip2="";
 
 
-if (scr_hit(x,y,x+width,y+height)=true) and (obj_controller.dropdown_open=0){
+if (point_in_area(x,y,x+width,y+height)=true) and (obj_controller.dropdown_open=0){
     if (options>1){
         draw_set_alpha(0.2);
         draw_set_color(c_white);
@@ -58,7 +58,7 @@ if (opened=1){
             draw_text(x+(width/2),y5+2,string_hash_to_newline(string(option[ii])));
             draw_rectangle(x,y5,x+width,y5+hi,1);
             
-            if (scr_hit(x,y5,x+width,y5+hi)=true){
+            if (point_in_area(x,y5,x+width,y5+hi)=true){
                 draw_set_alpha(0.2);draw_set_color(c_white);
                 draw_rectangle(x,y5,x+width,y5+hi,0);
                 
@@ -131,7 +131,7 @@ if (opened=1){
         }
     }
     
-    if (obj_controller.mouse_left=1) and (obj_controller.cooldown<=0) and (scr_hit(x,y,x+width,y5+yyy)=false){opened=0;obj_controller.dropdown_open=0;}
+    if (obj_controller.mouse_left=1) and (obj_controller.cooldown<=0) and (point_in_area(x,y,x+width,y5+yyy)=false){opened=0;obj_controller.dropdown_open=0;}
 }
 
 if (tooltip="Great Feast") then tooltip2="Holds a massive feast and celebration for your astartes.";

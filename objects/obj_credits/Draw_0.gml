@@ -56,8 +56,8 @@ draw_text_ext(991,92+15,string_hash_to_newline(@"  Late 2011 /tg/ came up with t
 
 
 var bhih;bhih=0;
-if (scr_hit(319,307,393,324)=false) and (obj_main_menu.browser=1) then obj_main_menu.browser=0;
-if (scr_hit(319,307,393,324)=true){
+if (point_in_area(319,307,393,324)=false) and (obj_main_menu.browser=1) then obj_main_menu.browser=0;
+if (point_in_area(319,307,393,324)=true){
     bhih=1;
     if (obj_main_menu.browser=0) and (mouse_left=1){
         /*switch(show_question("Open your browser?")) {
