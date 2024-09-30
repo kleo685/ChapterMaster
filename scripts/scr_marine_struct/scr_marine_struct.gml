@@ -727,14 +727,15 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
 		}
 		if (base_group=="astartes"){
 			if (role() == obj_ini.role[100][12] && new_role!=obj_ini.role[100][12]){
-		  		if (!get_body_data("black_carapace","torso")){
-		  			alter_body("torso", "black_carapace", true);
-		  			stat_boosts(
-		  				{strength:4, 
-		  				constitution:4,
-		  				dexterity:4
-		  			})//will decide on if these are needed
-		  		}	
+				if (!get_body_data("black_carapace","torso")){
+					alter_body("torso", "black_carapace", true);
+					update_class("marine");
+					stat_boosts(
+						{strength:4, 
+						constitution:4,
+						dexterity:4
+					})//will decide on if these are needed
+				}	
 			}
 			if (!is_specialist(role())){//logs changes too and from specialist status
 				if (is_specialist(new_role)){
@@ -779,6 +780,10 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data={}) 
             }  			
 		}	
 	};
+
+	static update_class = function(new_class){
+		unit_class = new_class;
+	}
 
 	static mobility_item = function(raw=false){ 
 		var wep = obj_ini.mobi[company][marine_number];

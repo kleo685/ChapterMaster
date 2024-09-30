@@ -5,7 +5,7 @@ tab=1;
 badname=0;
 
 rows=0;
-
+item_name=[];
 
 tooltip="";
 tooltip2="";

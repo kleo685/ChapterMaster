@@ -298,10 +298,7 @@ if (type=6) and (cooldown<=0){// Actually changing equipment right here
         }
 
         if ((befi!=target_comp) and (unit_type!="unknown")) or (change_tab=1){
-            var i;i=-1;repeat(40){i+=1;item_name[i]="";}
-
             scr_weapons_equip();
-
         }
 
 

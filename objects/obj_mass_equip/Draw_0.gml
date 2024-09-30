@@ -61,8 +61,7 @@ if (total_role_number>0){
 
 
 if (total_role_number>0) and (tab>0){
-    var i=-1,told;repeat(50){i+=1;item_name[i]="";}
-    
+    var told;
     if (tab<=2){told=tab;tab=1;}
     if (tab>2){told=tab;tab=tab;}
     scr_weapons_equip();tab=told;
@@ -119,7 +118,7 @@ if (total_role_number>0) and (tab>0){
         }
     }
     if (tab=1) or (tab=2){
-        var i,told;i=-1;repeat(50){i+=1;item_name[i]="";}
+        var told;
         if (tab<=2){told=tab;tab=2;}
         if (tab>2){told=tab;tab=tab;}
         scr_weapons_equip();tab=told;

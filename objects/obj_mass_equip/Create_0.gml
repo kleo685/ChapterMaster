@@ -21,6 +21,7 @@ wep2_equip="";
 mobi_equip="";
 gear_equip="";
 all_equip="";
+item_name=[];
 
 req_armour="";
 req_armour_num=0;

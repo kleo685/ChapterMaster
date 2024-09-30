@@ -230,11 +230,8 @@ n_good1=1;n_good2=1;n_good3=1;n_good4=1;n_good5=1;
 sel1=0;sel2=0;sel3=0;sel4=0;sel5=0;
 unit_type="";warning="";
 unit_is_vehicle=false;
-var i;i=-1;
-repeat(51){
-    i+=1;item_name[i]="";
-}
-
+unit_role=0;
+item_name=[];
 
 calculate_equipment_needs =  function (){
      var i=0,rall="",all_good=0;

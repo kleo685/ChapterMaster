@@ -642,7 +642,10 @@ function get_unit_type(unit) {
 				_unit_type = _equip_data.change_unit[0];
 			}
 		} else {
-			_unit_type = unit.base_group;
+			_unit_type = unit.unit_class;
+			if array_contains(["chapter_master"], _unit_type){
+				_unit_type = "marine";
+			}
 		}
 		return _unit_type;
 	} catch(_exception) {

@@ -68,7 +68,7 @@ global.weapons = {
 		"melee_hands": 0.9,
 		"ranged_hands": 1,
 		"tags": ["shield"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 		"hp_mod": {
 			"standard": 30,
 			"master_crafted": 35,
@@ -85,7 +85,7 @@ global.weapons = {
 		},
 		"melee_hands": 0.9,
 		"tags": ["shield"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 		"hp_mod": {
 			"standard": 15,
 			"master_crafted": 17.5,
@@ -224,7 +224,7 @@ global.weapons = {
 		"spli": 6,
 		"arp": 0,
 		"tags": ["chain", "axe", "dual"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Company Standard": {
 		"abbreviation": "CmpStnd",
@@ -245,7 +245,7 @@ global.weapons = {
 		"range": 1,
 		"spli": 1,
 		"tags": ["banner"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Eviscerator": {
 		"abbreviation": "Evisc",
@@ -289,7 +289,7 @@ global.weapons = {
 		"arp": 1,
 		"special_properties": ["Parry"],
 		"tags": ["power", "sword"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Power Spear": {
 		"abbreviation": "PwrSpear",
@@ -312,7 +312,7 @@ global.weapons = {
 		"arp": 1,
 		"special_properties": ["Parry"],
 		"tags": ["power", "spear"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Chainfist": {
 		"abbreviation": "ChFst",
@@ -328,7 +328,7 @@ global.weapons = {
 		"spli": 2,
 		"arp": 1,
 		"tags": ["power", "chain", "fist", "dual", "siege"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Lascutter": {
 		"abbreviation": "Lasct",
@@ -385,7 +385,7 @@ global.weapons = {
 		"spli": 3,
 		"arp": 1,
 		"tags": ["power"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Power Axe": {
 		"abbreviation": "PwrAxe",
@@ -407,7 +407,7 @@ global.weapons = {
 		"spli": 5,
 		"arp": 1,
 		"tags": ["power", "axe", "dual"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Executioner Power Axe": {
 		"abbreviation": "ExPwrAxe",
@@ -429,7 +429,7 @@ global.weapons = {
 		"spli": 2,
 		"arp": 1,
 		"tags": ["power", "axe"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Power Fist": {
 		"abbreviation": "PwrFst",
@@ -451,7 +451,7 @@ global.weapons = {
 		"spli": 2,
 		"arp": 1,
 		"tags": ["power", "dual", "fist"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Power Fists": {
 		"abbreviation": "PwrFsts",
@@ -468,7 +468,7 @@ global.weapons = {
 		"spli": 4,
 		"arp": 1,
 		"tags": ["power", "fist", "pair"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Servo-arm(M)": {
 		"abbreviation": "MchArm",
@@ -502,7 +502,7 @@ global.weapons = {
 		"arp": 1,
 		"second_profiles": ["Integrated Bolter"],
 		"tags": ["power", "fist"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Lightning Claw": {
 		"abbreviation": "LghtClw",
@@ -519,7 +519,7 @@ global.weapons = {
 		"spli": 5,
 		"arp": 1,
 		"tags": ["power", "dual", "fist"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Dreadnought Lightning Claw": {
 		"abbreviation": "LghtClw",
@@ -563,7 +563,7 @@ global.weapons = {
 		"spli": 10,
 		"arp": 1,
 		"tags": ["power", "hammer", "siege"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 		"req_exp": 100,
 	},
 	"Heavy Thunder Hammer": {
@@ -586,7 +586,7 @@ global.weapons = {
 		"spli": 15,
 		"arp": 1,
 		"tags": ["heavy_melee", "power", "hammer", "siege"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 		"req_exp": 100,
 	},
 	"Power Mace": {
@@ -609,7 +609,7 @@ global.weapons = {
 		"spli": 10,
 		"arp": 1,
 		"tags": ["power", "mace", "siege"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 		"req_exp": 100,
 	},
 	"Mace of Absolution": {
@@ -633,7 +633,7 @@ global.weapons = {
 		"spli": 10,
 		"arp": 1,
 		"tags": ["power", "mace", "siege", "pious"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 		"req_exp": 100,
 	},
 	"Tome": {
@@ -677,7 +677,7 @@ global.weapons = {
 		"spli": 4,
 		"arp": 1,
 		"tags": ["power", "mace", "pious"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Relic Blade": {
 		"abbreviation": "RlcBld",
@@ -700,7 +700,7 @@ global.weapons = {
 		"arp": 1,
 		"special_properties": ["Parry"],
 		"tags": ["power", "sword"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Bolt Pistol": {
 		"abbreviation": "BltPstl",
@@ -797,7 +797,7 @@ global.weapons = {
 		"spli": 5,
 		"arp": -1,
 		"tags": ["flame", "heavy_ranged"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"CCW Heavy Flamer": {
 		"abbreviation": "CCWHvyFlmr",
@@ -894,7 +894,7 @@ global.weapons = {
 		"spli": 1,
 		"arp": 1,
 		"tags": ["melta", "heavy_ranged"],
-		"units_whitelist": ["astartes", "terminator", "dreadnought"],
+		"units_whitelist": ["marine", "terminator", "dreadnought"],
 	},
 	"Plasma Pistol": {
 		"abbreviation": "PlsmPstl",
@@ -975,7 +975,7 @@ global.weapons = {
 		"spli": 2,
 		"arp": 1,
 		"tags": ["plasma", "heavy_weapon"],
-		"units_whitelist": ["astartes", "terminator", "dreadnought"],
+		"units_whitelist": ["marine", "terminator", "dreadnought"],
 	},
 	"Sniper Rifle": {
 		"abbreviation": "SnprRfl",
@@ -1025,7 +1025,7 @@ global.weapons = {
 		"spli": 15,
 		"arp": 1,
 		"tags": ["heavy_ranged"],
-		"units_whitelist": ["astartes", "terminator", "dreadnought"],
+		"units_whitelist": ["marine", "terminator", "dreadnought"],
 	},
 	"Missile Launcher": {
 		"abbreviation": "MsslLnch",
@@ -1161,7 +1161,7 @@ global.weapons = {
 		"spli": 6,
 		"arp": 1,
 		"tags": ["heavy_ranged", "bolt"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Whirlwind Missiles": {
 		"attack": {
@@ -1472,7 +1472,7 @@ global.weapons = {
 		"spli": 6,
 		"arp": 0,
 		"tags": ["bolt"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Flamer": {
 		"abbreviation": "Flmr",
@@ -1527,7 +1527,7 @@ global.weapons = {
 		"arp": 0,
 		"second_profiles": ["Flamer"],
 		"tags": ["combi", "bolt"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Incinerator": {
 		"attack": {
@@ -1544,7 +1544,7 @@ global.weapons = {
 		"spli": 3,
 		"arp": -1,
 		"tags": ["flame", "heavy_ranged"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Force Staff": {
 		"attack": {
@@ -1566,7 +1566,7 @@ global.weapons = {
 		"arp": 1,
 		"special_description": "Spell Damage +100%",
 		"tags": ["force"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Force Sword": {
 		"abbreviation": "FrcSwrd",
@@ -1590,7 +1590,7 @@ global.weapons = {
 		"special_description": "Spell damage +25%",
 		"special_properties": ["Parry"],
 		"tags": ["force", "sword"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Force Axe": {
 		"abbreviation": "FrcAxe",
@@ -1613,7 +1613,7 @@ global.weapons = {
 		"arp": 1,
 		"special_description": "Able to be dual-wielded, Spell damage +25%",
 		"tags": ["force", "axe", "dual"],
-		"units_whitelist": ["astartes", "terminator"],
+		"units_whitelist": ["marine", "terminator"],
 	},
 	"Twin Linked Lascannon Turret": {
 		"attack": {
@@ -1764,7 +1764,7 @@ global.gear = {
 			},
 			"description": "A suit of Adeptus Astartes power armour. The Mark can no longer be determined- it appears to be a combination of several types.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"Artificer Armour": {
 			"abbreviation": "Artfcr",
@@ -1785,7 +1785,7 @@ global.gear = {
 			},
 			"description": "A custom suit of power armored created by master artificiers and decorated without compare, this ancient Power Armour is beyond priceless. This suit's history is ancient and its users many.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"Terminator Armour": {
 			"abbreviation": "Indmts",
@@ -1918,7 +1918,7 @@ global.gear = {
 				"artifact": 10 // Augmented
 			},
 			"description": "A non-powered suit made up of carapace armour and ballistic nylon. Includes biohazard shielding, nutrient feed, and camouflage.",
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"MK3 Iron Armour": {
 			"abbreviation": "MK3",
@@ -1939,7 +1939,7 @@ global.gear = {
 			},
 			"description": "An ancient set of Power Armor dating back to the early Great Crusade. The Mark III has heavier armor plating but is far heavier then its contemporaries.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"MK4 Maximus": {
 			"abbreviation": "MK4",
@@ -1960,7 +1960,7 @@ global.gear = {
 			},
 			"description": "Power Armor dating back to the end of the Great Crusade. It is considered the pinnacle of Power Armor by some Astartes. However, the components are no longer reproducible, the knowledge having been lost to time.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"MK5 Heresy": {
 			"abbreviation": "MK5",
@@ -1981,7 +1981,7 @@ global.gear = {
 			},
 			"description": "A hastily assembled Power Armor that first started appearing during the Horus Heresy to act as a stopgap while new suits were produced and sent to loyalist legions. It excels in close combat but it has limited sensors for ranged combat.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"MK6 Corvus": {
 			"abbreviation": "MK6",
@@ -2002,7 +2002,7 @@ global.gear = {
 			},
 			"description": "A suit dating back to the Horus Heresy, first tested by the Raven Guard. It contains boosted olfactory and auditory sensors that increase the ranged accuracy of the wearer. This however makes it more fragile to an extent.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"MK7 Aquila": {
 			"abbreviation": "MK7",
@@ -2023,7 +2023,7 @@ global.gear = {
 			},
 			"description": "The most common power armour of the Adeptus Astartes and the only power armour still widely manufactured by the Imperium.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"MK8 Errant": {
 			"abbreviation": "MK8",
@@ -2044,7 +2044,7 @@ global.gear = {
 			},
 			"description": "The newest and most advanced of the standard mark power armours as such production has not yet reached maximum capacity creating a supply shortage while chapters rush to get access to them.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"MK10 Tacticus": {
 			"abbreviation": "MK10",
@@ -2065,7 +2065,7 @@ global.gear = {
 			},
 			"description": "The MKX Tacticus is the most advanced pattern of power armour available to the Adeptus Astartes, featuring advanced armor composites and systems. It was developed by Belisarius Cawl during the development of the Primaris Astartes program.",
 			"tags": ["power_armour"],
-			"change_unit": ["astartes"],
+			"change_unit": ["marine"],
 		},
 		"Skitarii Armour": {
 			"abbreviation": "SkitArm",

@@ -193,7 +193,6 @@ if (col_shift){
 
 
 if (target_gear>0){
-    var i;i=-1;repeat(50){i+=1;item_name[i]="";}
     tab=1;scr_weapons_equip();
     
     draw_set_color(0);
@@ -245,7 +244,6 @@ if (target_gear>0){
     }
     
     if (target_gear=1) or (target_gear=2){
-        var i;i=-1;repeat(50){i+=1;item_name[i]="";}
         tab=2;scr_weapons_equip();
         
         var x3,y3,h,space;h=0;x3=862+146;y3=245;space=18;
