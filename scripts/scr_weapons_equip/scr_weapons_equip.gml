@@ -1,4 +1,5 @@
 #macro unit_type_unknown "unknown"
+#macro unit_type_scout "scout"
 #macro unit_type_marine "marine"
 #macro unit_type_terminator "terminator"
 #macro unit_type_dreadnought "dreadnought"
@@ -24,44 +25,46 @@ function scr_weapons_equip() {
 	var valid = 0;
 	var i = 0;
 	item_name = [];
+	var unit_ranged_list = [];
+	var unit_melee_list = [];
 	var normal_ranged_list = [
 		"Bolt Pistol",
 		"Bolter",
+		"Flamer",
+	];
+	var advanced_ranged_list = [
 		"Stalker Pattern Bolter",
 		"Storm Bolter",
-		"Heavy Bolter",
 		"Combiflamer",
-		"Flamer",
-		"Heavy Flamer",
-		"Lascannon",
-		"Lascutter",
 		"Infernus Pistol",
 		"Meltagun",
-		"Multi-Melta",
 		"Plasma Pistol",
 		"Plasma Gun",
-		"Plasma Cannon",
+	];
+	var heavy_ranged_list = [
+		"Heavy Bolter",
+		"Heavy Flamer",
+		"Lascannon",
+		"Multi-Melta",
 		"Missile Launcher",
 		"Autocannon",
 		"Sniper Rifle",
-		"Webber"
 	];
 	var normal_melee_list = [
 		"Combat Knife",
 		"Chainsword",
 		"Chainaxe",
+		"Boarding Shield",
+	];
+	var heavy_melee_list = [
 		"Eviscerator",
-		"Power Sword",
-		"Power Axe",
-		"Power Spear",
-		"Power Mace",
-		"Power Fist",
+	];
+	var advanced_melee_list = [
 		"Boltstorm Gauntlet",
 		"Lightning Claw",
 		"Force Staff",
 		"Thunder Hammer",
 		"Heavy Thunder Hammer",
-		"Boarding Shield",
 		"Storm Shield"
 	];
 	var terminator_ranged_list = [
@@ -112,6 +115,9 @@ function scr_weapons_equip() {
 		"MK7 Aquila",
 		"MK8 Errant",
 	];
+	var advanced_armour_list = [
+		"Artificer Armour",
+	];
 	var terminator_armour_list = [
 		"Terminator Armour",
 		"Tartaros",
@@ -121,8 +127,6 @@ function scr_weapons_equip() {
 	];
 	var normal_gear_list = [
 		"Combat Shield",
-		"Iron Halo",
-		"Plasma Bomb",
 	];
 	var normal_mobility_list = [
 		"Jump Pack",
@@ -153,9 +157,9 @@ function scr_weapons_equip() {
 		if (unit_role >= 50) {
 			unit_is_vehicle = obj_popup.unit_is_vehicle;
 			return;
-		} else if (unit_role == 4) {
+		} else if (unit_role == Role.TERMINATOR) {
 			unit_type = unit_type_terminator;
-		} else if (unit_role == 6) {
+		} else if (unit_role == Role.DREADNOUGHT) {
 			unit_type = unit_type_dreadnought;
 		} else {
 			unit_type = unit_type_marine;
@@ -170,25 +174,33 @@ function scr_weapons_equip() {
 		unit_role = obj_mass_equip.role;
 		if (unit_role >= 50) {
 			return;
-		} else if (unit_role == 4) {
+		} else if (unit_role == Role.TERMINATOR) {
 			unit_type = unit_type_terminator;
-		} else if (unit_role == 6) {
+		} else if (unit_role == Role.DREADNOUGHT) {
 			unit_type = unit_type_dreadnought;
 		} else {
 			unit_type = unit_type_marine;
 		}
 	}
 
-	if (unit_role == 14) {
+	unit_ranged_list = array_concat(unit_ranged_list, normal_ranged_list);
+	unit_melee_list = array_concat(unit_melee_list, normal_melee_list);
+	if (unit_role == Role.CHAPLAIN) {
+		unit_ranged_list = ["Bolt Pistol"];
+		unit_melee_list = ["Crozius Arcanum"];
 		normal_gear_list = ["Rosarius"];
-	} else if (unit_role == 15) {
+	} else if (unit_role == Role.APOTHECARY) {
 		normal_gear_list = ["Narthecium"];
-	} else if (unit_role == 16) {
-		normal_mobility_list = ["Servo-arm", "Servo-harness"];
-	} else if (unit_role == 17) {
+	} else if (unit_role == Role.TECHMARINE) {
+		normal_mobility_list = ["Servo-arm"];
+	} else if (unit_role == Role.LIBRARIAN) {
+		unit_ranged_list = ["Bolt Pistol"];
+		unit_melee_list = ["Force Staff", "Force Sword", "Force Axe"];
 		normal_gear_list = ["Psychic Hood"];
-	} else if (unit_role == 12) {
-		normal_armour_list = ["Scout Armour"]
+	} else if (unit_type == unit_type_scout || unit_role == Role.SCOUT) {
+		normal_armour_list = ["Scout Armour"];
+	} else if (unit_role == Role.DEVASTATOR) {
+		unit_ranged_list = array_concat(unit_ranged_list, normal_ranged_list, heavy_ranged_list);
 	}
 
 	if (equipment_slot <= 2) and (!unit_is_vehicle) {
@@ -215,8 +227,9 @@ function scr_weapons_equip() {
 				item_name[0] = "(None)";
 				item_name[1] = "(any)";
 				switch (unit_type) {
+					case unit_type_scout:
 					case unit_type_marine:
-						item_name = array_concat(item_name, normal_ranged_list);
+						item_name = array_concat(item_name, unit_ranged_list);
 						break;
 					case unit_type_terminator:
 						item_name = array_concat(item_name, terminator_ranged_list);
@@ -249,8 +262,9 @@ function scr_weapons_equip() {
 				}
 			} else {
 				switch (unit_type) {
+					case unit_type_scout:
 					case unit_type_marine:
-						item_name = array_concat(item_name, normal_melee_list);
+						item_name = array_concat(item_name, unit_melee_list);
 						break;
 					case unit_type_terminator:
 						item_name = array_concat(item_name, terminator_melee_list);
@@ -310,6 +324,7 @@ function scr_weapons_equip() {
 		} else {
 			item_name[0] = "(None)";
 			switch (unit_type) {
+				case unit_type_scout:
 				case unit_type_marine:
 					item_name = array_concat(item_name, normal_gear_list);
 					break;
