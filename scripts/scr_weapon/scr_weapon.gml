@@ -201,6 +201,10 @@ global.weapons = {
 		"spli": 4,
 		"arp": 0,
 		"tags": ["chain", "sword"],
+		"stat_scaling": {
+			"strength": 1.2,
+			"dexterity": 1.4,
+		}
 	},
 	"Chainaxe": {
 		"abbreviation": "ChAxe",
@@ -2314,13 +2318,13 @@ global.gear = {
 
 function equipment_struct(item_data, core_type,quality="none") constructor{ 
     //This could be done with 2d arrays [[],[]]
-    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","melee_hands","ranged_hands","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp"];
-    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0];
+    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","melee_hands","ranged_hands","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp", "stat_scaling"];
+    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0, 0];
     type = core_type;
     for (var i=0;i<array_length(names);i++){
         if (struct_exists(item_data,names[i])){
             self[$names[i]] = item_data[$names[i]];
-            if (quality!="none"){
+            if (quality!="none" && names[i] != "stat_scaling"){
                 if (is_struct(self[$names[i]])){
                     if (struct_exists(self[$names[i]],quality)){
                         self[$names[i]]=self[$names[i]][$quality];
