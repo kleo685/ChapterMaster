@@ -20,8 +20,8 @@ function draw_unit_buttons(position, text,size_mod=[1.5,1.5],colour=c_gray,_hali
 	} else {
 		var text_width = string_width(string_hash_to_newline(text))*size_mod[0];
 		var text_height = string_height(string_hash_to_newline(text))*size_mod[1];
-		var x2 = position[0]+text_width+(text_width*0.06);
-		var y2 = position[1]+text_height+(text_height*0.1);
+		var x2 = position[0]+text_width+(6*size_mod[0]);
+		var y2 = position[1]+text_height+(6*size_mod[1]);
 	}
 	draw_set_alpha(1*alpha_mult);
 	// draw_set_color(c_black);
