@@ -34,12 +34,21 @@ if (room_get_name(room)="Creation"){
         if (hover[0]<20){
             hover[0]++;
         }
+        if (mouse_check_button_pressed(mb_left)) {
+            cooldown=9999;
+            button=1;
+            fading=1;
+        }
     } else {
         if (hover[0]>0){
             hover[0]--;
         }
     }
     shader_reset();
+    if (cooldown>0) then cooldown-=1;
+    if (fading=0) and (fade>0) then fade-=1;
+    if (fading=1) and ((fade<40) or (crap>0) or (button=1)) then fade+=1;
+    if (fade=60) then room_goto(Main_Menu);
 }
 
 if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!instance_exists(obj_credits)){
@@ -60,20 +69,19 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
     // }
 
 
-    shader_set(light_dark_shader);
     //draw_sprite(sprite_index, 0, x, y);
 
-
-    if (obj_main_menu.tim4>0) and (obj_main_menu.menu!=3){
+    if (obj_main_menu.menu!=3){
+        shader_set(light_dark_shader);
         // location of sprites 
-        draw_set_alpha(obj_main_menu.tim4/50);
+        draw_set_alpha(obj_main_menu.tim3/60);
         var height = (20*2.2);
         var width = (198*2.2);
         for (var i=0;i<4;i++){
             var y_start = 500+((20*2.2)*i);
             shader_set_uniform_f(shader_get_uniform(light_dark_shader, "highlight"), 1+hover[i]/10);
             draw_sprite_ext(spr_mm_butts, i, 580,y_start, 2.2, 2.2, 0, c_white, 1);
-            if (scr_hit(580,y_start, 580+width, y_start+height)){
+            if (scr_hit(580,y_start, 580+width, y_start+height) && obj_main_menu.tim4>0){
                 if (hover[i]<20){
                     hover[i]++;
                 }
@@ -82,7 +90,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
                     hover[i]--;
                 }
             }
-            if (point_and_click([580,y_start, 580+width, y_start+height]) and !instance_exists(obj_ingame_menu)){
+            if (point_and_click([580,y_start, 580+width, y_start+height]) and !instance_exists(obj_ingame_menu) && obj_main_menu.tim4>0){
                 switch(i){
                     case 0:
                         ini_open("saves.ini");
@@ -110,7 +118,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
                         obj_saveload.menu=2;
                         fading=0;
                         fade=0;
-                        button=0;   
+                        button=0;
                         break;                                             
                     case 2:
                         instance_create(0,0,obj_ingame_menu);         
@@ -154,6 +162,13 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
             
         }
     }
+
+    // if (obj_main_menu.tim3>0){
+    //     draw_set_alpha(obj_main_menu.tim3/30);
+    //     draw_set_color(0);
+    //     draw_rectangle(0,0,room_width,room_height,0);
+    //     draw_set_alpha(1);
+    // }
 
 }
 

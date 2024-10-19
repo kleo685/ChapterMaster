@@ -53,7 +53,6 @@ ini_close()
 }*/
 if (window_get_fullscreen()=0) and (settings_fullscreen=0){
     window_old=string(window_get_x())+"|"+string(window_get_y())+"|"+string(window_get_width())+"|"+string(window_get_height())+"|";
-    
     if (window_old!=settings_window_data){
         var temp1,temp2,temp3,temp4;temp1=0;temp2=0;temp3=1600;temp4=900;
         
@@ -77,12 +76,14 @@ if (window_get_fullscreen()=0) and (settings_fullscreen=0){
             ini_close();
         }
     }
+    surface_resize(application_surface, 1600, 900);
 }
 if (window_get_fullscreen()=0) and (settings_fullscreen=1){
     window_old="fullscreen";
     window_set_fullscreen(true);
-}
+    surface_resize(application_surface, display_get_width(), display_get_height());
 
+}
 
 // Print legal disclaimer every month
 var t, mont;
@@ -119,18 +120,26 @@ word_from_duke2="blank";
 mess_alpha=0;
 out_of_date=0;
 
-stage=0;
-if (last_legal=0) then stage=1;
-if (last_legal!=0){alarm[2]=1;stage=2;tim1=-50;tim2=424;}
-obj_cursor.image_alpha=0;
-
-// show_message(string(last_legal)+", stage: "+string(stage));
-
 tim1=0;
 tim2=0;
 tim3=0;
 tim4=0;
 tim5=0;
+
+stage=0;
+if (last_legal=0) {
+    stage=1
+} else {
+    alarm[2]=1;
+    stage=2;
+    tim1=-50;
+    tim2=424;
+}
+
+obj_cursor.image_alpha=0;
+
+// show_message(string(last_legal)+", stage: "+string(stage));
+
 
 if (!directory_exists("ErrorLogs")) {
     directory_create("ErrorLogs");

@@ -107,3 +107,18 @@ if (file_exists("saves.ini")){
 
 /* */
 /*  */
+
+
+if (room_get_name(room) = "Main_Menu") {
+    with(obj_new_button) {
+        x -= 2000;
+        y -= 2000;
+    }
+    butt = instance_create(707, 830, obj_new_button);
+    butt.sprite_index = spr_ui_but_1;
+    butt.depth = -20010;
+    butt.button_text = "Back";
+    butt.button_id = 1;
+    butt.scaling = 1.5;
+    butt.target = 9;
+}

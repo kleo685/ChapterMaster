@@ -1,8 +1,5 @@
-
-
-
-
-
+var gh = display_get_gui_height();
+var gw = display_get_gui_width();
 
 if (stage=1) or (stage=2){
     draw_set_alpha(tim1);
@@ -15,7 +12,7 @@ if (stage=1) or (stage=2){
     tx=legal_text;
     
     hi=string_height_ext(string_hash_to_newline(legal_text),-1,900);    
-    draw_text_ext(room_width/2,(900-hi)/2,string_hash_to_newline(legal_text),-1,900);
+    draw_text_ext(gw/2,(hi)/2,string_hash_to_newline(legal_text),-1,900);
     
     draw_set_alpha(1);    
 }
@@ -23,19 +20,17 @@ if (stage=1) or (stage=2){
 
 draw_set_alpha(1);
 if (stage=3){
-    scr_image("title_splash",0,0,0,room_width,room_height);
+    scr_image("title_splash",0,0,0,gw,gh);
     // draw_sprite_stretched(spr_new_mm,0,0,0,room_width,room_height);
 }
 
 
-if (tim3>0){
-    draw_set_alpha(tim3/60);
-    draw_set_color(0);
-    draw_rectangle(0,0,2000,2000,0);
-    draw_set_alpha(1);
-}
-
-
+// if (tim3>0){
+//     draw_set_alpha(tim3/60);
+//     draw_set_color(0);
+//     draw_rectangle(0,0,2000,2000,0);
+//     draw_set_alpha(1);
+// }
 
 
 exit;

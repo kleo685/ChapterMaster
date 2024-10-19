@@ -11,6 +11,10 @@ if (global.restart>0){
     room_goto(Creation);
 }
 
+with(obj_new_button) {
+    instance_destroy();
+}
+
 instance_destroy();
 
 

@@ -852,6 +852,7 @@
     {"id":{"name":"scr_text_hit","path":"scripts/scr_text_hit/scr_text_hit.yy",},},
     {"id":{"name":"spr_shutter_button","path":"sprites/spr_shutter_button/spr_shutter_button.yy",},},
     {"id":{"name":"scr_colors_initialize","path":"scripts/scr_colors_initialize/scr_colors_initialize.yy",},},
+    {"id":{"name":"obj_ui_controller","path":"objects/obj_ui_controller/obj_ui_controller.yy",},},
     {"id":{"name":"scr_shader_initialize","path":"scripts/scr_shader_initialize/scr_shader_initialize.yy",},},
     {"id":{"name":"spr_sal_mk6_helm","path":"sprites/spr_sal_mk6_helm/spr_sal_mk6_helm.yy",},},
     {"id":{"name":"string_to_integer","path":"scripts/string_to_integer/string_to_integer.yy",},},
