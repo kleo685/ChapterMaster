@@ -18,9 +18,32 @@ function string_upper_first(_string) {
         return _modified_string;
 	}
     catch(_exception) {
-		log_into_file(_exception.longMessage);
-		log_into_file(_exception.script);
-		log_into_file(_exception.stacktrace);
+        show_debug_message(_exception.longMessage);
+	}
+}
+
+/// @function string_has_digits
+/// @description Returns true if the string has any digits in it.
+/// @param {string}
+/// @returns {bool}
+function string_has_digits(_string) {
+    try {
+        return string_length(string_digits(_string)) > 0;
+	}
+    catch(_exception) {
+        show_debug_message(_exception.longMessage);
+	}
+}
+
+/// @function string_is_digits
+/// @description Returns true if the string has only digits and no letters.
+/// @param {string}
+/// @returns {bool}
+function string_is_digits(_string) {
+    try {
+        return string_length(string_digits(_string)) == string_length(_string);
+	}
+    catch(_exception) {
         show_debug_message(_exception.longMessage);
 	}
 }

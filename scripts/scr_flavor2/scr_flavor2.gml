@@ -3,10 +3,9 @@ function scr_flavor2(lost_units_count, target_type, hostile_range, hostile_weapo
 
 	if (obj_ncombat.wall_destroyed = 1) then exit;
 
-	var m1, m2, m3, mes;
-	m1 = "";
-	m2 = "";
-	m3 = "";
+	var _enemy_attack_text, _units_lost_text, mes;
+	_enemy_attack_text = "";
+	_units_lost_text = "";
 
 	var j1, j2, j3, j4, j5;
 	j1 = "your men";
@@ -66,168 +65,168 @@ function scr_flavor2(lost_units_count, target_type, hostile_range, hostile_weapo
 
 	if (_hostile_weapon = "Daemonette Melee") {
 		flavor = 1;
-		if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " Daemonettes rake and claw at " + string(j1) + ".  ";
-		if (_hostile_shots = 1) then m1 = "A Daemonette rakes and claws at " + string(j1) + ".  ";
+		if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " Daemonettes rake and claw at " + string(j1) + ".  ";
+		if (_hostile_shots = 1) then _enemy_attack_text = "A Daemonette rakes and claws at " + string(j1) + ".  ";
 	}
 	if (_hostile_weapon = "Plaguebearer Melee") {
 		flavor = 1;
-		if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " Plague Swords slash into " + string(j1) + ".  ";
-		if (_hostile_shots = 1) then m1 = "A Plaguesword is swung into " + string(j1) + ".  ";
+		if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " Plague Swords slash into " + string(j1) + ".  ";
+		if (_hostile_shots = 1) then _enemy_attack_text = "A Plaguesword is swung into " + string(j1) + ".  ";
 	}
 	if (_hostile_weapon = "Bloodletter Melee") {
 		flavor = 1;
-		if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " Hellblades hiss and slash into " + string(j1) + ".  ";
-		if (_hostile_shots = 1) then m1 = "A Bloodletter swings a Hellblade into " + string(j1) + ".  ";
+		if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " Hellblades hiss and slash into " + string(j1) + ".  ";
+		if (_hostile_shots = 1) then _enemy_attack_text = "A Bloodletter swings a Hellblade into " + string(j1) + ".  ";
 	}
 	if (_hostile_weapon = "Nurgle Vomit") {
 		flavor = 1;
-		if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " putrid, corrosive streams of Daemonic vomit spew into " + string(j1) + ".  ";
-		if (_hostile_shots = 1) then m1 = "A putrid, corrosive stream of Daemonic vomit spews into " + string(j1) + ".  ";
+		if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " putrid, corrosive streams of Daemonic vomit spew into " + string(j1) + ".  ";
+		if (_hostile_shots = 1) then _enemy_attack_text = "A putrid, corrosive stream of Daemonic vomit spews into " + string(j1) + ".  ";
 	}
 	if (_hostile_weapon = "Maulerfiend Claws") {
 		flavor = 1;
-		if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " Maulerfiends advance, wrenching and smashing their claws into " + string(j1) + ".  ";
-		if (_hostile_shots = 1) then m1 = "A Maulerfiend advances, wrenching and smashing its claws into " + string(j1) + ".  ";
+		if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " Maulerfiends advance, wrenching and smashing their claws into " + string(j1) + ".  ";
+		if (_hostile_shots = 1) then _enemy_attack_text = "A Maulerfiend advances, wrenching and smashing its claws into " + string(j1) + ".  ";
 	}
 
 	if (hostile_range > 1) {
 		if (_hostile_weapon = "Big Shoota") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and blast away at " + string(j1) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and blast away at " + string(j1) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Dakkagun") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z scream and rattle, blasting into " + string(j2) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z scream and rattle, blasting into " + string(j2) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Deffgun") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z scream and rattle, blasting into " + string(j2) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z scream and rattle, blasting into " + string(j2) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Snazzgun") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z scream and rattle, blasting into " + string(j2) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z scream and rattle, blasting into " + string(j2) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Grot Blasta") {
-			m1 = "The Gretchin fire their shoddy weapons and club at your " + string(j3) + ".  ";
+			_enemy_attack_text = "The Gretchin fire their shoddy weapons and club at your " + string(j3) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Kannon") {
 			flavor = 1;
-			if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z belch out large caliber shells.  ";
-			if (_hostile_shots = 1) then m1 = "A " + string(_hostile_weapon) + "z belches out a large caliber shell.  ";
+			if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z belch out large caliber shells.  ";
+			if (_hostile_shots = 1) then _enemy_attack_text = "A " + string(_hostile_weapon) + "z belches out a large caliber shell.  ";
 		}
 		if (_hostile_weapon = "Shoota") {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 3, 4);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z fire away at " + string(j3) + ".  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spit lead at " + string(j3) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z blast at " + string(j3) + ".  ";
-			if (ranz = 4) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and fire at " + string(j3) + ".  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z fire away at " + string(j3) + ".  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spit lead at " + string(j3) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z blast at " + string(j3) + ".  ";
+			if (ranz = 4) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and fire at " + string(j3) + ".  ";
 		}
 		if (_hostile_weapon = "Burna") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spray napalm into " + string(j3) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spray napalm into " + string(j3) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Skorcha") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spray huge gouts of napalm into " + string(j3) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spray huge gouts of napalm into " + string(j3) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Rokkit Launcha") {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 2, 3, 3);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " rokkitz shoot at " + string(j4) + ", the explosions disrupting.  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " rokkitz scream upward and then fall upon " + string(j4) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and fire their payloads.  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " rokkitz shoot at " + string(j4) + ", the explosions disrupting.  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " rokkitz scream upward and then fall upon " + string(j4) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and fire their payloads.  ";
 		}
 
 		if (_hostile_weapon = "Staff of Light Shooting") and(_hostile_shots = 1) {
-			m1 = "A Staff of Light crackles with energy and fires upon " + string(j1) + ".  ";
+			_enemy_attack_text = "A Staff of Light crackles with energy and fires upon " + string(j1) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Staff of Light Shooting") and(_hostile_shots > 1) {
-			m1 = string(_hostile_shots) + " Staves of Light crackle with energy and fire upon " + string(j1) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " Staves of Light crackle with energy and fire upon " + string(j1) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Gauss Flayer") or(_hostile_weapon = "Gauss Blaster") or(_hostile_weapon = "Gauss Flayer Array") {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 3, 4);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s shoot at " + string(j3) + ".  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s crackle and fire at " + string(j3) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s discharge upon " + string(j3) + ".  ";
-			if (ranz = 4) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s spew green energy at " + string(j3) + ".  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s shoot at " + string(j3) + ".  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s crackle and fire at " + string(j3) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s discharge upon " + string(j3) + ".  ";
+			if (ranz = 4) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s spew green energy at " + string(j3) + ".  ";
 		}
 		if (_hostile_weapon = "Gauss Cannon") or(_hostile_weapon = "Overcharged Gauss Cannon") or(_hostile_weapon = "Gauss Flux Arc") {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 3);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s charge and then blast at " + string(j3) + ".  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s crackle with a sick amount of energy before firing at " + string(j3) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s pulse with energy and then discharge upon " + string(j3) + ".  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s charge and then blast at " + string(j3) + ".  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s crackle with a sick amount of energy before firing at " + string(j3) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s pulse with energy and then discharge upon " + string(j3) + ".  ";
 		}
 		if (_hostile_weapon = "Gauss Particle Cannon") {
 			flavor = 1;
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "s shine a sick green, pulsing with energy, and then blast solid beams of energy into " + string(j3) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "s shine a sick green, pulsing with energy, and then blast solid beams of energy into " + string(j3) + ".  ";
 		}
 		if (_hostile_weapon = "Particle Whip") {
 			flavor = 1;
-			if (_hostile_shots = 1) then m1 = "The apex of the Monolith pulses with energy.  An instant layer it fires, the solid beam of energy crashing into " + string(j3) + ".  ";
-			if (_hostile_shots > 1) then m1 = "The apex of " + string(_hostile_shots) + " Monoliths pulse with energy.  An instant later they fire, the solid beams of energy crashing into " + string(j3) + ".  ";
+			if (_hostile_shots = 1) then _enemy_attack_text = "The apex of the Monolith pulses with energy.  An instant layer it fires, the solid beam of energy crashing into " + string(j3) + ".  ";
+			if (_hostile_shots > 1) then _enemy_attack_text = "The apex of " + string(_hostile_shots) + " Monoliths pulse with energy.  An instant later they fire, the solid beams of energy crashing into " + string(j3) + ".  ";
 		}
 		if (_hostile_weapon = "Doomsday Cannon") {
 			flavor = 1;
-			if (_hostile_shots = 1) then m1 = "A Doomsday Arc crackles with energy and then fires.  The resulting blast is blinding in intensity, the ground shaking before its might.  ";
-			if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " Doomsday Arcs crackle with energy and then fire.  The resulting blasts are blinding in intensity, the ground shaking.  ";
+			if (_hostile_shots = 1) then _enemy_attack_text = "A Doomsday Arc crackles with energy and then fires.  The resulting blast is blinding in intensity, the ground shaking before its might.  ";
+			if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " Doomsday Arcs crackle with energy and then fire.  The resulting blasts are blinding in intensity, the ground shaking.  ";
 		}
 
 		if (_hostile_weapon = "Eldritch Fire") {
 			flavor = 1;
-			if (_hostile_shots = 1) then m1 = "A Pink Horror spits out a globlet of bright energy.  The bolt smashes into " + string(j3) + ".  ";
-			if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " Pink Horrors spit and throw bolts of warp energy into " + string(j3) + ".  ";
+			if (_hostile_shots = 1) then _enemy_attack_text = "A Pink Horror spits out a globlet of bright energy.  The bolt smashes into " + string(j3) + ".  ";
+			if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " Pink Horrors spit and throw bolts of warp energy into " + string(j3) + ".  ";
 		}
 	}
 
 	if (_hostile_shots > 0) {
 		if (_hostile_weapon = "Choppa") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z cleave into " + string(j2) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z cleave into " + string(j2) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Power Klaw") {
-			m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z rip and tear at " + string(j4) + ".  ";
+			_enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z rip and tear at " + string(j4) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Venom Claws") {
-			if (_hostile_shots > 1) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + " rake at " + string(j4) + ".  ";
+			if (_hostile_shots > 1) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + " rake at " + string(j4) + ".  ";
 			flavor = 1;
-			if (_hostile_shots = 1) then m1 = "The Spyrer rakes at " + string(j4) + " with his " + string(_hostile_weapon) + ".  ";
+			if (_hostile_shots = 1) then _enemy_attack_text = "The Spyrer rakes at " + string(j4) + " with his " + string(_hostile_weapon) + ".  ";
 			flavor = 1;
 		}
 		if (_hostile_weapon = "Slugga") {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 3, 4);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z fire away at " + string(j3) + ".  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spit lead at " + string(j3) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z blast at " + string(j3) + ".  ";
-			if (ranz = 4) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and fire at " + string(j3) + ".  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z fire away at " + string(j3) + ".  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z spit lead at " + string(j3) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z blast at " + string(j3) + ".  ";
+			if (ranz = 4) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z roar and fire at " + string(j3) + ".  ";
 		}
 		if (_hostile_weapon = "Tankbusta Bomb") {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 3);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z are attached to " + string(j5) + ".  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z are clamped onto " + string(j5) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " " + string(_hostile_weapon) + "z are flung into " + string(j2) + ".  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z are attached to " + string(j5) + ".  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z are clamped onto " + string(j5) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " " + string(_hostile_weapon) + "z are flung into " + string(j2) + ".  ";
 		}
 		if (_hostile_weapon = "Melee1") and(enemy = 7) {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 3);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " Orks club and smash at " + string(j3) + ".  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " Orks shoot their Slugas and smash gunbarrels into " + string(j2) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " Orks claw and punch at " + string(j3) + ".  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " Orks club and smash at " + string(j3) + ".  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " Orks shoot their Slugas and smash gunbarrels into " + string(j2) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " Orks claw and punch at " + string(j3) + ".  ";
 		}
 
 		if (_hostile_weapon = "Staff of Light") {
@@ -235,67 +234,60 @@ function scr_flavor2(lost_units_count, target_type, hostile_range, hostile_weapo
 			if (_hostile_shots = 1) {
 				var ranz;
 				ranz = choose(1, 2, 3);
-				if (ranz = 1) then m1 = "A " + string(_hostile_weapon) + " crackles and is swung into " + string(j3) + ".  ";
-				if (ranz = 2) then m1 = "A " + string(_hostile_weapon) + " pulses and smashes through " + string(j3) + ".  ";
-				if (ranz = 3) then m1 = "A " + string(_hostile_weapon) + " crackles and smashes into " + string(j3) + ".  ";
+				if (ranz = 1) then _enemy_attack_text = "A " + string(_hostile_weapon) + " crackles and is swung into " + string(j3) + ".  ";
+				if (ranz = 2) then _enemy_attack_text = "A " + string(_hostile_weapon) + " pulses and smashes through " + string(j3) + ".  ";
+				if (ranz = 3) then _enemy_attack_text = "A " + string(_hostile_weapon) + " crackles and smashes into " + string(j3) + ".  ";
 			}
 			if (_hostile_shots > 1) {
 				var ranz;
 				ranz = choose(1, 2, 3);
-				if (ranz = 1) then m1 = string(_hostile_shots) + " Staves of Light strike at " + string(j3) + ".  ";
-				if (ranz = 2) then m1 = string(_hostile_shots) + " Staves of Light smash at " + string(j3) + ".  ";
-				if (ranz = 3) then m1 = string(_hostile_shots) + " Staves of Light swing into " + string(j3) + ".  ";
+				if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " Staves of Light strike at " + string(j3) + ".  ";
+				if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " Staves of Light smash at " + string(j3) + ".  ";
+				if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " Staves of Light swing into " + string(j3) + ".  ";
 			}
 		}
 		if (_hostile_weapon = "Warscythe") {
 			flavor = 1;
 			var ranz;
 			ranz = choose(1, 2, 3);
-			if (ranz = 1) then m1 = string(_hostile_shots) + " Warscythes strike at " + string(j3) + ".  ";
-			if (ranz = 2) then m1 = string(_hostile_shots) + " Warscythes of Light slice into " + string(j3) + ".  ";
-			if (ranz = 3) then m1 = string(_hostile_shots) + " Warscythes of Light hew " + string(j3) + ".  ";
+			if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " Warscythes strike at " + string(j3) + ".  ";
+			if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " Warscythes of Light slice into " + string(j3) + ".  ";
+			if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " Warscythes of Light hew " + string(j3) + ".  ";
 		}
 		if (_hostile_weapon = "Claws") {
 			flavor = 1;
 			if (_hostile_shots = 1) {
 				var ranz;
 				ranz = choose(1, 2, 3);
-				if (ranz = 1) then m1 = "A massive claw slices through " + string(j3) + ".  ";
-				if (ranz = 2) then m1 = "A razor-sharp claw slashes into " + string(j3) + ".  ";
-				if (ranz = 3) then m1 = "A large necron claw strikes at " + string(j3) + ".  ";
+				if (ranz = 1) then _enemy_attack_text = "A massive claw slices through " + string(j3) + ".  ";
+				if (ranz = 2) then _enemy_attack_text = "A razor-sharp claw slashes into " + string(j3) + ".  ";
+				if (ranz = 3) then _enemy_attack_text = "A large necron claw strikes at " + string(j3) + ".  ";
 			}
 			if (_hostile_shots > 1) {
 				var ranz;
 				ranz = choose(1, 2, 3);
-				if (ranz = 1) then m1 = string(_hostile_shots) + " massive claws strike and slice at " + string(j3) + ".  ";
-				if (ranz = 2) then m1 = string(_hostile_shots) + " razor-sharp claws assault " + string(j3) + ".  ";
-				if (ranz = 3) then m1 = string(_hostile_shots) + " large necron claws strike at and shred " + string(j3) + ".  ";
+				if (ranz = 1) then _enemy_attack_text = string(_hostile_shots) + " massive claws strike and slice at " + string(j3) + ".  ";
+				if (ranz = 2) then _enemy_attack_text = string(_hostile_shots) + " razor-sharp claws assault " + string(j3) + ".  ";
+				if (ranz = 3) then _enemy_attack_text = string(_hostile_shots) + " large necron claws strike at and shred " + string(j3) + ".  ";
 			}
 		}
 	}
 
 	if (flavor == 0) {
 		flavor = true;
-		show_debug_message(_target_type);
-		show_debug_message(lost_units_count);
 		if (_hostile_shots == 1) {
-			m1 += $"{_hostile_weapon} strikes at {_target_type}";
+			_enemy_attack_text += $"{_hostile_weapon} strikes at {_target_type}...";
 		} else {
-			m1 += $"{_hostile_shots} {_hostile_weapon}s strike at {_target_type}";
-		}
-		if (lost_units_count == 0) {
-			m1 += $", but fails to inflict any casualties.";
-		} else {
-			m1 += $". ";
+			_enemy_attack_text += $"{_hostile_shots} {string_plural(_hostile_weapon)} strike at {_target_type}...";
 		}
 	}
 
 	// show_message(mes);
 
-	// m2="Blah blah blah";
+	// _units_lost_text="Blah blah blah";
 
 	if (target_type == "wall") {
-		mes = m1 + m2 + m3;
+		mes = _enemy_attack_text + _units_lost_text;
 
 		if (string_length(mes) > 3) {
 			obj_ncombat.messages += 1;
@@ -315,106 +307,135 @@ function scr_flavor2(lost_units_count, target_type, hostile_range, hostile_weapo
 			}
 		}
 		exit;
-	}
+	} else if (lost_units_count > 0) {
+		var lost_roles_count = array_length(lost);
+		var marine_length = array_length(marine_type);
+		var s, him, special, unit, unit_role, units_lost;
+		_units_lost_text = $"...";
+		for (var role_index = 0; role_index < lost_roles_count; role_index++) {
+			unit_role = lost[role_index];
+			units_lost = lost_num[role_index];
+			if (unit_role != "" && units_lost > 0) {
+				special = (
+					is_specialist(unit_role, "heads") ||
+					unit_role == "Chapter Master" ||
+					unit_role == "Venerable " + string(obj_ini.role[100][6]) ||
+					unit_role == obj_ini.role[100][5] ||
+					obj_ncombat.player_max <= 6
+				);
+	
+				if (!special) {
+					var _unit_role_formatted = units_lost > 1 ? string_plural(unit_role) : unit_role;
+					_units_lost_text += $"{units_lost} {_unit_role_formatted}, ";
+				} else {
+					him = -1; // Find which unit this is
+					for (var marine = 0; marine < marine_length; marine++) {
+						if (marine_type[marine] == unit_role && marine_hp[marine] <= 0) {
+							him = marine;
+							break; // found the unit
+						}
+					}
+	
+					if (him != -1) { // found a valid unit
+						obj_ncombat.dead_jims += 1;
+						if (marine_type[him] == obj_ini.role[100][5]) {
+							obj_ncombat.dead_jim[obj_ncombat.dead_jims] = $"A {marine_type[him]} has been critically injured!";
+						} else {
+							obj_ncombat.dead_jim[obj_ncombat.dead_jims] = $"{unit_struct[him].name_role()} has been critically injured!";
+						}
+					}
+				}
+			}
+		}
 
-	var marine_length = array_length(marine_type);
-	var s, him, special, unit, unit_role, units_lost, plural;
-    var lost_roles_count = array_length(lost);
-    for (var role_index = 0; role_index < lost_roles_count; role_index++) {
-        unit_role = lost[role_index];
-        units_lost = lost_num[role_index];
-        if (unit_role != "" && units_lost > 0) {
-            special = (
-                is_specialist(unit_role, "heads") ||
-                unit_role == "Chapter Master" ||
-                unit_role == "Venerable " + string(obj_ini.role[100][6]) ||
-                unit_role == obj_ini.role[100][5] ||
-                obj_ncombat.player_max <= 6
-            );
+		var unce = 0;
+		if (string_count(", ", _units_lost_text) > 1) {
 
-            if (!special) {
-                plural = units_lost > 1 ? "s" : "";
-                m2 += $"{units_lost} {unit_role}{plural}, ";
-            } else {
-                him = -1; // Find which unit this is
-                for (var marine = 0; marine < marine_length; marine++) {
-                    if (marine_type[marine] == unit_role && marine_hp[marine] <= 0) {
-                        him = marine;
-                        break; // found the unit
-                    }
-                }
-
-                if (him != -1) { // found a valid unit
-                    obj_ncombat.dead_jims += 1;
-                    if (marine_type[him] == obj_ini.role[100][5]) {
-                        obj_ncombat.dead_jim[obj_ncombat.dead_jims] = $"A {marine_type[him]} has been critically injured!";
-                    } else {
-                        obj_ncombat.dead_jim[obj_ncombat.dead_jims] = $"{unit_struct[him].name_role()} has been critically injured!";
-                    }
-                }
-            }
-        }
-    }
-
-
-	var unce = 0;
-
-	if (string_count(", ", m2) > 1) {
-
-		// show_message(m2);
-
-		var lis, y1, y2;
-		lis = string_rpos(", ", m2);
-		m2 = string_delete(m2, lis, 3); // This clears the last ', ' and replaces it with the end statement
-		if (lost_units_count > 1) then m2 += " have been lost.";
-
-		// show_message(m2);
-
-		lis = string_rpos(", ", m2); // Find the new last ', ' and replace it with the and part
-		m2 = string_delete(m2, lis, 2);
-
-		// show_message(m2);
-
-		if (string_count(",", m2) > 1) then m2 = string_insert(", and ", m2, lis);
-		if (string_count(",", m2) = 0) then m2 = string_insert(" and ", m2, lis);
-
-		// show_message(m2);
-
-		unce = 1;
-	}
-
-	if (string_count(", ", m2) = 1) and(unce = 0) and(hostile_weapon != "Web Spinner") {
-		var lis, y1, y2;
-		lis = string_rpos(", ", m2);
-		m2 = string_delete(m2, lis, 3);
-		if (lost_units_count > 1) then m2 += " have been lost.";
-		if (lost_units_count = 1) then m2 += " has been lost.";
-	}
-	if (string_count(", ", m2) = 1) and(unce = 0) and(hostile_weapon = "Web Spinner") {
-		var lis, y1, y2;
-		lis = string_rpos(", ", m2);
-		m2 = string_delete(m2, lis, 3);
-		if (lost_units_count > 1) then m2 += " have been incapacitated.";
-		if (lost_units_count = 1) then m2 += " has been incapacitated.";
+			// show_message(_units_lost_text);
+	
+			var lis, y1, y2;
+			lis = string_rpos(", ", _units_lost_text);
+			_units_lost_text = string_delete(_units_lost_text, lis, 3); // This clears the last ', ' and replaces it with the end statement
+			if (lost_units_count > 1) then _units_lost_text += " have been lost.";
+	
+			// show_message(_units_lost_text);
+	
+			lis = string_rpos(", ", _units_lost_text); // Find the new last ', ' and replace it with the and part
+			_units_lost_text = string_delete(_units_lost_text, lis, 2);
+	
+			// show_message(_units_lost_text);
+	
+			if (string_count(",", _units_lost_text) > 1) then _units_lost_text = string_insert(", and ", _units_lost_text, lis);
+			if (string_count(",", _units_lost_text) = 0) then _units_lost_text = string_insert(" and ", _units_lost_text, lis);
+	
+			// show_message(_units_lost_text);
+	
+			unce = 1;
+		}
+	
+		if (string_count(", ", _units_lost_text) = 1) and(unce = 0) and(hostile_weapon != "Web Spinner") {
+			var lis, y1, y2;
+			lis = string_rpos(", ", _units_lost_text);
+			_units_lost_text = string_delete(_units_lost_text, lis, 3);
+			if (lost_units_count > 1) then _units_lost_text += " have been lost.";
+			if (lost_units_count = 1) then _units_lost_text += " has been lost.";
+		}
+		if (string_count(", ", _units_lost_text) = 1) and(unce = 0) and(hostile_weapon = "Web Spinner") {
+			var lis, y1, y2;
+			lis = string_rpos(", ", _units_lost_text);
+			_units_lost_text = string_delete(_units_lost_text, lis, 3);
+			if (lost_units_count > 1) then _units_lost_text += " have been incapacitated.";
+			if (lost_units_count = 1) then _units_lost_text += " has been incapacitated.";
+		}
+	} else {
+		var ir = irandom(8);
+		switch (ir) {
+			case 0:
+				_units_lost_text = "... no damage was inflicted.";
+				break;
+			case 1:
+				_units_lost_text = "...the attack's impact was negligible.";
+				break;
+			case 2:
+				_units_lost_text = "...attack left no mark on the target.";
+				break;
+			case 3:
+				_units_lost_text = "...enemy's efforts were in vain.";
+				break;
+			case 4:
+				_units_lost_text = "...yet defences held firm.";
+				break;
+			case 5:
+				_units_lost_text = "... but didn't manage to damage its target.";
+				break;
+			case 6:
+				_units_lost_text = "...the target appears unscratched.";
+				break;
+			case 7:
+				_units_lost_text = "...no damage was inflicted in the fray.";
+				break;
+			case 8:
+				_units_lost_text = "...the attack yielded no damage.";
+				break;
+		}
 	}
 
 	// show_message(mes);
 
-	if (string_length(m1) > 0) {
+	if (string_length(_enemy_attack_text) > 0) {
 		obj_ncombat.messages += 1;
-		obj_ncombat.message[obj_ncombat.messages] = m1;
-		obj_ncombat.message_sz[obj_ncombat.messages] = lost_units_count + (0.5 - (obj_ncombat.messages / 100));
+		obj_ncombat.message[obj_ncombat.messages] = _enemy_attack_text + _units_lost_text + "unit_lost_text";
+		obj_ncombat.message_sz[obj_ncombat.messages] = 2500;
 		obj_ncombat.message_priority[obj_ncombat.messages] = 0;
 		obj_ncombat.alarm[3] = 2;
 	}
 
-	mes = m2 + m3;
-	if (string_length(mes)) {
-		obj_ncombat.messages += 1;
-		obj_ncombat.message[obj_ncombat.messages] = mes;
-		obj_ncombat.message_sz[obj_ncombat.messages] = lost_units_count + (0.5 - (obj_ncombat.messages / 100));
-		obj_ncombat.message_priority[obj_ncombat.messages] = 0;
-		obj_ncombat.alarm[3] = 2;
-	}
+	// if (string_length(_units_lost_text) > 0) {
+	// 	obj_ncombat.messages += 1;
+	// 	obj_ncombat.message[obj_ncombat.messages] = _units_lost_text + "unit_lost_text";
+	// 	obj_ncombat.message_sz[obj_ncombat.messages] = 2500;
+	// 	obj_ncombat.message_priority[obj_ncombat.messages] = 0;
+	// 	obj_ncombat.alarm[3] = 2;
+	// }
 
 }

@@ -40,11 +40,11 @@ repeat(45){l+=1;
     // draw_text(x+6,y-10+(l*14),"."+string(lines[31-l]));
     draw_set_color(38144);
     if (lines_color[l]="red") then draw_set_color(255);
-    if (lines_color[l]="yellow") then draw_set_color(3055825);
-    if (lines_color[l]="purple") then draw_set_color(c_purple);
-    if (lines_color[l]="bright") then draw_set_color(65280);
-    if (lines_color[l]="white") then draw_set_color(c_silver);
-    if (lines_color[l]="blue"){
+    else if (lines_color[l]="yellow") then draw_set_color(3055825);
+    else if (lines_color[l]="purple") then draw_set_color(c_purple);
+    else if (lines_color[l]="bright") then draw_set_color(65280);
+    else if (lines_color[l]="white") then draw_set_color(c_silver);
+    else if (lines_color[l]="blue"){
         var yep;yep=false;
         if (scr_has_adv("Daemon Binders")){
             yep=true;
@@ -52,8 +52,10 @@ repeat(45){l+=1;
        // if (yep=false) then draw_set_color(16711680); 
         if (yep=false) then draw_set_color(16646566); // making non daemon binders have the same colour, to see the text easier
         if (yep=true) then draw_set_color(16646566);
+    } else if (lines_color[l] != "") {
+        draw_set_color(lines_color[l]);
     }
-    draw_text(x+6,y-10+(l*18),string_hash_to_newline(string(lines[l])));
+    draw_text_ext(x+6, y-10+(l*18)+string_height_ext(lines[l], 4, 790), string(lines[l]), 4, 795);
 }
 
 draw_set_color(38144);

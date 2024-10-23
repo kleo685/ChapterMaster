@@ -20,7 +20,6 @@ i+=1;if (message[i]!="") then show_message(message[i]);
 i+=1;if (message[i]!="") then show_message(message[i]);*/
 
 
-
 repeat(100){
     if (good=0){
         changed=0;i=0;
@@ -78,40 +77,54 @@ repeat(100){
 }
 
 
+if ((messages > 0) and (messages_shown < messages_to_show)) {
+    show_debug_message("Message Received!");
+    var that_sz, that; // show_message("Largest Message");
+    that_sz = 0;
+    that = 0;
 
-
-if ((messages>0) and (messages_shown<8)) and (messages_shown<=100){
-    var that_sz,that;// show_message("Largest Message");
-    that_sz=0;that=0;
-    
-    i=0;repeat(60){
-        i+=1;
-        if (message[i]!="") and (message_sz[i]>that_sz){
-            that_sz=message_sz[i];that=i;
+    var i = 0;
+    repeat(100) {
+        i += 1;
+        if (message[i] != "") and(message_sz[i] > that_sz) {
+            that_sz = message_sz[i];
+            that = i;
         }
     }
-    if (that!=0) and (that_sz>0){
-        newline=message[that];
-        if (message_priority[that]>0) then newline_color="bright";
-        if (string_count(" casts '",newline)>0) then newline_color="blue";
-        if (string_count("Perils of the Warp!",newline)>0) then newline_color="red";
-        if (string_count("^",newline)>0){
-            newline=string_replace(newline,"^","");
-            newline_color="white";
+
+    if (that != 0) and(that_sz > 0) {
+        newline = message[that];
+
+        if (newline_color == "") {
+            if (string_count(" casts '", newline) > 0) then newline_color = "blue";
+            if (string_count("Perils of the Warp!", newline) > 0) then newline_color = "red";
+            if (string_count("confers knowledge", newline) > 0) then newline_color = "purple";
+            if (string_count("^", newline) > 0) {
+                newline_color = "white";
+                newline = string_replace(newline, "^", "");
+            }
+            if (string_count("unit_lost_text", newline) > 0) {
+                if (string_count("been lost", newline) > 0) {
+                    newline_color = "red";
+                } else {
+                    newline_color = c_gray;
+                }
+                newline = string_replace(newline, "unit_lost_text", "");
+            }
+            if (message_priority[that] > 0) then newline_color = "bright";
+            if (message_priority[that] = 2.1) then newline_color = "purple";
+            if (message_priority[that] = 135) then newline_color = "blue";
+            if (message_priority[that] = 136) then newline_color = "blue";
         }
-        if (message_priority[that]=2.1) then newline_color="purple";
-        if (string_count("confers knowledge",newline)>0) then newline_color="purple";
-        
-        if (message_priority[that]=135) then newline_color="blue";
-        if (message_priority[that]=136) then newline_color="blue";
-        if (string_count("lost",newline)>0) then newline_color="red";
-        
         scr_newtext();
-        messages_shown+=1;
-        largest+=1;
-        message[that]="";message_sz[that]=0;message_priority[that]=0;messages-=1;
+        messages_shown += 1;
+        largest += 1;
+        message[that] = "";
+        message_sz[that] = 0;
+        message_priority[that] = 0;
+        messages -= 1;
     }
-    
+
     alarm[3]=2;
 }
 
@@ -122,9 +135,7 @@ if ((messages>0) and (messages_shown<8)) and (messages_shown<=100){
 
 
 
-if (messages=0) or (messages_shown>=8) then messages_shown=999;
-
-if (messages=0) then messages_shown=999;
+if (messages==0) or (messages_shown> messages_to_show) then messages_shown=999;
 
 /*var noloss;noloss=instance_nearest(50,300,obj_pnunit);
 if (!instance_exists(noloss)) then player_forces=0;
@@ -138,7 +149,7 @@ if (instance_exists(obj_pnunit)){
 if (!instance_exists(obj_pnunit)) then player_forces=0;
 
 
-if ((messages_shown=999) or (messages=0)) and (timer_stage=2){
+if ((messages_shown=999) or (messages=0)){
     newline_color="yellow";
     if (obj_ncombat.enemy!=6){
         if (enemy_forces>0) and (obj_ncombat.enemy!=30) then newline="Enemy Forces at "+string(max(1,round((enemy_forces/enemy_max)*100)))+"%";

@@ -16,7 +16,7 @@ instance_activate_object(obj_centerline);
 instance_activate_object(obj_cursor);
 
 
-if ((fugg>=60) or (fugg2>=60)) and (messages_shown=0) and (messages_to_show=8) and (defeat_message=0){
+if ((fugg>=60) or (fugg2>=60)) and (messages_shown=0) and (messages_to_show=100) and (defeat_message=0){
     fugg=0;fugg2=0;
     if ((messages_shown=999) or (messages=0)) and (timer_stage=2){
         newline_color="yellow";

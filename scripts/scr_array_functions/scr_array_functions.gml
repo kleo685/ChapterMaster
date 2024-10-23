@@ -65,7 +65,7 @@ function array_combine_strings(arr) {
     for (var j = 0; j < _array_length; j++) {
         var item = uniqueItems[j];
         if (itemCounts[j] > 1) {
-            item += "s";
+            item = string_plural(item);
         }
 
 		if (_array_length > 1) {

@@ -113,7 +113,7 @@ if (timer_stage=1) or (timer_stage=5){
             obj_pnunit.alarm[1]=1;
         }
     }
-    messages=0;messages_to_show=8;largest=0;random_messages=0;priority=0;messages_shown=0;
+    messages=0;messages_to_show=100;largest=0;random_messages=0;priority=0;messages_shown=0;
     reset_combat_message_arrays();
     timer_stage=2;timer=0;done=0;messages_shown=0;    
 }
@@ -134,7 +134,7 @@ else if (timer_stage=3){
             obj_enunit.alarm[8]=4;
             turns+=1;
         }
-        var messages=0;messages_to_show=8;largest=0;random_messages=0;priority=0;messages_shown=0;
+        var messages=0;messages_to_show=100;largest=0;random_messages=0;priority=0;messages_shown=0;
         reset_combat_message_arrays();
         timer_stage=4;timer=0;done=0;messages_shown=0;
     }
@@ -149,7 +149,7 @@ else if (timer_stage=3){
             obj_enunit.alarm[1]=1;
         }
         // alarm[9]=5;
-        var i;i=0;messages=0;messages_to_show=8;largest=0;random_messages=0;priority=0;messages_shown=0;
+        var i;i=0;messages=0;messages_to_show=100;largest=0;random_messages=0;priority=0;messages_shown=0;
         reset_combat_message_arrays();
         timer_stage=4;timer=0;done=0;messages_shown=0;
     }
