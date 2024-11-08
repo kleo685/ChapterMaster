@@ -4,7 +4,7 @@ function screen_fade_in() {
     show_debug_message("Fading-in switched ON! 1");
 }
 
-function screen_fade_out(cycle_end_function = undefined, cycle_end_function_args = []) {
+function screen_fade_transition(cycle_end_function = undefined, cycle_end_function_args = []) {
     instance_create_depth(0, 0, -9999, obj_screen_fade)
     obj_screen_fade.fading_out = true;
     obj_screen_fade.cycle_end_function = cycle_end_function;

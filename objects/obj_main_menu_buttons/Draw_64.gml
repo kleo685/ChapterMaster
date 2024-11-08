@@ -36,7 +36,7 @@ if (room_get_name(room)="Creation"){
         }
         if (scr_click_left()) {
             button=1;
-            screen_fade_out(room_goto, [Main_Menu]);
+            screen_fade_transition(room_goto, [Main_Menu]);
         }
     } else {
         if (hover[0]>0){
@@ -94,7 +94,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
                         ini_close();
                         button=1;
 
-                        screen_fade_out(room_goto, [Creation]);
+                        screen_fade_transition(room_goto, [Creation]);
 
                         // else {
                         //     var pop;
@@ -116,7 +116,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
                         instance_create(0,0,obj_ingame_menu);         
                         break;
                     case 3:
-                        screen_fade_out(game_end);
+                        screen_fade_transition(game_end);
                         break;                        
                 }
             }
