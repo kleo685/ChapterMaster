@@ -3,6 +3,11 @@
 /// @returns {bool}
 function scr_hit(x1=0, y1=0, x2=0, y2=0) {
 	var mouse_consts = return_mouse_consts();
+
+	if (obj_ui_controller.interact_forbid) {
+		return false;
+	}
+
 	if (is_array(x1)){
 		return point_in_rectangle(mouse_consts[0],mouse_consts[1],x1[0],x1[1],x1[2],x1[3]);
 	} else {
@@ -25,11 +30,13 @@ function point_and_click(rect){
 		return false;
 	}
 
-	if (point_in_rectangle(mouse_consts[0], mouse_consts[1], rect[0], rect[1],rect[2], rect[3])){
-		click_check = event_number==ev_gui ? device_mouse_check_button_pressed(0,mb_left) : mouse_check_button_pressed(mb_left);
-		if (controller_exist && click_check) {
-			obj_controller.cooldown = 8000;
-		}
+	if (obj_ui_controller.interact_forbid) {
+		return false;
+	}
+
+	var click_check = point_in_rectangle(mouse_consts[0], mouse_consts[1], rect[0], rect[1],rect[2], rect[3]);
+	if (controller_exist && click_check) {
+		obj_controller.cooldown = 8000;
 	}
 
 	return click_check;
