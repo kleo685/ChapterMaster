@@ -8,33 +8,60 @@ function set_fleet_target(targ_x, targ_y, final_target){
 	action_eta=floor(point_distance(x,y,targ_x,targ_y)/128)+1;
 }
 
-function scr_valid_fleet_target(){
-	var valid = instance_exists(target);
-	if (valid){
-		valid = (target.object_index == obj_p_fleet || target.object_index == obj_en_fleet);
-	}
-	if (!valid) then target=0;
-	return valid;
+function scr_valid_fleet_target(target) {
+    if (target == noone) {
+        return false;
+    }
+    if (is_string(target)) {
+        target = noone;
+        return false;
+    }
+    var valid = instance_exists(target);
+    if (valid) {
+        valid = (target.object_index == obj_p_fleet || target.object_index == obj_en_fleet);
+    }
+    return valid;
 }
 
-function fleets_next_location(fleet="none"){
-	var targ_location ="none";
-	if (fleet=="none"){
-		if (action!=""){
-	        var goal_x=action_x;
-	        var goal_y=action_y;
-	        targ_location=instance_nearest(goal_x,goal_y,obj_star);
-		} else {
-			targ_location=instance_nearest(x,y,obj_star);
-		}		
-	} else if (instance_exists(fleet)){
-		with (fleet){
-			targ_location = fleets_next_location();
-		}
-	}
-	return targ_location;
+function fleets_next_location(fleet = "none", visited = []) {
+    var targ_location = "none";
+
+    if (fleet == "none") {
+        fleet = self;
+    }
+
+    if (instance_exists(fleet)) {
+        // Add the current fleet's ID to the visited list to avoid rechecking it
+        array_push(visited, fleet.id);
+
+        // Check if the fleet has a 'target' variable
+        if (variable_instance_exists(fleet, "target")) {
+            // If the target is valid and not already in the visited list, proceed recursively
+            var fleet_target_valid = scr_valid_fleet_target(fleet.target);
+            if (!fleet_target_valid) {
+                fleet.target = 0;
+            }
+            if (fleet_target_valid && !array_contains(visited, fleet.target.id)) {
+                // Recursive call with the target and the updated visited list
+                targ_location = fleets_next_location(fleet.target, visited);
+            } else if (fleet.action != "") {
+                // If no valid target, use the fleet's action coordinates
+                targ_location = instance_nearest(fleet.action_x, fleet.action_y, obj_star);
+            } else {
+                // Default to nearest star to fleet's current position
+                targ_location = instance_nearest(fleet.x, fleet.y, obj_star);
+            }
+        }
+    }
+    // If targ_location was not set to anything else, default to the nearest star
+    if (targ_location == "none") {
+        targ_location = instance_nearest(fleet.x, fleet.y, obj_star);
+    }
+    return targ_location;
 }
-function chase_fleet_target_set(){
+
+
+function chase_fleet_target_set(target){
 	var targ_location = fleets_next_location(target);
 	if (targ_location!="none"){
 		action_x=targ_location.x;
@@ -150,10 +177,9 @@ function set_fleet_movement(fastest_route = true){
 function load_unit_to_fleet(fleet, unit){
 	var loaded = false;
 	var all_ships = fleet_full_ship_array(fleet);
-	var i, ship_ident;
 
-	for (i=0;i<array_length(all_ships);i++){
-		ship_ident = all_ships[i];
+	for (var i=0;i<array_length(all_ships);i++){
+		var ship_ident = all_ships[i];
 		  if (obj_ini.ship_capacity[ship_ident]>obj_ini.ship_carrying[ship_ident]){
 		  	obj_ini.ship_carrying[ship_ident]+=unit.size;
 		  	unit.planet_location=0;
@@ -183,28 +209,56 @@ function calculate_fleet_eta(xx,yy,xxx,yyy, fleet_speed,star1=true, star2=true,w
 	eta=floor(point_distance(xx,yy,xxx,yyy)/fleet_speed)+1;
 	if (!warp_lane) then eta*=2;
 	if (warp_lane && warp_able) then eta = ceil(eta/warp_lane);
+	if (!star2) then return eta;
+
+	//check end location for warp storm
 	if (instance_exists(star2)){
-		if (star2.storm){
-			eta += 10000;
+		if(star2.object_index == obj_star) {
+			if (star2.storm){
+				eta += 10000;
+			}
 		}
+
 	}
 	return eta;
 }
 
 
-
-
-function calculate_action_speed(capitals=true, frigates=true, escorts=true){
-	var fleet_speed=128;
-	if (capitals>0){
-	    fleet_speed=100;
-	} else if (frigates>0){
-	    fleet_speed=128;
-	}else if (escorts>0){
-	    fleet_speed=174;
+function calculate_action_speed(fleet="none", selected=false){
+	if (fleet=="none"){
+		var capitals=0,frigates=0,escorts=0,i;
+		var _is_player_fleet = object_index==obj_p_fleet;
+		if (_is_player_fleet){
+			if (!selected){
+				player_fleet_ship_count();
+				capitals=capital_number;
+				frigates=frigate_number;
+				escorts=escort_number;
+			} else{
+				//TODO extract to a fleet selected function
+				var types = selected_ship_types();
+				capitals=types[0];
+				frigates=types[1];
+				escorts=types[2];				
+			}
+		}
+		var fleet_speed=128;
+		if (capitals>0){
+		    fleet_speed=100;
+		} else if (frigates>0){
+		    fleet_speed=128;
+		}else if (escorts>0){
+		    fleet_speed=174;
+		}
+		if (_is_player_fleet){
+			if (obj_controller.stc_ships>=6) and (fleet_speed>=100) then fleet_speed*=1.2;
+		}
+		return fleet_speed;
+	} else {
+		with (fleet){
+			return calculate_action_speed(,selected);
+		}
 	}
-	if (obj_controller.stc_ships>=6) and (fleet_speed>=100) then fleet_speed*=0.8;
-	return fleet_speed;
 }
 
 function scr_efleet_arrive_at_trade_loc(){

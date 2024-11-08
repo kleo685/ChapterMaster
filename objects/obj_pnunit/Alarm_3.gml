@@ -1,16 +1,20 @@
 
 if (obj_ncombat.started=0){
-    if (men+dreads+veh=0) then instance_destroy();
+    if (men+dreads+veh<=0){
+        show_debug_message($"column destroyed {x}")
+        instance_destroy();
+    }
     // if (veh+dreads>0) then instance_destroy();
     obj_ncombat.player_forces+=self.men+self.veh+self.dreads;
     obj_ncombat.player_max+=self.men+self.veh+self.dreads;
     
     
-    if (men<=4) and (veh=0) and (dreads=0){// Squish leftt
+    //TODO centralise a method for moving units between columns
+    /*if (men<=4) and (veh=0) and (dreads=0){// Squish leftt
         var leftt=instance_nearest(x-12,y,obj_pnunit);
         
     
-    }
+    }*/
     
 }
 
@@ -19,7 +23,8 @@ if (obj_ncombat.red_thirst>=2) and (obj_ncombat.battle_over=0){
         var raar=0,miss="",r_lost=0;
         
         repeat(men+dreads){
-            raar+=1;r_roll=floor(random(1000))+1;
+            raar+=1;
+            r_roll=floor(random(1000))+1;
             if (obj_ncombat.player_forces<(obj_ncombat.player_max*0.75)) then r_roll-=8;
             if (obj_ncombat.player_forces<(obj_ncombat.player_max/2)) then r_roll-=10;
             if (obj_ncombat.player_forces<(obj_ncombat.player_max/4)) then r_roll-=24;
@@ -51,7 +56,7 @@ if (obj_ncombat.red_thirst>=2) and (obj_ncombat.battle_over=0){
             miss=string_replace(miss,", "," and ");
         }
         if (string_count(", ",miss)>1){
-            var woo;woo=string_rpos(", ",miss);
+            var woo=string_rpos(", ",miss);
             
             miss=string_delete(miss,woo-1,3);
             if (r_lost>=3) then miss=string_insert(", and ",miss,woo-1);
@@ -64,7 +69,11 @@ if (obj_ncombat.red_thirst>=2) and (obj_ncombat.battle_over=0){
         
         if (r_lost>0){
             obj_ncombat.newline=miss;
-            obj_ncombat.newline_color="red";obj_ncombat.timer_pause=2;with(obj_ncombat){scr_newtext();}
+            obj_ncombat.newline_color="red";
+            obj_ncombat.timer_pause=2;
+            with(obj_ncombat){
+                scr_newtext();
+            }
         }
     }
 }
@@ -94,7 +103,8 @@ if (instance_exists(obj_enunit)){
             
             
             if (norun=0){
-                x-=10;engaged=0;
+                x-=10;
+                engaged=0;
             }
         
         }

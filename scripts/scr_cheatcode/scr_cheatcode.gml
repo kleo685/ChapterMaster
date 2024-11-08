@@ -64,11 +64,12 @@ function scr_cheatcode(argument0) {
 					scr_add_item(name, quantity, quality);
 					break;
 				case "artifact":
-					// Check if the second argument is not provided or is "1"
 					if (cheat_arguments[0] == "1") {
 						scr_add_artifact("random", "", 6, obj_ini.ship[1], 501);
 					} else {
-						scr_add_artifact(cheat_arguments[0], "", 6, obj_ini.ship[1], 501);
+						repeat(real(cheat_arguments[1])){
+							scr_add_artifact(cheat_arguments[0], "", 6, obj_ini.ship[1], 501);
+						}
 					}
 					break;
 				case "sisterhospitaler":
@@ -116,7 +117,7 @@ function scr_cheatcode(argument0) {
 					break;
 				case "govmission":
 					with (obj_star) {
-						for (i = 1; i <= planets; i++) {
+						for (var i = 1; i <= planets; i++) {
 							var existing_problem = false; //has_any_problem_planet(i);
 							if (!existing_problem) {
 								if (p_owner[i] == eFACTION.Imperium) {
@@ -129,14 +130,14 @@ function scr_cheatcode(argument0) {
 					break;
 				case "artifactpopulate":
 					with (obj_star) {
-						for (i = 1; i <= planets; i++) {
+						for (var i = 1; i <= planets; i++) {
 							array_push(p_feature[i], new NewPlanetFeature(P_features.Artifact));
 						}
 					}
 					break;
 				case "ruinspopulate":
 					with (obj_star) {
-						for (i = 1; i <= planets; i++) {
+						for (var i = 1; i <= planets; i++) {
 							array_push(p_feature[i], new NewPlanetFeature(P_features.Ancient_Ruins));
 						}
 					}
@@ -282,9 +283,6 @@ function scr_cheatcode(argument0) {
 			}
 		}
 	} catch(_exception) {
-		log_into_file(_exception.longMessage);
-		log_into_file(_exception.script);
-		log_into_file(_exception.stacktrace);
 		show_debug_message(_exception.longMessage);
 	}
 }

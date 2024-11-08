@@ -6,7 +6,7 @@ function scr_save_controller(save_id){
     // Global variables
     ini_write_string("Save","chapter_name",global.chapter_name);
     ini_write_string("Save","sector_name",obj_ini.sector_name);
-    ini_write_string("Save","version",GM_version);
+    ini_write_string("Save","version",global.game_version);
     ini_write_real("Save","play_time",play_time);
     ini_write_real("Save","game_seed",global.game_seed);
     ini_write_real("Save","use_custom_icon",obj_ini.use_custom_icon);
@@ -196,7 +196,8 @@ function scr_save_controller(save_id){
     repeat(30){g+=1;
         ini_write_real("Controller","command"+string(g),obj_controller.command_set[g]);
     }
-    ini_write_real("Controller","blandify",obj_controller.blandify);
+    ini_write_real("Controller","modest_livery",obj_controller.modest_livery);
+    ini_write_real("Controller","progenitor_visuals",obj_controller.progenitor_visuals);
 
     ini_encode_and_json("Recruit", "data",{
     	names :obj_controller.recruit_name,

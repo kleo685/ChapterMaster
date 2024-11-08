@@ -295,7 +295,7 @@ function scr_random_event(execute_now) {
 		        evented = true;
 			}
 			catch(_exception){
-				show_debug_message("{0} \n hulk error",_exception);
+				handle_exception(_exception);
 			}
 		}
 	}
@@ -325,7 +325,7 @@ function scr_random_event(execute_now) {
 			unit.add_exp(10);
 		}
 		else {
-			unit.add_exp(max(20, unit.experience()));
+			unit.add_exp(max(20, unit.experience));
 		}
 		
 		scr_popup("Promotions!",text,"distinguished","");

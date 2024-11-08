@@ -28,7 +28,7 @@ function scr_save(save_part,save_id) {
 
 	    var num=instance_number(obj_star);
 	    instance_array=0;
-	    for (i=0; i<num; i+=1){
+	    for (var i=0; i<num; i+=1){
 	        instance_array[i] = instance_find(obj_star,i);
 	        // save crap here
 	        ini_write_string("Star","sr"+string(i)+"name",instance_array[i].name);
@@ -139,7 +139,7 @@ function scr_save(save_part,save_id) {
 	    // Temporary artifact objects
 	    ini_write_real("Controller","temp_arti",instance_number(obj_temp_arti));
 	    num=instance_number(obj_temp_arti);instance_array=0;
-	    for (i=0; i<num; i+=1){
+	    for (var i=0; i<num; i+=1){
 	        instance_array[i] = instance_find(obj_temp_arti,i);
 	        ini_write_real("Star","ar"+string(i)+"x",instance_array[i].x);
 	        ini_write_real("Star","ar"+string(i)+"y",instance_array[i].y);
@@ -149,7 +149,7 @@ function scr_save(save_part,save_id) {
 	    num=0;tot=0;num=instance_number(obj_p_fleet);
 	    instance_array[tot]=0;
 
-	    for (i=0; i<num; i+=1){
+	    for (var i=0; i<num; i+=1){
 	        instance_array[i] = instance_find(obj_p_fleet,i);
 
 	        ini_write_real("Fleet","pf"+string(i)+"image",instance_array[i].image_index);
@@ -199,7 +199,7 @@ function scr_save(save_part,save_id) {
 	    num=0;tot=0;num=instance_number(obj_en_fleet);
 	    instance_array[tot]=0;
 
-	    for (i=0; i<num; i+=1){
+	    for (var i=0; i<num; i+=1){
 	        instance_array[i] = instance_find(obj_en_fleet,i);
 	        ini_write_real("Fleet",$"ef{i}owner",instance_array[i].owner);
 	        ini_write_real("Fleet",$"ef{i}x",instance_array[i].x);
@@ -249,7 +249,17 @@ function scr_save(save_part,save_id) {
 	        }
 	    }
 
+		// Save chapter icon
+		ini_write_real("Ini", "global_chapter_icon_sprite", global.chapter_icon_sprite);
+		ini_write_real("Ini", "global_chapter_icon_frame", global.chapter_icon_frame);
+		ini_write_string("Ini", "global_chapter_icon_path", global.chapter_icon_path);
+		ini_write_real("Ini", "global_chapter_icon_filename", global.chapter_icon_filename);
+
+
+
+
 	    // obj_ini
+	    ini_encode_and_json("Ini", "full_liveries", obj_ini.full_liveries);
 	    ini_write_string("Ini","home_name",obj_ini.home_name);
 	    ini_write_string("Ini","home_type",obj_ini.home_type);
 	    ini_write_string("Ini","recruiting_name",obj_ini.recruiting_name);
@@ -263,18 +273,19 @@ function scr_save(save_part,save_id) {
 	    ini_write_string("Ini","strin1",obj_ini.strin);
 	    ini_write_string("Ini","strin2",obj_ini.strin2);
 	    ini_write_string("Ini","psy_powers",obj_ini.psy_powers);
-
-	    ini_write_real("Ini","companies",obj_ini.companies);
-	    var i;i=-1;repeat(21){i+=1;ini_write_string("Ini","comp_title"+string(i),obj_ini.company_title[i]);}
-	    var i;i=-1;repeat(121){i+=1;ini_write_real("Ini","slave_num_"+string(i),obj_ini.slave_batch_num[i]);ini_write_real("Ini","slave_eta_"+string(i),obj_ini.slave_batch_eta[i]);}
+	    ini_encode_and_json("Ini", "FullLivery",obj_ini.full_liveries)
+		ini_write_real("Ini","companies",obj_ini.companies);
+		ini_encode_and_json("Ini", "comp_title", obj_ini.company_title);
+		ini_encode_and_json("Ini", "slave_num_", obj_ini.slave_batch_num);
+		ini_encode_and_json("Ini", "slave_eta_", obj_ini.slave_batch_eta);
 
 	    ini_write_string("Ini","battle_cry",obj_ini.battle_cry);
 
 	    ini_write_string("Controller","main_color",obj_controller.col[obj_controller.main_color]);
 	    ini_write_string("Controller","secondary_color",obj_controller.col[obj_controller.secondary_color]);
-	    ini_write_string("Controller","trim_color",obj_controller.col[obj_controller.trim_color]);
-	    ini_write_string("Controller","pauldron2_color",obj_controller.col[obj_controller.pauldron2_color]);
-	    ini_write_string("Controller","pauldron_color",obj_controller.col[obj_controller.pauldron_color]);
+	    ini_write_string("Controller","main_trim",obj_controller.col[obj_controller.main_trim]);
+	    ini_write_string("Controller","left_pauldron",obj_controller.col[obj_controller.left_pauldron]);
+	    ini_write_string("Controller","right_pauldron",obj_controller.col[obj_controller.right_pauldron]);
 	    ini_write_string("Controller","lens_color",obj_controller.col[obj_controller.lens_color]);
 	    ini_write_string("Controller","weapon_color",obj_controller.col[obj_controller.weapon_color]);
 	    ini_write_real("Controller","col_special",obj_controller.col_special);
@@ -320,18 +331,14 @@ function scr_save(save_part,save_id) {
 	    ini_write_string("Ini","lord_name",obj_ini.lord_admiral_name);
 	    ini_write_string("Ini","previous_forge_masters",base64_encode(json_stringify(obj_ini.previous_forge_masters)));
 	    //
-	    var g=0;
-	    for (g=0;g<array_length(obj_ini.equipment);g++){
-	        if (obj_ini.equipment[g]!=""){
-	            ini_write_string("Ini",$"equipment{g}",obj_ini.equipment[g]);
-	            ini_write_string("Ini",$"equipment_type{g}",obj_ini.equipment_type[g]);
-	            ini_write_real("Ini",$"equipment_number{g}",obj_ini.equipment_number[g]);
-	            ini_write_real("Ini",$"equipment_condition{g}",obj_ini.equipment_condition[g]);
-	            ini_write_string("Ini",$"equipment_quality{g}",base64_encode(json_stringify(obj_ini.equipment_quality[g])));
-	        }	    	
-	    }
-	    for (g=0;g<array_length(obj_ini.artifact);g++){
 
+		ini_encode_and_json("Ini",$"equipment",obj_ini.equipment);
+		ini_encode_and_json("Ini",$"equipment_type",obj_ini.equipment_type);
+		ini_encode_and_json("Ini",$"equipment_number",obj_ini.equipment_number);
+		ini_encode_and_json("Ini",$"equipment_condition",obj_ini.equipment_condition);
+		ini_encode_and_json("Ini",$"equipment_quality",obj_ini.equipment_quality);
+
+	    for (var g=0;g<array_length(obj_ini.artifact);g++){
             ini_write_string("Ini","artifact"+string(g),obj_ini.artifact[g]);
             ini_write_string("Ini","artifact_tags"+string(g),base64_encode(json_stringify(obj_ini.artifact_tags[g])));
             ini_write_real("Ini","artifact_ident"+string(g),obj_ini.artifact_identified[g]);
@@ -349,8 +356,8 @@ function scr_save(save_part,save_id) {
 			  }
 			}
             ini_write_string("Ini","artifact_struct"+string(g),base64_encode(json_stringify(new_artifact)));	            
-
 	    }
+
 	    //
 	    var g;g=0;repeat(200){g+=1;
 	        ini_write_string("Ships","shi"+string(g),obj_ini.ship[g]);
@@ -545,8 +552,6 @@ function scr_save(save_part,save_id) {
 	                ini_write_string("Mar",$"ar{coh}.{mah}",obj_ini.armour[coh,mah]);
 	                ini_write_string("Mar",$"ge{coh}.{mah}",obj_ini.gear[coh,mah]);
 	                ini_write_string("Mar",$"mb{coh}.{mah}",obj_ini.mobi[coh,mah]);
-
-	                ini_write_real("Mar",$"exp{coh}.{mah}",obj_ini.experience[coh,mah]);
 	                ini_write_real("Mar",$"ag{coh}.{mah}",obj_ini.age[coh,mah]);
 	                ini_write_string("Mar",$"spe{coh}.{mah}",obj_ini.spe[coh,mah]);
 	                ini_write_real("Mar",$"god{coh}.{mah}",obj_ini.god[coh,mah]);

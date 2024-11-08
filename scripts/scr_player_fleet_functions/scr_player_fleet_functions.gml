@@ -32,7 +32,7 @@ function split_selected_into_new_fleet(start_fleet="none"){
         // Pass over ships to the new fleet, if they are selected
         var cap_number = array_length(capital);
 
-        for (i=0; i<cap_number;i++){
+        for (var i=0; i<cap_number;i++){
             if (capital[i]!="") and (capital_sel[i]){
             	move_ship_between_player_fleets(self, new_fleet,"capital", i);
             	i--;
@@ -40,7 +40,7 @@ function split_selected_into_new_fleet(start_fleet="none"){
             }
         }
         var frig_number = array_length(frigate);
-        for (i=0; i<frig_number;i++){
+        for (var i=0; i<frig_number;i++){
             if (frigate[i]!="") and (frigate_sel[i]){
             	move_ship_between_player_fleets(self, new_fleet,"frigate", i);
             	i--;
@@ -48,7 +48,7 @@ function split_selected_into_new_fleet(start_fleet="none"){
             }
         }
         var esc_number = array_length(escort);
-        for (i=0; i<esc_number;i++){
+        for (var i=0; i<esc_number;i++){
             if (escort[i]!="") and (escort_sel[i]){
             	move_ship_between_player_fleets(self, new_fleet,"escort", i)
             	i--;
@@ -166,21 +166,21 @@ function fleet_full_ship_array(fleet="none", exclude_capitals=false, exclude_fri
 	var i;
 	if (fleet=="none"){
 		if (!exclude_capitals){
-			for (i=1; i<=capital_number;i++){
+			for (i=0; i<=capital_number;i++){
 				if (i>=0 && i < array_length(capital_num)){
 					array_push(all_ships, capital_num[i]);
 				}
 			}
 		}
 		if (!exclude_frigates){
-			for (i=1; i<=frigate_number;i++){
+			for (i=0; i<=frigate_number;i++){
 				if (i>=0 && i < array_length(frigate_num)){
 					array_push(all_ships, frigate_num[i]);
 				}
 			}
 		}
 		if (!exclude_escorts){
-			for (i=1; i<=escort_number;i++){
+			for (i=0; i<=escort_number;i++){
 				if (i>=0 && i < array_length(escort_num)){
 					array_push(all_ships, escort_num[i]);
 				}
@@ -203,6 +203,29 @@ function set_fleet_location(location){
 		}
 	}
 }
+
+function selected_ship_types(){
+	var capitals=0,frigates=0,escorts=0,i;
+    for (i=0; i<array_length(capital);i++){
+        if(capital[i]!="" && capital_sel[i]){
+            capitals=true
+            break;
+        }
+    } 
+    for (i=0; i<array_length(frigate);i++){
+        if(frigate[i]!="" && frigate_sel[i]){
+            frigates=true
+            break;
+        }
+    } 
+    for (i=0; i<array_length(escort);i++){
+        if(escort[i]!="" && escort_sel[i]){
+            escorts=true
+            break;
+        }
+    }
+    return [capitals,frigates,escorts];
+}
 function player_fleet_ship_count(fleet="none"){
 	var ship_count = 0;
 	if (fleet=="none"){
@@ -210,19 +233,19 @@ function player_fleet_ship_count(fleet="none"){
 		frigate_number = 0;
 		escort_number = 0;
 
-		for (i=0; i<array_length(capital);i++){
+		for (var i=0; i<array_length(capital);i++){
 			if (capital[i]!=""){
 				ship_count++;
 				capital_number++;
 			}
 		}
-		for (i=0; i<array_length(frigate);i++){
+		for (var i=0; i<array_length(frigate);i++){
 			if (frigate[i]!=""){
 				ship_count++;
 				frigate_number++;
 			}
 		}
-		for (i=0; i<array_length(escort);i++){
+		for (var i=0; i<array_length(escort);i++){
 			if (escort[i]!=""){
 				ship_count++;
 				escort_number++;
@@ -239,13 +262,13 @@ function player_fleet_ship_count(fleet="none"){
 function player_fleet_selected_count(fleet="none"){
 	var ship_count = 0;
 	if (fleet=="none"){
-		for (i=0; i<array_length(capital);i++){
+		for (var i=0; i<array_length(capital);i++){
 			if(capital[i]!="" && capital_sel[i]) then ship_count++;
 		}
-		for (i=0; i<array_length(frigate);i++){
+		for (var i=0; i<array_length(frigate);i++){
 			if(frigate[i]!="" && frigate_sel[i]) then ship_count++;
 		}
-		for (i=0; i<array_length(escort);i++){
+		for (var i=0; i<array_length(escort);i++){
 			if(escort[i]!="" && escort_sel[i]) then ship_count++;
 		}
 	} else {

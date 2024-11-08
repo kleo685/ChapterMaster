@@ -89,54 +89,98 @@ function scr_librarium(){
         identifiable = 0;
         if (artifacts > 0) {
             var usey =0;
-            for (i=0;i<30;i++){
-                if (obj_ini.artifact[i]!="") then usey++;
-                if (i==menu_artifact) then break;
-            }
-            draw_text(xx + 622, yy + 440, string_hash_to_newline("[Artifact " + string(usey) + " of " + string(artifacts) + "]"));
-            var arrow = [xx+400,yy+437,xx+445,yy+461]
-            if (point_and_click(arrow)){
-                artifact_namer.allow_input=false;
-            	identifiable=0;
-                artifact_equip = new ShutterButton();
-                artifact_gift = new ShutterButton();
-                artifact_destroy = new ShutterButton();  
-                if  (menu_artifact>=1){     	
-                	while (menu_artifact>=0){
-                		menu_artifact--;
-                        if (obj_ini.artifact[menu_artifact] != "") then break;
-                	}
+            for (var i = 0, ilen = array_length(obj_ini.artifact); i < ilen; i++) {
+                if (obj_ini.artifact[i]!="") {
+                    usey++;
                 }
-                if (menu_artifact==-1){
-                    for (var i=29;i>0;i--){
-                        if (obj_ini.artifact[i] != ""){
-                            menu_artifact=i;
-                            break;
-                        }
-                    }                    
-            	}
+                if (i == menu_artifact) {
+                    break;
+                }
             }
-            arrow = [xx+790,yy+437,xx+832,yy+461]
-            if (point_and_click(arrow)){
-                artifact_namer.allow_input=false;
-            	identifiable=0;
-                artifact_equip = new ShutterButton();
-                artifact_gift = new ShutterButton();
-                artifact_destroy = new ShutterButton();           	
-                if (menu_artifact<30){
-                    while(menu_artifact<30){
-                        menu_artifact++;
-                        if (obj_ini.artifact[menu_artifact] != "") then break;
+            draw_text(xx + 622, yy + 440, $"[Artifact {usey} of {artifacts}]");
+
+            if scr_hit(xx + 326 + 16, yy + 426, xx + 887 + 16, yy + 818) {
+                var arrow_hovered = false;
+                var scroll_engaged = false;
+                var arrow = [xx+400,yy+437,xx+445,yy+461];
+                if (scr_hit(arrow[0],arrow[1],arrow[2],arrow[3])) {
+                    arrow_hovered = true;
+                    if (scr_click_left()){
+                        scroll_engaged = true;
                     }
+                }
+                if (mouse_wheel_down()){
+                    scroll_engaged = true;
                 }
 
-                if (menu_artifact==30){
-                    for (var i=0;i<30;i++){
-                         if (obj_ini.artifact[i] != ""){
-                            menu_artifact=i;
+                if (scroll_engaged) {
+                    artifact_namer.allow_input=false;
+                    identifiable=false;
+                    artifact_equip = new ShutterButton();
+                    artifact_gift = new ShutterButton();
+                    artifact_destroy = new ShutterButton();
+                    var done = false;
+                    while (menu_artifact > 0) {
+                        menu_artifact--;
+                        if (obj_ini.artifact[menu_artifact] != "") {
+                            done = true;
                             break;
                         }
                     }
+                    if (!done and menu_artifact <= 0) {
+                        // we didn't find a lower artifact to goto, so we find the highest
+                        for (var i = array_length(obj_ini.artifact) - 1; i >= 0; i--) {
+                            if (obj_ini.artifact[i] != "") {
+                                menu_artifact = i;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (arrow_hovered) {
+                    tooltip_draw("Click here or use mouse wheel to scroll the artifact list.");
+                }
+
+                arrow_hovered = false;
+                scroll_engaged = false;
+                arrow = [xx+790,yy+437,xx+832,yy+461];
+                if (scr_hit(arrow[0],arrow[1],arrow[2],arrow[3])) {
+                    arrow_hovered = true;
+                    if (scr_click_left()){
+                        scroll_engaged = true;
+                    }
+                }
+                if (mouse_wheel_up()){
+                    scroll_engaged = true;
+                }
+
+                if (scroll_engaged) {
+                    artifact_namer.allow_input=false;
+                    identifiable=0;
+                    artifact_equip = new ShutterButton();
+                    artifact_gift = new ShutterButton();
+                    artifact_destroy = new ShutterButton();
+                    var max_index = array_length(obj_ini.artifact) - 1;
+                    var done = false;
+                    while (menu_artifact < max_index) {
+                        menu_artifact++;
+                        if (obj_ini.artifact[menu_artifact] != "") {
+                            done = true;
+                            break;
+                        }
+                    }
+                    if (!done and menu_artifact >= max_index) {
+                        // we didn't find a higher artifact to goto, so we find the lowest
+                        for (var i = 0, ilen = array_length(obj_ini.artifact); i < ilen; i++) {
+                            if (obj_ini.artifact[i] != "") {
+                                menu_artifact = i;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (arrow_hovered) {
+                    tooltip_draw("Click on this arrow or use mouse wheel to scroll the artifact list.");
                 }
             }
 
@@ -146,34 +190,27 @@ function scr_librarium(){
             draw_sprite(spr_arrow, 0, xx + 403, yy + 433);
             draw_sprite(spr_arrow, 1, xx + 795, yy + 433);
             // Artifact description box
-            draw_set_color(c_black); 
-            draw_rectangle(xx + 402, yy + 500, xx + 842, yy + 685, 0);
-            draw_set_color(c_gray);
-            draw_rectangle(xx + 402, yy + 500, xx + 842, yy + 685, 1); 
+            var description_box = {
+                x: xx + 392,
+                y: yy + 500,
+                x2: xx + 852,
+                y2: yy + 740,
+            }
+            draw_rectangle_outline(description_box.x, description_box.y, description_box.x2, description_box.y2, c_black, c_gray, 1);
             var cur_arti = obj_ini.artifact_struct[menu_artifact];
             identifiable = cur_arti.is_identifiable();
 
             if (cur_arti.type() != "") {
-                var artif_descr = $"This artifact is an unidentified {cur_arti.type()}.#It is stored on {cur_arti.ship_id()>=0 ? "the ship" :""} ‘{cur_arti.location_string()}’.";
+                var artif_descr = $"This artifact is an unidentified {cur_arti.type()}.##It is stored on {cur_arti.ship_id()>=0 ? "the ship" :""} '{cur_arti.location_string()}'.";
                 if (cur_arti.identified() > 0) and (identifiable = 0) {
                     draw_set_color(881503);
                     artif_descr += $"#To be identified it must be brought to a fleet with a Battle Barge or your Homeworld.";
                 }else if (cur_arti.identified() > 0) and(identifiable = 1) {
                     draw_set_color(881503);
-                    artif_descr += $"’.#It will be identified in {cur_arti.identified()} turns.  You may alternatively spend 150 Requisition to";
-
-                    draw_set_color(c_gray);
-                    draw_rectangle(xx + 532, yy + 715, xx + 709, yy + 733, 0);
-                    draw_set_color(c_black);
-                    draw_text(xx + 622, yy + 715, "IDENTIFY NOW");
+                    artif_descr += $"##It will be identified in {cur_arti.identified()} turns. #You may spend 150 Requisition to identify it immediately.";
 
                     //TODO solidify following button into a proper styled struct button
-                    var ident_button = [xx+532,yy+715,xx+709,yy+733]; 
-                    if (scr_hit(ident_button)){
-                        draw_set_alpha(0.2);
-                        draw_rectangle(xx + 532, yy + 715, xx + 709, yy + 733, 0);
-                        draw_set_alpha(1);                        
-                    }
+                    var ident_button = draw_unit_buttons([xx+532,yy+765], "IDENTIFY NOW",[1,1],c_black,,fnt_40k_14b,,1,c_gray); 
                     if (point_and_click(ident_button)){
                         if (requisition>=150){
                             obj_ini.artifact_identified[menu_artifact]=0;
@@ -191,25 +228,33 @@ function scr_librarium(){
                     try{
                         artif_descr = obj_ini.artifact_struct[menu_artifact].description();
                     }   catch( _exception){
-                        show_debug_message(_exception.message); 
+                        handle_exception(_exception);
                     }
                     tooltip = "";
                     tooltip_other = "";
                     var arti_data = gear_weapon_data("any",obj_ini.artifact[menu_artifact], "all", false, obj_ini.artifact_quality[menu_artifact]);
 
                     var _can_equip = cur_arti.can_equip();
-                    if (cur_arti.equipped()) then _can_equip = 0;
-
-                     if (artifact_equip.draw_shutter(xx + 385, yy + 740, "EQUIP", 0.3, _can_equip)){
-                        if (_can_equip && !instance_exists(obj_popup)){
-                            var pop=instance_create(0,0,obj_popup);
-                            pop.type=8;
-                            cooldown=8;                            
+                    if (_can_equip){
+                        if (cur_arti.equipped()) then _can_equip = false;
+        
+                        if (_can_equip){
+                            if (artifact_equip.draw_shutter(xx + 385, yy + 770, "EQUIP", 0.3,true)){
+                                if (_can_equip && !instance_exists(obj_popup)){
+                                    var pop=instance_create(0,0,obj_popup);
+                                    pop.type=8;
+                                    cooldown=8;                            
+                                }
+        
+                            }
+                        } else if (is_array(cur_arti.bearer)) {
+                            if (artifact_equip.draw_shutter(xx + 385, yy + 770, "UNEQUIP", 0.3,true)){
+                                cur_arti.unequip_from_unit();
+                            }                            
                         }
-
                     }
 
-                    if (artifact_gift.draw_shutter(xx + 575, yy + 740, "GIFT", 0.3, true)){
+                    if (artifact_gift.draw_shutter(xx + 575, yy + 770, "GIFT", 0.3, true)){
                         show_debug_message("Clicked");
                         var chick=false;
                         //list of all giftable factions enum numbers
@@ -225,8 +270,7 @@ function scr_librarium(){
                             cooldown=8;
                         }                   
                     }
-                    if (artifact_destroy.draw_shutter(xx + 765, yy + 740, "DESTROY", 0.3, true)){
-                        var fun=irandom(100)+1;
+                    if (artifact_destroy.draw_shutter(xx + 765, yy + 770, "DESTROY", 0.3, true)){
                         // Below here cleans up the artifacts
 
                         if (menu_artifact==fest_display) then fest_display=0;
@@ -234,21 +278,21 @@ function scr_librarium(){
                         cur_arti.destroy_arti();
 
                         //TODO centralise into function
-                        for (var e = 0; e < array_length(obj_controller.recent_keyword); e++){
-                            if (obj_ini.artifact_tags[menu_artifact]==obj_controller.recent_keyword[e]){
-                                with (obj_controller){
+                        for (var e = 0, elen = array_length(obj_controller.recent_keyword); e < elen; e++) {
+                            if (obj_ini.artifact_tags[menu_artifact] == obj_controller.recent_keyword[e]) {
+                                with (obj_controller) {
                                     array_delete(recent_keyword, e, 1);
                                     array_delete(recent_type, e, 1);
                                     array_delete(recent_turn, e, 1);
                                     array_delete(recent_number, e, 1);
                                 }
-                                scr_recent("artifact_destroyed",obj_controller.recent_keyword,2);
-                                scr_recent("","",0);
+                                scr_recent("artifact_destroyed", obj_controller.recent_keyword,2);
+                                scr_recent("", "", 0);
                                 break;
                             }
                         }
-                        delete_artifact(menu_artifact);                           
-                        set_chapter_arti_data();      
+                        delete_artifact(menu_artifact);
+                        set_chapter_arti_data();
                     }
                     var base_type = cur_arti.determine_base_type();
                     if (arti_data && base_type!="device"){
@@ -282,11 +326,11 @@ function scr_librarium(){
                 draw_set_halign(fa_center);
                 draw_set_font(fnt_40k_14);
                 draw_set_color(c_gray);
-                draw_text_ext(xx + 622, yy + 504, string_hash_to_newline(string(artif_descr)), -1, 436);
+                draw_text_ext(xx + 622, yy + 510, string_hash_to_newline(string(artif_descr)), -1, 436);
                 draw_set_font(fnt_40k_14b);
                 draw_set_color(c_gray);
                 var spack = string_height_ext(string_hash_to_newline(string(artif_descr)), -1, 436);
-                draw_text_ext(xx + 622, yy + 508 + spack, string_hash_to_newline(tip2), -1, 436);
+                draw_text_ext(xx + 622, yy + 514 + spack, string_hash_to_newline(tip2), -1, 436);
 
                 // identifiable=0;
             }

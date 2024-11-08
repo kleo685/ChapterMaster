@@ -31,11 +31,12 @@ function scr_mission_reward(argument0, argument1, argument2) {
 	                    cleanup[com]=1;
 	                }
 	                if (roll2>50){
-	                    argument1.p_player[argument2]+=scr_unit_size(obj_ini.armour[com][i],obj_ini.role[com][i],true);
+	                	var unit = obj_ini.TTRPG[com][i];
+	                    argument1.p_player[argument2]+=unit.get_unit_size();
 	                    obj_ini.loc[com][i]=argument1.name;
-	                    obj_ini.TTRPG[com][i].planet_location=argument2;
+	                    unit.planet_location=argument2;
 	                    techs_alive+=1;
-	                    repeat(3){obj_ini.experience[com][i]+=choose(1,2,3,4,5,6);}
+	                    unit.add_experience(irandom_range(3,18));
 	                    if (roll2<80) then found_requisition+=floor(random_range(5,40))+1;
 	                }
 	                if (roll2>=80) and (roll2<88) then found_requisition+=100;
@@ -162,8 +163,6 @@ function scr_mission_reward(argument0, argument1, argument2) {
 
 	                        argument1.p_player[argument2]-=scr_unit_size(obj_ini.armour[com][i],obj_ini.role[com][i],true);
 
-	                        if (obj_ini.role[com][i]="Chapter Master"){obj_controller.alarm[7]=10;global.defeat=3;}
-
 	                        kill_and_recover(com, i, true, true);
 
 	                        cleanup[com]=1;
@@ -193,7 +192,7 @@ function scr_mission_reward(argument0, argument1, argument2) {
 	        scr_popup("Mechanicus Mission Completed","The Adeptus Mechanicus have finished experimenting on your marines.  All of your astartes have survived, though they refuse to speak of the experience.  200 Requisition has been provided by the Mechanicus as a reward.","mechanicus","");
 	        obj_controller.disposition[3]+=1;
 	        obj_controller.requisition+=200;
-	        var found=0,com=-1,i=0,unit;
+	        var found=0,i=0,unit;
 	        for (var com=0;com<=10;com++){
 	            if (found<10){
 	                for (i=0;i<=array_length(obj_ini.TTRPG[com]);i++){
