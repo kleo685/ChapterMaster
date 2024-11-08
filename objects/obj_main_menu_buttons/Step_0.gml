@@ -63,7 +63,6 @@ if (crap>0) and (fade=60){
     }
 }
 if (crap=1) and (fade=60) then room_goto(Tutorial);
-if (crap>1) and (fade=60){audio_stop_all();room_goto(Creation);}
 
 if (button=4) and (fade=40) then with(obj_cursor){instance_destroy();}
 if (button=4) and (fade>=60) then game_end();

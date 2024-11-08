@@ -177,4 +177,7 @@ action_set_alarm(30, 4);
 /*  */
 
 // Main-menu fade-in at the start of the game
-screen_fade_in();
+if (!global.fade_in_happened) {
+    global.fade_in_happened = true;
+    screen_fade_in();
+}

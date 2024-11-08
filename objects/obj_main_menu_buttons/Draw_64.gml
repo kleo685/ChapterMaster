@@ -34,10 +34,9 @@ if (room_get_name(room)="Creation"){
         if (hover[0]<20){
             hover[0]++;
         }
-        if (mouse_check_button_pressed(mb_left)) {
-            cooldown=9999;
+        if (scr_click_left()) {
             button=1;
-            fading=1;
+            screen_fade_out(room_goto, [Main_Menu]);
         }
     } else {
         if (hover[0]>0){
@@ -45,10 +44,6 @@ if (room_get_name(room)="Creation"){
         }
     }
     shader_reset();
-    if (cooldown>0) then cooldown-=1;
-    if (fading=0) and (fade>0) then fade-=1;
-    if (fading=1) and ((fade<40) or (crap>0) or (button=1)) then fade+=1;
-    if (fade=60) then room_goto(Main_Menu);
 }
 
 if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!instance_exists(obj_credits)){
@@ -97,12 +92,9 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
                         // var skip_tutorial_option=0;
                         // skip_tutorial_option = ini_read_real("Data", "tutorial", 0);
                         ini_close();
-                        cooldown=9999;
                         button=1;
-            
-                        obj_main_menu_buttons.fading=1;
-                        obj_main_menu_buttons.crap=2;
-                        obj_main_menu_buttons.cooldown=9999;
+
+                        screen_fade_out(room_goto, [Creation]);
 
                         // else {
                         //     var pop;
@@ -124,8 +116,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
                         instance_create(0,0,obj_ingame_menu);         
                         break;
                     case 3:
-                        with(obj_cursor){instance_destroy();}
-                        game_end();                       
+                        screen_fade_out(game_end);
                         break;                        
                 }
             }

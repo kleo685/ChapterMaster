@@ -37,6 +37,7 @@ function point_and_click(rect) {
 	}
 
 	if (obj_ui_controller.interaction_forbid) {
+		show_debug_message("point_and_click: ignored click forbid");
 		return false;
 	}
 
@@ -52,6 +53,11 @@ function scr_click_left(){
 	var mouse_clicked = event_number==ev_gui ? device_mouse_check_button_pressed(0,mb_left) : mouse_check_button_pressed(mb_left);
 
 	if (!mouse_clicked) {
+		return false;
+	}
+
+	if (obj_ui_controller.interaction_forbid) {
+		show_debug_message("point_and_click: ignored click forbid");
 		return false;
 	}
 
