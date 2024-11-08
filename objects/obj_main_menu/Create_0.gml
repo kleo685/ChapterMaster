@@ -103,7 +103,7 @@ if (nope!=1){audio_sound_gain(global.sound,0.75*master_volume*music_volume,2000)
 if (nope=1) then audio_sound_gain(global.sound,0,0);
 
 randomize();
-fade=80;
+// fade=80;
 away=0;
 hi=0;
 info=0;
@@ -123,7 +123,6 @@ out_of_date=0;
 tim1=0;
 tim2=0;
 tim3=0;
-tim4=0;
 tim5=0;
 
 stage=0;
@@ -181,3 +180,12 @@ if (!global.fade_in_happened) {
     global.fade_in_happened = true;
     screen_fade_in();
 }
+
+audio_stop_all();
+global.sound = audio_play_sound(snd_prologue, 0, true);
+audio_sound_gain(global.sound, 0, 0);
+
+// var nope;nope=0;if (master_volume=0) or (music_volume=0) then nope=1;
+// if (nope!=1){
+audio_sound_gain(global.sound, 0.5 * master_volume * music_volume, 2000);
+// }

@@ -45,13 +45,13 @@ if (room_get_name(room) != "Main_Menu") {
     butt.scaling = 1.5;
     butt.target = 13;
 
-    butt = instance_create(821, 496, obj_new_button);
-    butt.sprite_index = spr_ui_but_1;
-    butt.depth = -20010;
-    butt.button_text = "Exit";
-    butt.button_id = 1;
-    butt.scaling = 1.5;
-    butt.target = 14;
+    // butt = instance_create(821, 496, obj_new_button);
+    // butt.sprite_index = spr_ui_but_1;
+    // butt.depth = -20010;
+    // butt.button_text = "Exit";
+    // butt.button_id = 1;
+    // butt.scaling = 1.5;
+    // butt.target = 14;
 
     butt = instance_create(821, 666, obj_new_button);
     butt.sprite_index = spr_ui_but_1;

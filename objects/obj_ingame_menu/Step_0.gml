@@ -47,10 +47,10 @@ if (effect = 13) {
     butt.target = 25;
     settings = 1;
 }
-if (effect = 14) {
+/* if (effect = 14) {
     instance_create(0, 0, obj_fade);
     fading = 0.1;
-}
+} */
 if (effect = 15) {
     if (instance_exists(obj_controller)) {
         obj_controller.cooldown = 8000;
@@ -103,19 +103,19 @@ if (effect = 26) {
     instance_destroy();
 }
 
-if (effect > 0) then effect = 0;
-if (fading > 0) {
-    fading += 1;
-    obj_fade.alpha = fading / 30;
-    if (fading >= 35) {
-        global.returned = 1;
-        audio_stop_all();
-        with(obj_ini) {
-            instance_destroy();
-        }
-        room_goto(Main_Menu);
-    }
-}
+// if (effect > 0) then effect = 0;
+// if (fading > 0) {
+//     fading += 1;
+//     obj_fade.alpha = fading / 30;
+//     if (fading >= 35) {
+//         global.returned = 1;
+//         audio_stop_all();
+//         with(obj_ini) {
+//             instance_destroy();
+//         }
+//         room_goto(Main_Menu);
+//     }
+// }
 
 if (keyboard_check(vk_escape)) {
     if (instance_number(obj_saveload) = 0) {

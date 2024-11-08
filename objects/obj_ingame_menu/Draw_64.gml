@@ -178,3 +178,15 @@ draw_set_color(c_gray);
 draw_set_halign(fa_center);
 draw_set_font(fnt_cul_14);
 draw_text_transformed(929, 149, string_hash_to_newline("Menu"), 1.5, 1.5, 0);
+
+if (room_get_name(room) != "Main_Menu") {
+    if (point_and_click(draw_unit_buttons([0, 0], "Exit", [2,2], c_green,,,,true,))) {
+        screen_fade_transition(function(){
+            audio_stop_all();
+            with(obj_ini) {
+                instance_destroy();
+            }
+            room_goto(Main_Menu);
+        });
+    }
+}

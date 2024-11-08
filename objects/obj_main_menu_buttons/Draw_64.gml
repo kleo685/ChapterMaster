@@ -76,7 +76,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
             var y_start = 500+((20*2.2)*i);
             shader_set_uniform_f(shader_get_uniform(light_dark_shader, "highlight"), 1+hover[i]/10);
             draw_sprite_ext(spr_mm_butts, i, 580,y_start, 2.2, 2.2, 0, c_white, 1);
-            if (scr_hit(580,y_start, 580+width, y_start+height) && obj_main_menu.tim4>0){
+            if (scr_hit(580,y_start, 580+width, y_start+height)){
                 if (hover[i]<20){
                     hover[i]++;
                 }
@@ -85,7 +85,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
                     hover[i]--;
                 }
             }
-            if (point_and_click([580,y_start, 580+width, y_start+height]) and !instance_exists(obj_ingame_menu) && obj_main_menu.tim4>0){
+            if (point_and_click([580,y_start, 580+width, y_start+height]) and !instance_exists(obj_ingame_menu)){
                 switch(i){
                     case 0:
                         ini_open("saves.ini");
@@ -125,7 +125,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
     }
     
     
-    if (obj_main_menu.tim4>0) and (obj_main_menu.menu!=3) then with(obj_main_menu){
+/*     if (obj_main_menu.menu!=3) then with(obj_main_menu){
         draw_set_font(fnt_menu);draw_set_halign(fa_center);
         
         var wfd="";// xx=1138;yy=532;wad=430;
@@ -134,8 +134,8 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
         if (word_from_duke!="blank") and (word_from_duke!="") then wfd=word_from_duke;
         if (word_from_duke2!="blank") and (word_from_duke2!="") then wfd=word_from_duke2;
         
-        if (wfd!="blank") and (wfd!="") and (obj_main_menu.tim4<400){
-            draw_set_alpha((tim4-20)/50);
+        if (wfd!="blank") and (wfd!=""){
+            // draw_set_alpha((tim4-20)/50);
             
             set_color(c_yellow);
             draw_text_ext_transformed(xx,yy,string_hash_to_newline("Server: "+string(wfd)),-1,wad,1,1,0);
@@ -144,7 +144,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
             var da;da=0;
             if (mess_alpha<=60) then da=mess_alpha/60;
             if (mess_alpha>60) then da=1+(((mess_alpha-60)*-1)/60);
-            draw_set_alpha(min(da,((obj_main_menu.tim4-20)/50)));
+            // draw_set_alpha(min(da,((obj_main_menu.tim4-20)/50)));
             
             draw_set_color(c_red);
             draw_text_ext_transformed(xx,yy,string_hash_to_newline("Server: "+string(wfd)),-1,wad,1,1,0);
@@ -152,7 +152,7 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
             draw_set_alpha(1);
             
         }
-    }
+    } */
 
     // if (obj_main_menu.tim3>0){
     //     draw_set_alpha(obj_main_menu.tim3/30);
@@ -164,11 +164,11 @@ if (instance_exists(obj_main_menu)) and (!instance_exists(obj_saveload)) and (!i
 }
 
 
-if (fade>0){
+/* if (fade>0){
     draw_set_color(0);
     draw_set_alpha(fade/40);
     draw_rectangle(0,0,room_width,room_height,0);
-}
+} */
 
 draw_set_alpha(1);
 
