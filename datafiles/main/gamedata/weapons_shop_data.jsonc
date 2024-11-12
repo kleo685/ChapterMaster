@@ -319,5 +319,14 @@
     },
     "Volkite Culverin Sponsons": {
         "renegade_no_buy": true
+    },
+    "Volkite Saker Turret": {
+        "renegade_no_buy": true
+    },
+    "Webber": {
+        "renegade_no_buy": true
+    },
+    "Whirlwind Missiles": {
+        "renegade_no_buy": true
     }
 }
