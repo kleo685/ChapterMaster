@@ -98,11 +98,12 @@ if (shop = "equipment") {
         }
         item[j] = weapon_names[i];
         item_stocked[j] = scr_item_count(weapon_names[i]);
+        mc_stocked[j] = scr_item_count(item[mc], "master_crafted");
         item_cost[j] = global.weapons[$ weapon_names[i]].range;
         forge_cost[j] = item_cost[j] * 10;
         item_forge_multiplier[j] = 0;
         sellers [j] = [];
-        
+
         j++;
     }
 }
