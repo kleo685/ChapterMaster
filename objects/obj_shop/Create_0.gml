@@ -56,6 +56,7 @@ repeat(80) {
     item_cost[i] = 0;
     nobuy[i] = 0;
     forge_cost[i]=0;
+    item_forge_multiplier[i]=0;
     noforge[i] = false;
     sellers[i] = ["Mechanicus"];
     tooltip_overide[i]=0;
@@ -182,8 +183,8 @@ if (shop = "equipment") {
     item[i] = "Power Mace";
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 50;
-    if (research.power_fields[0]>1){
-        forge_cost[i] = 140;
+    if (research.power_fields[0] < 2){
+        noforge[i] = true;
     }
     if (rene = 1) {
         nobuy[i] = 1;
@@ -194,8 +195,8 @@ if (shop = "equipment") {
         item[i] = "Mace of Absolution";
         item_stocked[i] = scr_item_count(item[i]);
         item_cost[i] = 70;
-        if (research.power_fields[0]>1){
-            forge_cost[i] = 160;
+        if (research.power_fields[0] < 2){
+            noforge[i] = true;
         }
     }
     i += 1;
@@ -269,8 +270,8 @@ if (shop = "equipment") {
     }
     i += 1;
     item[i] = "Heavy Thunder Hammer";
-    if (research.power_fields[0]>2){
-        forge_cost[i] = 750;
+    if (research.power_fields[0] < 3){
+        noforge[i] = true;
     }    
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 135;
@@ -337,7 +338,6 @@ if (shop = "equipment") {
     x_mod[i] = 9;
     item[i] = "Combiflamer";
     item_stocked[i] = scr_item_count(item[i]);
-    forge_cost[i] = 200;
     if (research.bolt[0] < 1 || research.flame[0] < 1) then noforge[i] = true;
     item_cost[i] = 35;
     if (rene = 1) {
@@ -348,8 +348,7 @@ if (shop = "equipment") {
     x_mod[i] = 9;
     item[i] = "Combiplasma";
     item_stocked[i] = scr_item_count(item[i]);
-    forge_cost[i] = 450;
-    if (research.bolt[0]<1 || research.plasma[0]<1) then forge_cost[i] = 0;
+    if (research.bolt[0]<1 || research.plasma[0] < 1) then noforge[i] = true;
     item_cost[i] = 110;
     if (rene = 1) {
         nobuy[i] = 1;
@@ -359,8 +358,7 @@ if (shop = "equipment") {
     x_mod[i] = 9;
     item[i] = "Combimelta";
     item_stocked[i] = scr_item_count(item[i]);
-    forge_cost[i] = 350;
-    if (research.bolt[0]<1 || research.melta[0]<1) then forge_cost[i] = 0;
+    if (research.bolt[0]<1 || research.melta[0]<1) then noforge[i] = true
     item_cost[i] = 40;
     if (rene = 1) {
         nobuy[i] = 1;
@@ -370,8 +368,7 @@ if (shop = "equipment") {
     x_mod[i] = 9;
     item[i] = "Combigrav";
     item_stocked[i] = scr_item_count(item[i]);
-    forge_cost[i] = 450;
-    if (research.bolt[0]<1 || research.grav[0]<1) then forge_cost[i] = 0;
+    if (research.bolt[0]<1 || research.grav[0]<1) then noforge[i] = true
     item_cost[i] = 110;
     if (rene == 1) {
         nobuy[i] = 1;
@@ -403,8 +400,7 @@ if (shop = "equipment") {
     }
     i += 1;
     item[i] = "Hand Flamer";
-    forge_cost[i] = 75;
-    if (research.flame[0]<1) then forge_cost[i] = 0;
+    if (research.flame[0]<1) then noforge[i] = true
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 12;
 
@@ -498,8 +494,7 @@ if (shop = "equipment") {
     }
     i += 1;
     item[i] = "Grav-Pistol";
-    forge_cost[i] = 250;
-     if (research.grav[0]<1) then forge_cost[i] = 0;
+     if (research.grav[0]<1) then noforge[i] = true
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 60;
     if (rene = 1) {
@@ -508,8 +503,7 @@ if (shop = "equipment") {
     }
     i += 1;
     item[i] = "Grav-Gun";
-    forge_cost[i] = 350;
-    if (research.grav[0]<1) then forge_cost[i] = 0;
+    if (research.grav[0]<1) then noforge[i] = true
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 100;
     if (rene = 1) {
@@ -518,8 +512,7 @@ if (shop = "equipment") {
     }
     i += 1;
     item[i] = "Grav-Cannon";
-    forge_cost[i] = 600;
-    if (research.grav[0]<1) then forge_cost[i] = 0;
+    if (research.grav[0]<1) then noforge[i] = true
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 300;
     if (rene == 1) {
@@ -814,7 +807,6 @@ if (shop = "equipment2") {
     i += 1;
     x_mod[i] = 9;
     item[i] = "Combat Shield";
-    forge_cost[i] = 75;
     item_stocked[i] = scr_item_count(item[i]);
     item_cost[i] = 15;
 
@@ -867,7 +859,7 @@ if (shop = "vehicles") {
     i += 1;
     item[i] = "Rhino";
     item_stocked[i] = scr_vehicle_count(item[i], "");
-    forge_cost[i] = 4000*player_hanger;
+    forge_cost[i] = 4000 * player_hanger;
     item_cost[i] = 120;
     if (rene == 1) {
         nobuy[i] = 1;
@@ -1429,9 +1421,10 @@ if (shop == "production"){
     } 
 }
 
-var forge_multiplier = 10;
-for (var l = 1; l <= i; l++){
-    if (forge_cost[l] = 0 && noforge[l] = false) {
+var forge_multiplier;
+for (var l = 0; l <= i; l++){
+    if (forge_cost[l] == 0 && noforge[l] = false) {
+        forge_multiplier = item_forge_multiplier[l] != 0 ? item_forge_multiplier[l] : 10;
         forge_cost[l] = item_cost[l] * forge_multiplier;
     }
 }
@@ -1522,37 +1515,44 @@ if (obj_controller.tech_status == "heretics"){
     mechanicus_modifier *= tech_heretic_modifier;
 }
 
-i = 0;
-repeat(array_length(item_cost)-2){
-    i += 1;
-
+var best_modifier = 1;
+var best_seller = "Unknown";
+for (var i = 0; i < array_length(item_cost); i++) {
     if (shop != "warships"){
         item_cost[i] *= 2;
     }
 
-    var best_modifier = 1;
+    best_modifier = 1;
+    best_seller = "Unknown";
+
     if (rene != 1){
         // Check each sellers
         for (var g = 0; g < array_length_1d(sellers[i]); g++) {
-            var current_modifier;
+            var current_modifier = 1;
+            var current_seller = "Unknown";
             // Determine the modifier for the current sellers
             if (array_contains(sellers[i], "Imperium")) {
                 current_modifier = imperium_modifier;
+                current_seller = "Imperium";
             } else if (array_contains(sellers[i], "Mechanicus")) {
                 current_modifier = mechanicus_modifier;
+                current_seller = "Mechanicus";
             } else if (array_contains(sellers[i], "Inquisition")) {
                 current_modifier = inquisition_modifier;
+                current_seller = "Inquisition";
             } else if (array_contains(sellers[i], "Ecclesiarchy")) {
                 current_modifier = ecclesiarchy_modifier;
+                current_seller = "Ecclesiarchy";
             } else {
                 continue;  // Skip this iteration if the sellers is not recognized
             }
             // If the current modifier is better than the best one found so far, update the best modifier and sellers
             if (current_modifier < best_modifier) {
                 best_modifier = current_modifier;
+                best_seller = current_seller;
             }
         }
-        // Now, best_modifier is the best modifier among all sellerss, and best_sellers is the sellers with the best modifier
+        // Now, best_modifier is the best modifier among all sellers, and best_sellers is the sellers with the best modifier
 	}
 
 	item_cost[i] *= max(discount * forge_master_cha_modifier * best_modifier, 0.2);
@@ -1560,10 +1560,11 @@ repeat(array_length(item_cost)-2){
 }
 
 item_cost_tooltip_info = "";
-item_cost_tooltip_info += $"Modifier from forge Master : X{forge_master_modifier}/n"
-item_cost_tooltip_info += $"Mechanicus Relations : X{mechanicus_modifier}/n"
-item_cost_tooltip_info += $"Chapter tech approach (obj_controller.tech_status) : X{tech_heretic_modifier}/n"
-
+item_cost_tooltip_info += $"Forge Master charisma: x{forge_master_cha_modifier}/n"
+item_cost_tooltip_info += $"{best_seller} relations: x{best_modifier}/n"
+if (obj_controller.tech_status == "heretics"){
+    item_cost_tooltip_info += $"Tech-Heretics: x{tech_heretic_modifier}/n"
+}
 
 /* */
 /*  */
