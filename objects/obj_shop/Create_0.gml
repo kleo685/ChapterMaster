@@ -93,14 +93,16 @@ if (shop = "equipment") {
     var j = 0;
     for (var i = 0; i < array_length(weapon_names); ++i) {
         show_debug_message(global.weapons[$ weapon_names[i]].tags);
-        if (!variable_struct_exists(global.weapons[$ weapon_names[i]], "range") ||
-        (variable_struct_exists(global.weapons[$ weapon_names[i]], "tags") && array_contains(global.weapons[$ weapon_names[i]].tags, "turret"))) {
+        if (!variable_struct_exists(global.weapons[$ weapon_names[i]], "range") || (variable_struct_exists(global.weapons[$ weapon_names[i]], "tags") && array_contains(global.weapons[$ weapon_names[i]].tags, "turret"))) {
             continue;
         }
         item[j] = weapon_names[i];
         item_stocked[j] = scr_item_count(weapon_names[i]);
         item_cost[j] = global.weapons[$ weapon_names[i]].range;
         forge_cost[j] = item_cost[j] * 10;
+        item_forge_multiplier[j] = 0;
+        sellers [j] = [];
+        
         j++;
     }
 }
@@ -965,8 +967,10 @@ if (shop == "production"){
     } 
 }
 
+item_cost_tooltip_info = "";
+
 var forge_multiplier;
-for (var l = 0; l <= i; l++){
+for (var l = 0; l < array_length(forge_cost); l++){
     if (forge_cost[l] == 0 && noforge[l] = false) {
         forge_multiplier = item_forge_multiplier[l] != 0 ? item_forge_multiplier[l] : 10;
         forge_cost[l] = item_cost[l] * forge_multiplier;
@@ -985,16 +989,19 @@ with(obj_star) {
     if (array_contains(p_owner, 1)) and(trader > 0) then obj_shop.discount = 0.8;
 }
 
+if (discount != 1) {
+    item_cost_tooltip_info += $"Near a Rogue Trader: x{discount}\n"
+}
+
 if (shop = "equipment") or(shop = "equipment2") {
     var disc;
     disc = 1;
     if (obj_controller.stc_wargear >= 1) then disc = 0.92;
     if (obj_controller.stc_wargear >= 3) then disc = 0.86;
     if (obj_controller.stc_wargear >= 5) then disc = 0.75;
-    var mc = 0;
-    repeat(i) {
-        mc++;
-        if (forge_cost[mc] > 1) then forge_cost[mc] = round(forge_cost[mc] * disc);
+    item_cost_tooltip_info += $"Wargear STC: x{disc}\n"
+    for(var m = 0; m < array_length(forge_cost); m++) {
+        if (forge_cost[m] > 1) then forge_cost[m] = round(forge_cost[m] * disc);
     }
 }
 
@@ -1004,14 +1011,13 @@ if (shop = "vehicles") {
     if (obj_controller.stc_vehicles >= 1) then disc = 0.92;
     if (obj_controller.stc_vehicles >= 3) then disc = 0.86;
     if (obj_controller.stc_vehicles >= 5) then disc = 0.75;
-    var mc = 0;
-    repeat(31) {
-        mc += 1;
+    item_cost_tooltip_info += $"Vehicle STC: x{disc}\n"
+    for(var m = 0; m < array_length(forge_cost); m++) {
         var ahuh;
         ahuh = 1;
-        if (mc >= 7) and(mc <= 12) then ahuh = 0;
+        if (m >= 7) and(m <= 12) then ahuh = 0;
         if (ahuh = 1) {
-            if (forge_cost[mc] > 1) then forge_cost[mc] = round(forge_cost[mc] * disc);
+            if (forge_cost[m] > 1) then forge_cost[m] = round(forge_cost[m] * disc);
         }
     }
 }
@@ -1023,10 +1029,9 @@ if (shop = "warships") {
     if (obj_controller.stc_ships >= 1) then disc = 0.92;
     if (obj_controller.stc_ships >= 3) then disc = 0.86;
     if (obj_controller.stc_ships >= 5) then disc = 0.75;
-    i = 0;
-    repeat(31) {
-        i += 1;
-        if (item_cost[i] > 1) then item_cost[i] = round(item_cost[i] * disc);
+    item_cost_tooltip_info += $"Ship STC: x{disc}\n"
+    for(var m = 0; m < array_length(item_cost); m++) {
+        if (item_cost[m] > 1) then item_cost[m] = round(item_cost[m] * disc);
     }
 }
 
@@ -1052,11 +1057,14 @@ if (forge_master!="none"){
     forge_master_tec_modifier = 1.7;
     forge_master_cha_modifier = 1.7;
 }
+item_cost_tooltip_info += $"Forge Master technology: x{forge_master_tec_modifier}\n"
+item_cost_tooltip_info += $"Forge Master charisma: x{forge_master_cha_modifier}\n"
 
 var tech_heretic_modifier = 1.5;
 mechanicus_modifier *= forge_master_tec_modifier;
 if (obj_controller.tech_status == "heretics"){
     mechanicus_modifier *= tech_heretic_modifier;
+    item_cost_tooltip_info += $"Tech-Heretics: x{tech_heretic_modifier}\n"
 }
 
 var best_modifier = 1;
@@ -1071,7 +1079,7 @@ for (var i = 0; i < array_length(item_cost); i++) {
 
     if (rene != 1){
         // Check each sellers
-        for (var g = 0; g < array_length_1d(sellers[i]); g++) {
+        for (var g = 0; g < array_length(sellers[i]); g++) {
             var current_modifier = 1;
             var current_seller = "Unknown";
             // Determine the modifier for the current sellers
@@ -1102,13 +1110,7 @@ for (var i = 0; i < array_length(item_cost); i++) {
 	item_cost[i] *= max(discount * forge_master_cha_modifier * best_modifier, 0.2);
     item_cost[i] = max(round(item_cost[i]), 1);
 }
-
-item_cost_tooltip_info = "";
-item_cost_tooltip_info += $"Forge Master charisma: x{forge_master_cha_modifier}/n"
-item_cost_tooltip_info += $"{best_seller} relations: x{best_modifier}/n"
-if (obj_controller.tech_status == "heretics"){
-    item_cost_tooltip_info += $"Tech-Heretics: x{tech_heretic_modifier}/n"
-}
+// item_cost_tooltip_info += $"{best_seller} relations: x{best_modifier}\n"
 
 /* */
 /*  */
