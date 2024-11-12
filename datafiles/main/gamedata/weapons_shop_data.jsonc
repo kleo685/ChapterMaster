@@ -19,7 +19,9 @@
         "renegade_no_buy": true
     },
     "Chainsword": {},
-    "Choppa": {},
+    "Choppa": {
+        "disable_buying": true
+    },
     "Close Combat Weapon": {},
     "Combat Knife": {},
     "Combiflamer": {
@@ -51,10 +53,12 @@
         "renegade_no_buy": true
     },
     "Company Standard": {
-        "nobuy": 1,
+        "disable_buying": true,
         "renegade_no_buy": true
     },
-    "Conversion Beam Projector": {},
+    "Conversion Beam Projector": {
+        "disable_buying": true
+    },
     "Crozius Arcanum": {
         "research_required": {
             "power_fields": 2
@@ -63,7 +67,9 @@
     },
     "Dreadnought Lightning Claw": {},
     "Dreadnought Power Claw": {},
-    "Eldar Power Sword": {},
+    "Eldar Power Sword": {
+        "disable_buying": true
+    },
     "Eviscerator": {
         "research_required": {
             "chain": 1
@@ -143,9 +149,11 @@
         },
         "renegade_no_buy": true
     },
-    "Hellgun": {},
+    "Hellgun": {
+        "disable_buying": true
+    },
     "Hellrifle": {
-        "nobuy": 1
+        "disable_buying": true
     },
     "Hurricane Bolter Sponsons": {},
     "Incinerator": {
@@ -164,7 +172,9 @@
     },
     "Lascannon Sponsons": {},
     "Lascutter": {},
-    "Laspistol": {},
+    "Laspistol": {
+        "disable_buying": true
+    },
     "Lightning Claw": {
         "research_required": {
             "power_fields": 2
@@ -243,13 +253,20 @@
     },
     "Power Weapon": {},
     "Quad Linked Heavy Bolter Sponsons": {},
-    "Ranger Long Rifle": {},
+    "Ranger Long Rifle": {
+        "disable_buying": true
+    },
     "Reaper Autocannon Mount": {},
     "Relic Blade": {},
-    "Sarissa": {},
-    "Servo-arm(M)": {},
-    "Shuriken Pistol": {},
-    "Snazzgun": {},
+    "Sarissa": {
+        "disable_buying": true
+    },
+    "Shuriken Pistol": {
+        "disable_buying": true
+    },
+    "Snazzgun": {
+        "disable_buying": true
+    },
     "Sniper Rifle": {},
     "Stalker Pattern Bolter": {
         "research_required": {

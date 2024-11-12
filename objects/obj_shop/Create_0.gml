@@ -44,11 +44,9 @@ if (instance_number(obj_shop) > 1) {
 
 var research = obj_controller.production_research;
 var research_pathways = obj_controller.production_research_pathways;
-var i, rene;
-i = -1;
+var i = 0, rene;
 rene = 0;
-repeat(80) {
-    i += 1;
+repeat(160) {
     item[i] = "";
     x_mod[i] = 0;
     item_stocked[i] = 0;
@@ -60,6 +58,7 @@ repeat(80) {
     noforge[i] = false;
     sellers[i] = ["Mechanicus"];
     tooltip_overide[i]=0;
+    i += 1;
 }
 if (obj_controller.faction_status[eFACTION.Imperium] = "War") {
     rene = 1;
@@ -90,21 +89,19 @@ var require_tool_tip = "Requires: #"
 
 if (shop = "equipment") {
     var weapon_names = variable_struct_get_names(global.weapons);
-    var j = 0;
     for (var i = 0; i < array_length(weapon_names); ++i) {
-        show_debug_message(global.weapons[$ weapon_names[i]].tags);
-        if (!variable_struct_exists(global.weapons[$ weapon_names[i]], "range") || (variable_struct_exists(global.weapons[$ weapon_names[i]], "tags") && array_contains(global.weapons[$ weapon_names[i]].tags, "turret"))) {
+        if (!variable_struct_exists(global.weapons[$ weapon_names[i]], "range")) {
             continue;
         }
-        item[j] = weapon_names[i];
-        item_stocked[j] = scr_item_count(weapon_names[i]);
-        mc_stocked[j] = scr_item_count(item[mc], "master_crafted");
-        item_cost[j] = global.weapons[$ weapon_names[i]].range;
-        forge_cost[j] = item_cost[j] * 10;
-        item_forge_multiplier[j] = 0;
-        sellers [j] = [];
-
-        j++;
+        var _tags = global.weapons[$ weapon_names[i]].tags;
+        if (array_contains_ext(_tags, ["turret", "Sponson", "sponson"])) {
+            continue;
+        }
+        item[i] = weapon_names[i];
+        item_stocked[i] = scr_item_count(weapon_names[i]);
+        mc_stocked[i] = scr_item_count(item[i], "master_crafted");
+        item_cost[i] = global.weapons[$ weapon_names[i]].range;
+        forge_cost[i] = item_cost[i] * 10;
     }
 }
 if (shop = "equipment2") {

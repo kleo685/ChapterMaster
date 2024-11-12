@@ -45,8 +45,8 @@ slate_panel.inside_method = function(){
     while (i<79 && viable<=28){
         entered=false;
         i++;
-        y2+=20;
         if (item[i]!=""){
+            y2+=20;
             viable++;
             final=i;
             if (!obj_controller.in_forge && nobuy[i]=0) ||  (obj_controller.in_forge && forge_cost[i]>0){

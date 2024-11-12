@@ -10,7 +10,7 @@ global.weapons = {
 		"ranged_hands": 2,
 		"range": 25,
 		"tags": ["las", "energy", "rifle", "precision"],
-		"cost": 66
+		"value": 66
 	},
 	"Choppa": {
 		"abbreviation": "Chop",
@@ -23,7 +23,7 @@ global.weapons = {
 		"range": 1,
 		"spli": 3,
 		"tags": ["axe"],
-		"cost": 88
+		"value": 66
 	},
 	"Snazzgun": {
 		"abbreviation": "Snazz",
@@ -1797,7 +1797,7 @@ global.weapons = {
 		"spli": 30,
 		"arp": 0,
 		"tags": ["vehicle","heavy_ranged", "turret", "volkite", "ancient"],
-		"cost": 123
+		"value": 66
 	},
 }
 global.gear = {
@@ -2412,8 +2412,8 @@ global.gear = {
 
 function EquipmentStruct(item_data, core_type,quality="none") constructor{ 
     //This could be done with 2d arrays [[],[]]
-    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","melee_hands","ranged_hands","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp"];
-    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0];
+    var names = ["hp_mod", "description","damage_resistance_mod", "ranged_mod", "melee_mod","armour_value" ,"attack","melee_hands","ranged_hands","ammo","range","spli","arp","special_description", "special_properties", "abbreviation","tags","name","second_profiles","req_exp","value"];
+    var defaults = [0,"",0,0,0,0,0,0,0,0,0,0,0,"",[],"",[],"",[],0,0];
     type = core_type;
     for (var i=0;i<array_length(names);i++){
         if (struct_exists(item_data,names[i])){
