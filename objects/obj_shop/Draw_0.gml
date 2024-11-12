@@ -4,7 +4,9 @@ var romanNumerals=scr_roman_numerals();
 xx=__view_get( e__VW.XView, 0 )+0;
 yy=__view_get( e__VW.YView, 0 )+0;
 tooltip_show=0;
-x2=962;y2=117;
+x2=962;
+y2=117;
+
 slate_panel.inside_method = function(){
     var x2=962;y2=157;
     var xx=__view_get( e__VW.XView, 0 )+0;
@@ -167,7 +169,7 @@ slate_panel.inside_method = function(){
                 draw_text(xx+1300,yy+y2,string_hash_to_newline(item_stocked[i]));// Stocked
                 draw_set_alpha(1);
             }
-            if (mouse_x>=xx+962) and (mouse_y>=yy+y2) and (mouse_x<xx+1280) and (mouse_y<yy+y2+19) and (shop!="warships"){
+            if scr_hit(xx+962, yy+y2, xx+1280, yy+y2+19) and (shop!="warships"){
                 if (last_item == item[i]){
                     tooltip_show=1;
                 } else {
@@ -181,8 +183,14 @@ slate_panel.inside_method = function(){
                     }
                     tooltip_show=1;
                 }
-            }            
-
+            } else if (scr_hit(xx+1430, yy+y2, xx+1447+50, yy+y2+19)) {
+                if (last_item == item[i]){
+                    tooltip_show=1;
+                } else {
+                    tooltip = item_cost_tooltip_info;
+                    tooltip_show=1;
+                }
+            }    
         }
     }
     //draw_set_color(c_red);
@@ -206,8 +214,12 @@ var te="";
 // TODO refactor target_comp and how companies are counted in general
 if (shop=="vehicles"){
     if (target_comp<=10) then te=romanNumerals[target_comp-1];
-    if (mouse_x>=xx+1262) and (mouse_y>=yy+78) and (mouse_x<=xx+1417) and (mouse_y<yy+103) then draw_set_alpha(0.8);
-    draw_text(xx+1310,yy+82,string_hash_to_newline("Target: "+string(te)+" Company"));
+    var _target_company_text = $"Target: {te} Company";
+    if point_and_click(draw_unit_buttons([xx+1316, yy+72], _target_company_text, [1, 1], c_green, , fnt_40k_12)){
+        if (target_comp >= 1) then target_comp += 1;
+        if (target_comp > obj_ini.companies) then target_comp = 1;
+        obj_controller.new_vehicles = target_comp;
+    }
 }
 
 draw_set_alpha(1);
