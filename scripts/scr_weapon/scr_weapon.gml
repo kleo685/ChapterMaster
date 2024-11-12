@@ -10,6 +10,7 @@ global.weapons = {
 		"ranged_hands": 2,
 		"range": 25,
 		"tags": ["las", "energy", "rifle", "precision"],
+		"cost": 66
 	},
 	"Choppa": {
 		"abbreviation": "Chop",
@@ -21,7 +22,8 @@ global.weapons = {
 		"melee_hands": 1,
 		"range": 1,
 		"spli": 3,
-		"tags": ["axe"]
+		"tags": ["axe"],
+		"cost": 88
 	},
 	"Snazzgun": {
 		"abbreviation": "Snazz",
@@ -1794,7 +1796,8 @@ global.weapons = {
 		"range": 18,
 		"spli": 30,
 		"arp": 0,
-		"tags": ["vehicle","heavy_ranged", "turret", "volkite", "ancient"]
+		"tags": ["vehicle","heavy_ranged", "turret", "volkite", "ancient"],
+		"cost": 123
 	},
 }
 global.gear = {
