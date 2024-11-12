@@ -1,57 +1,28 @@
 {
     "Archeotech Laspistol": {
-        "abbreviation": "ArchLpstl",
         "disable_buying": true
     },
-    "Assault Cannon": {
-        "abbreviation": "AssCann"
-    },
-    "Autocannon": {
-        "abbreviation": "Autocnn"
-    },
-    "Autocannon Turret": {
-        "abbreviation": "Autocnn"
-    },
-    "Boarding Shield": {
-        "abbreviation": "BrdShld"
-    },
-    "Bolt Pistol": {
-        "abbreviation": "BltPstl"
-    },
-    "Bolter": {
-        "abbreviation": "Bltr"
-    },
-    "Boltstorm Gauntlet": {
-        "abbreviation": "BlstGnt"
-    },
-    "CCW Heavy Flamer": {
-        "abbreviation": "CCWHvyFlmr"
-    },
-    "Chainaxe": {
-        "abbreviation": "ChAxe"
-    },
+    "Assault Cannon": {},
+    "Autocannon": {},
+    "Autocannon Turret": {},
+    "Boarding Shield": {},
+    "Bolt Pistol": {},
+    "Bolter": {},
+    "Boltstorm Gauntlet": {},
+    "CCW Heavy Flamer": {},
+    "Chainaxe": {},
     "Chainfist": {
-        "abbreviation": "ChFst",
         "research_required": {
             "power_fields": 2,
             "chain": 1
         },
         "renegade_no_buy": true
     },
-    "Chainsword": {
-        "abbreviation": "ChSwrd"
-    },
-    "Choppa": {
-        "abbreviation": "Chop"
-    },
-    "Close Combat Weapon": {
-        "abbreviation": "CCW"
-    },
-    "Combat Knife": {
-        "abbreviation": "CbKnf"
-    },
+    "Chainsword": {},
+    "Choppa": {},
+    "Close Combat Weapon": {},
+    "Combat Knife": {},
     "Combiflamer": {
-        "abbreviation": "CmbFlmr",
         "research_required": {
             "bolt": 1,
             "flame": 1
@@ -59,7 +30,6 @@
         "renegade_no_buy": true
     },
     "Combigrav": {
-        "abbreviation": "CmbGrv",
         "research_required": {
             "bolt": 1,
             "grav": 1
@@ -67,7 +37,6 @@
         "renegade_no_buy": true
     },
     "Combimelta": {
-        "abbreviation": "CmbMlt",
         "research_required": {
             "bolt": 1,
             "melta": 1
@@ -75,7 +44,6 @@
         "renegade_no_buy": true
     },
     "Combiplasma": {
-        "abbreviation": "CmbPlsm",
         "research_required": {
             "bolt": 1,
             "plasma": 1
@@ -83,31 +51,20 @@
         "renegade_no_buy": true
     },
     "Company Standard": {
-        "abbreviation": "CmpStnd",
         "nobuy": 1,
         "renegade_no_buy": true
     },
-    "Conversion Beam Projector": {
-        "abbreviation": "CnvBmPrj"
-    },
+    "Conversion Beam Projector": {},
     "Crozius Arcanum": {
-        "abbreviation": "Crzus",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
-    "Dreadnought Lightning Claw": {
-        "abbreviation": "LghtClw"
-    },
-    "Dreadnought Power Claw": {
-        "abbreviation": "PwrClw"
-    },
-    "Eldar Power Sword": {
-        "abbreviation": "EldPwrSwrd"
-    },
+    "Dreadnought Lightning Claw": {},
+    "Dreadnought Power Claw": {},
+    "Eldar Power Sword": {},
     "Eviscerator": {
-        "abbreviation": "Evisc",
         "research_required": {
             "chain": 1
         },
@@ -115,303 +72,209 @@
             "Ecclesiarchy"
         ]
     },
-    "Executioner Power Axe": {
-        "abbreviation": "ExPwrAxe"
-    },
+    "Executioner Power Axe": {},
     "Flamer": {
-        "abbreviation": "Flmr",
         "research_required": {
             "flame": 1
         }
     },
-    "Flamestorm Cannon Sponsons": {
-        "abbreviation": "FlmstCnns"
-    },
-    "Flamestorm Cannon Turret": {
-        "abbreviation": "FlmstCnn"
-    },
+    "Flamestorm Cannon Sponsons": {},
+    "Flamestorm Cannon Turret": {},
     "Force Axe": {
-        "abbreviation": "FrcAxe",
         "research_required": {
             "psi": 1
         },
         "renegade_no_buy": true
     },
     "Force Staff": {
-        "abbreviation": "FrcStff",
         "research_required": {
             "psi": 1
         },
         "renegade_no_buy": true
     },
     "Force Sword": {
-        "abbreviation": "FrcSwrd",
         "research_required": {
             "psi": 1
         },
         "renegade_no_buy": true
     },
     "Grav-Cannon": {
-        "abbreviation": "GrvCan",
         "research_required": {
             "grav": 1
         },
         "renegade_no_buy": true
     },
     "Grav-Gun": {
-        "abbreviation": "GrvGn",
         "research_required": {
             "grav": 1
         },
         "renegade_no_buy": true
     },
     "Grav-Pistol": {
-        "abbreviation": "GrvPstl",
         "research_required": {
             "grav": 1
         },
         "renegade_no_buy": true
     },
-    "HK Missile": {
-        "abbreviation": "HKMssl"
-    },
+    "HK Missile": {},
     "Hand Flamer": {
-        "abbreviation": "HndFlmr",
         "research_required": {
             "flame": 1
         }
     },
     "Heavy Bolter": {
-        "abbreviation": "HvyBltr",
         "research_required": {
             "bolt": 2
         },
         "renegade_no_buy": true
     },
-    "Heavy Bolter Sponsons": {
-        "abbreviation": "HvyBltrs"
-    },
-    "Heavy Conversion Beam Projector": {
-        "abbreviation": "HvyCnvBmr"
-    },
+    "Heavy Bolter Sponsons": {},
+    "Heavy Conversion Beam Projector": {},
     "Heavy Flamer": {
-        "abbreviation": "HvyFlmr",
         "research_required": {
             "flame": 1
         },
         "renegade_no_buy": true
     },
-    "Heavy Flamer Sponsons": {
-        "abbreviation": "SpnHvyFlmrs"
-    },
+    "Heavy Flamer Sponsons": {},
     "Heavy Thunder Hammer": {
-        "abbreviation": "HvyThndHmr",
         "research_required": {
             "power_fields": 3
         },
         "renegade_no_buy": true
     },
-    "Hellgun": {
-        "abbreviation": "HllGun"
-    },
+    "Hellgun": {},
     "Hellrifle": {
-        "abbreviation": "HllRifle",
         "nobuy": 1
     },
-    "Hurricane Bolter Sponsons": {
-        "abbreviation": "HrcBltrs"
-    },
+    "Hurricane Bolter Sponsons": {},
     "Incinerator": {
-        "abbreviation": "Incnrtr",
         "research_required": {
             "flame": 1
         }
     },
-    "Inferno Cannon": {
-        "abbreviation": "InfCann"
-    },
-    "Infernus Pistol": {
-        "abbreviation": "InfPstl"
-    },
-    "Integrated Bolter": {
-        "abbreviation": "IntgBltr"
-    },
+    "Inferno Cannon": {},
+    "Infernus Pistol": {},
+    "Integrated Bolter": {},
     "Lascannon": {
-        "abbreviation": "Lascnn",
         "research_required": {
             "las": 1
         },
         "renegade_no_buy": true
     },
-    "Lascannon Sponsons": {
-        "abbreviation": "Lscnns"
-    },
-    "Lascutter": {
-        "abbreviation": "Lasct"
-    },
-    "Laspistol": {
-        "abbreviation": "Lpstl"
-    },
+    "Lascannon Sponsons": {},
+    "Lascutter": {},
+    "Laspistol": {},
     "Lightning Claw": {
-        "abbreviation": "LghtClw",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
     "Mace of Absolution": {
-        "abbreviation": "AbsltMace",
         "research_required": {
             "power_fields": 2
         }
     },
-    "Magna-Melta Turret": {
-        "abbreviation": "MgnMlt"
-    },
+    "Magna-Melta Turret": {},
     "Meltagun": {
-        "abbreviation": "Mltgn",
         "research_required": {
             "melta": 1
         }
     },
-    "Missile Launcher": {
-        "abbreviation": "MsslLnch"
-    },
+    "Missile Launcher": {},
     "Multi-Melta": {
-        "abbreviation": "MltMelt",
         "research_required": {
             "melta": 1
         },
         "renegade_no_buy": true
     },
-    "Neutron Blaster Turret": {
-        "abbreviation": "NtrnBlstr"
-    },
+    "Neutron Blaster Turret": {},
     "Plasma Cannon": {
-        "abbreviation": "PlsmCan",
         "research_required": {
             "plasma": 1
         },
         "renegade_no_buy": true
     },
-    "Plasma Cutter": {
-        "abbreviation": "PlsmCt"
-    },
-    "Plasma Destroyer Turret": {
-        "abbreviation": "PlsmDestr"
-    },
+    "Plasma Cutter": {},
+    "Plasma Destroyer Turret": {},
     "Plasma Gun": {
-        "abbreviation": "PlsmGn",
         "research_required": {
             "plasma": 1
         },
         "renegade_no_buy": true
     },
     "Plasma Pistol": {
-        "abbreviation": "PlsmPstl",
         "research_required": {
             "plasma": 1
         },
         "renegade_no_buy": true
     },
     "Power Axe": {
-        "abbreviation": "PwrAxe",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
     "Power Fist": {
-        "abbreviation": "PwrFst",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
-    "Power Fists": {
-        "abbreviation": "PwrFsts"
-    },
+    "Power Fists": {},
     "Power Mace": {
-        "abbreviation": "PwrMace",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
     "Power Spear": {
-        "abbreviation": "PwrSpear",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
     "Power Sword": {
-        "abbreviation": "PwrSwrd",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
-    "Power Weapon": {
-        "abbreviation": "PwrWpn"
-    },
-    "Quad Linked Heavy Bolter Sponsons": {
-        "abbreviation": "QdHvyBltrs"
-    },
-    "Ranger Long Rifle": {
-        "abbreviation": "RangeLoRife"
-    },
-    "Reaper Autocannon Mount": {
-        "abbreviation": "RprAtcnn"
-    },
-    "Relic Blade": {
-        "abbreviation": "RlcBld"
-    },
-    "Sarissa": {
-        "abbreviation": "Saris"
-    },
-    "Servo-arm(M)": {
-        "abbreviation": "MchArm"
-    },
-    "Shuriken Pistol": {
-        "abbreviation": "ShurikP"
-    },
-    "Snazzgun": {
-        "abbreviation": "Snazz"
-    },
-    "Sniper Rifle": {
-        "abbreviation": "SnprRfl"
-    },
+    "Power Weapon": {},
+    "Quad Linked Heavy Bolter Sponsons": {},
+    "Ranger Long Rifle": {},
+    "Reaper Autocannon Mount": {},
+    "Relic Blade": {},
+    "Sarissa": {},
+    "Servo-arm(M)": {},
+    "Shuriken Pistol": {},
+    "Snazzgun": {},
+    "Sniper Rifle": {},
     "Stalker Pattern Bolter": {
-        "abbreviation": "StlkBltr",
         "research_required": {
             "bolt": 1
         }
     },
     "Storm Bolter": {
-        "abbreviation": "StrmBltr",
         "research_required": {
             "bolt": 2
         },
         "renegade_no_buy": true
     },
     "Storm Shield": {
-        "abbreviation": "StrmShld",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
     "Thunder Hammer": {
-        "abbreviation": "ThndHmr",
         "research_required": {
             "power_fields": 2
         },
         "renegade_no_buy": true
     },
-    "Tome": {
-        "abbreviation": "Tome"
-    },
+    "Tome": {},
     "Twin Linked Assault Cannon Mount": {
         "renegade_no_buy": true
     },
@@ -455,15 +318,6 @@
         "renegade_no_buy": true
     },
     "Volkite Culverin Sponsons": {
-        "renegade_no_buy": true
-    },
-    "Volkite Saker Turret": {
-        "renegade_no_buy": true
-    },
-    "Webber": {
-        "renegade_no_buy": true
-    },
-    "Whirlwind Missiles": {
         "renegade_no_buy": true
     }
 }
