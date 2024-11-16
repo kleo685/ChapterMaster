@@ -191,7 +191,7 @@
                     "type": "object"
                 },
                 "company_titles": {
-                    "description": "The titles used within the chapter's company, usually assigned to key officers or specialists.",
+                    "description": "The titles of the chapter's companies.",
                     "items": {
                         "type": "string"
                     },
@@ -223,7 +223,7 @@
                     "type": "array"
                 },
                 "discipline": {
-                    "description": "The primary discipline of the chapter, which could be one of the types of psychic powers or a default discipline.",
+                    "description": "The psychic discipline of the chapter.",
                     "enum": [
                         "default",
                         "biomancy",
@@ -234,7 +234,7 @@
                     "type": "string"
                 },
                 "disposition": {
-                    "description": "The chapter's general disposition and behavior traits, with exactly 8 items representing different attributes.",
+                    "description": "Chapter's relationship with other factions. 0 - empty, 1 - progenitor chapter, 2 - imperium, 3 - admech, 4 - inquisition, 5 - ecclesiarchy, 6 - other chapters, 7 - empty.",
                     "items": {
                         "type": "integer"
                     },
@@ -243,7 +243,7 @@
                     "type": "array"
                 },
                 "equal_specialists": {
-                    "description": "Indicates whether the chapter treats all specialists equally (1 for true, 0 for false).",
+                    "description": "Distribute specialists (assaults, devastators, tactical) evenly across 8 companies? (1 for true, 0 for false).",
                     "enum": [
                         0,
                         1

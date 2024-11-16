@@ -121,11 +121,13 @@
             "gear": "",
             "mobi": ""
         },
-        "artifact": {
-            "name": "Sword of Secrets",
-            "description": "A master-crafted Power Sword of formidable potency created soon after the disappearance of Lion El'Jonson. It is the mightiest of the Heavenfall Blades",
-            "base_weapon_type": "Power Sword"
-        },
+        "artifact": [
+            {
+                "name": "Sword of Secrets",
+                "description": "A master-crafted Power Sword of formidable potency created soon after the disappearance of Lion El'Jonson. It is the mightiest of the Heavenfall Blades",
+                "base_weapon_type": "Power Sword"
+            }
+        ],
         "company_titles": [
             "",
             "Deathwing",
