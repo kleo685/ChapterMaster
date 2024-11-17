@@ -48,9 +48,9 @@ jobs:
           }
 
           if ("${{ inputs.development }}" -eq "true") {
-            echo "::set-output name=suffix::$BuildDate"
+            echo "suffix=$Version-$BuildDate" >> $GITHUB_OUTPUT
           } else {
-            echo "::set-output name=suffix::$Version"
+            echo "suffix=$Version" >> $GITHUB_OUTPUT
           }
   
           # Create the version.json content
@@ -64,9 +64,9 @@ jobs:
           Set-Content -Path datafiles/main/version.json -Value $VersionJson
           
           # Set outputs for version, build date, and commit hash
-          echo "::set-output name=version::$Version"
-          echo "::set-output name=build_date::$BuildDate"
-          echo "::set-output name=commit_hash::$CommitHash"
+          # echo "version=$Version" >> $GITHUB_OUTPUT
+          # echo "build_date=$BuildDate" >> $GITHUB_OUTPUT
+          # echo "commit_hash=$CommitHash" >> $GITHUB_OUTPUT
 
       # This step finds the yyp file in the repository and saves the path to an output
       - id: find_yyp
