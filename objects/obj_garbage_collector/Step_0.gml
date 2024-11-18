@@ -12,7 +12,9 @@ if (gc_timer > 0) {
         var _gc_traversal_t = $"(GC{_gc_stats.gc_frame}) Traversal Time: {_gc_stats.traversal_time} μs";
         var _gc_collection_t = $"(GC{_gc_stats.gc_frame}) Collection Time: {_gc_stats.collection_time} μs";
         var _gc_lines = [_gc_touched, _gc_collected, _gc_traversal_t, _gc_collection_t];
-        show_debug_message_time($"(GC{_gc_stats.gc_frame}) Garbage Collected!");
+        // show_debug_message_time($"(GC{_gc_stats.gc_frame}) Garbage Collected!");
+        debugl("============");
         array_foreach(_gc_lines, debugl);
+        debugl("============");
     });
 }
